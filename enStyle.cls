@@ -349,9 +349,6 @@ KOMA-script documentation for details.}]{fancyhdr}
     	
     	\vspace{1.5cm}
     	{\Large \bfseries \ttitle} \\ % Thesis title
-    	
-    	\vspace{1.5cm}
-    	\ifdefined\tsubtitle {\large \bfseries \tsubtitle} \fi % Thesis sub title, if exists
 
     	\vspace{1.5cm}
     	{\large \bfseries \dissertationdisclamer~\subjectname}
@@ -403,15 +400,15 @@ KOMA-script documentation for details.}]{fancyhdr}
     	
     	\vspace{1.5cm}
     	{\Large \bfseries \ttitle} \\ % Thesis title
-    	\vspace{1.5cm}
-    	\ifdefined\tsubtitle {\large \bfseries \tsubtitle} \\ \fi % Thesis sub title, if exists
 
     	\vspace{1.5cm}
     	{\large \bfseries \dissertationdisclamer~\subjectname}
     	\vspace{1cm}
 	\end{center}
 	
-	{\large \bfseries \orientationlabel: \supname}
+	{\normalsize \bfseries Orientação de: Professor \supname}
+	
+	{\normalsize \bfseries Co-orientação de: Professor \cosupname}
 	
 	\vfill
 	% Assinaturas
