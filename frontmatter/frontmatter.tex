@@ -1,0 +1,176 @@
+%O frontmmatter são as chamadas páginas iniciais, terá de atualizar as respetivas secções.
+
+%-----------------------------------------%
+%    CONFIGURAÇÃO INICIAL                 %
+%-----------------------------------------%
+
+\input{frontmatter/glossary}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+%----------------------------------------------------------------------------------------
+%	CAPA
+%----------------------------------------------------------------------------------------
+\maketitlepage
+
+
+%----------------------------------------------------------------------------------------
+%	CONTRA CAPA
+%----------------------------------------------------------------------------------------
+\makeconttitlepage
+
+
+%-----------------------------------------%
+%      EPÍGRAFE     (opcional)                     
+%-----------------------------------------%
+\begin{epigraph}
+\null \vfill
+\begin{flushright}
+
+A epígrafe traduz-se pela inscrição de sentença conceituosa que, de algum modo inspirou o autor na elaboração do trabalho ou nas suas ações correntes, e que o mesmo considere importante revelar no trabalho. Tem uma natureza facultativa.
+
+\end{flushright}
+\vfill \null%
+\end{epigraph}%
+
+
+
+%----------------------------------------------------------------------------------------
+%	DEDICATÓRIA  (opcional)
+%----------------------------------------------------------------------------------------
+%\dedicatory{For/Dedicated to/To my\ldots}
+\begin{dedicatory}
+\null \vfill
+\begin{flushright}
+
+A dedicatória tem por finalidade prestar homenagem ou dedicar o trabalho a alguém próximo ou que tenha um especial significado para o autor do trabalho. 
+
+É, também, um elemento facultativo na estrutura do trabalho, mas é usual que seja feita dedicando o trabalho aos pais, à família mais chegada ou a alguém com relevância especial na vida do autor. 
+
+\end{flushright}
+\vfill \null%
+\end{dedicatory}
+
+
+%----------------------------------------------------------------------------------------
+%	AGRADECIMENTOS (opcional)
+%----------------------------------------------------------------------------------------
+
+\begin{acknowledgements}
+
+Agradecimento é a expressão registada de uma gratidão às pessoas, entidades ou instituições que, de algum modo, contribuíram para a elaboração do trabalho. Sendo um elemento opcional, quando exista deve incluir-se na frente de folha a colocar logo após a folha de rosto ou das folhas da epígrafe e/ou da dedicatória, deixando o verso em branco.
+
+\end{acknowledgements}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	RESUMO
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+
+\noindent \textbf{\ Subtítulo caso queira!}
+
+Segue-se, com caráter obrigatório, um resumo em língua portuguesa e em língua inglesa (abstract), cada um deles com um máximo de 300 palavras.
+
+Após cada um dos resumos devem ser indicadas cinco palavras-chave – português e inglês – para indexação futura.
+
+% As palavras chave terão de ser definidas no ficheiro main.tex depois da linha de código keywords
+\end{abstract}
+
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT 
+%----------------------------------------------------------------------------------------
+\begin{abstractotherlanguage}
+% here you put the abstract in the "other language": English, if the work is written in Portuguese; Portuguese, if the work is written in English.
+
+
+\noindent \textbf{\ Subtitle if you want}
+\noindent 
+
+Trabalhos escritos em língua Inglesa devem incluir um resumo alargado com cerca de 1000 palavras, ou duas páginas.
+
+Se o trabalho estivesse escrito em Português, este resumo seria em língua Inglesa, com cerca de 200 palavras, ou uma página.
+
+Para alterar a língua basta ir às configurações do documento no ficheiro \file{main.tex} e alterar para a língua desejada ('english' ou 'portuguese')\footnote{Alterar a língua requer apagar alguns ficheiros temporários; O target \keyword{clean} do \keyword{Makefile} incluído pode ser utilizado para este propósito.}. Isto fará com que os cabeçalhos incluídos no template sejam traduzidos para a respetiva língua.
+
+% As palavras chave terão de ser definidas no ficheiro main.tex depois da linha de código conkeywords
+
+\end{abstractotherlanguage}
+
+
+
+%----------------------------------------------------------------------------------------
+%	ÍNDICE DE CONTEÚDO / FIGURAS / TABELAS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Imprime o índice principal
+\pdfbookmark[0]{\contentsname}{toc}% Adiciona o índice aos bookmarks do pdf
+
+\listoffigures % Imprime a lista de figuras
+
+\listoftables % Imprime a lista de tabelas
+
+\iflanguage{portuguese}{
+\renewcommand{\listalgorithmname}{Lista de Algor\'itmos}
+}
+\listofalgorithms % Prints the list of algorithms
+%\addchaptertocentry{\listalgorithmname} %Uncomment para mostrar no índice a lista de algoritmos
+
+
+\renewcommand{\lstlistlistingname}{List of Source Code}
+\iflanguage{portuguese}{
+\renewcommand{\lstlistlistingname}{Lista de C\'odigo}
+}
+\lstlistoflistings % Imprime a lista de listagens (código-fonte da linguagem de programação)
+
+%\addchaptertocentry{\lstlistlistingname} %Uncomment para mostrar a lista de de código no índice
+
+
+%----------------------------------------------------------------------------------------
+%	ABREVIATURAS
+%----------------------------------------------------------------------------------------
+
+\begin{abbreviations}{ll} % IncluI uma lista de abreviações (uma tabela de duas colunas)
+
+\input{frontmatter/listabreviations}
+
+\end{abbreviations}
+
+%----------------------------------------------------------------------------------------
+%	SÍMBOLOS
+%----------------------------------------------------------------------------------------
+
+\begin{symbols}{lll} % Inclui uma lista de símbolos (uma tabela de três colunas)
+
+\input{frontmatter/listsymbols}
+
+\end{symbols}
+
+
+
+%----------------------------------------------------------------------------------------
+%	ACRÓNIMOS
+%----------------------------------------------------------------------------------------
+
+\newcommand{\listacronymname}{List of Acronyms}
+\iflanguage{portuguese}{
+\renewcommand{\listacronymname}{Lista de Acr\'onimos}
+}
+
+%Use GLS
+\glsresetall
+\printglossary[title=\listacronymname,type=\acronymtype,style=long]
+
+
+%----------------------------------------------------------------------------------------
+%	ACABOU - BOM TRABALHO
+%----------------------------------------------------------------------------------------
+
+\mainmatter % Começar numeração da página com numéros árabes (1,2,3 ...)
+
