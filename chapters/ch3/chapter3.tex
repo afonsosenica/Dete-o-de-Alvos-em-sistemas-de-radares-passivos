@@ -5,7 +5,7 @@
 
 %----------------------------------------------------------------------------------------
 \section{Teoria Básica de Antenas}
-Uma antena é definida como "um dispositivo geralmente metálico (com haste ou fio) para irradiar ou receber ondas de rádio" (\cite{IEEE1983}), ou seja, uma antena, é o dispositivo que permite a transição entre o meio que a rodeia e o equipamento, que se pode observar na Figura \ref{fig:antena transicao}. 
+Uma antena é definida como "um dispositivo geralmente metálico (com haste ou fio) para irradiar ou receber ondas de rádio" \parencite{Balanis2016}, ou seja, uma antena, é o dispositivo que permite a transição entre o meio que a rodeia e o equipamento, que se pode observar na Figura \ref{fig:antena transicao}. 
 Este dispositivo é um transdutor que converte energia elétrica em ondas eletromagnéticas ou vice versa, sendo que é uma antena de transmissão, se converter um sinal elétrico num sinal eletromagnético e é uma antena de receção, se converter um sinal eletromagnético em sinal elétrico. 
 
 \begin{figure}[h]
@@ -58,12 +58,25 @@ A sua construção consiste num \textit{patch} metálico sobre um substrato. Est
 \end{figure}
 
 \subsection*{Antenas de Matrizes}
+As antenas de matrizes surgem nas aplicações em que é necessário mais que um elemento. Consegue-se assim agrupar vários elementos de forma a obter as características pretendidas. Algumas alterações às caraterísticas que se conseguem com este tipo de antenas antenas são o aumento de ganho, alterar o diagrama de radiação, determinar a direção de chegada de um sinal ou maximizar o \gls{SINR}\footnote{\gls{SINR} é um indicador de qualidade de transmissão ajustado a comunicações móveis devido à interferência de outros utilizadores ser mais significativa \parencite{Jeske2004}.}.
 
 \subsection*{Antenas de Lente}
+Este tipo de antenas utiliza as propriedades de convergência e divergência das lentes para a receção ou transmissão de sinal. O tamanho da lente a ser utilizada depende da frequência - quanto maior for a frequência, menor a lente. Dito isto, é mais favorável usar este tipo de antenas em frequências mais altas, visto que a lente será menor. As suas aplicações são semelhantes às das refletoras parabólicas, especificamente quando usadas em frequências mais altas e que necessitem de mais largura de banda.
 
-\subsection*{Antenas Refletora}
+\subsection*{Antenas Refletoras}
+As antenas refletoras existem desde o final do século XIX, no entanto começaram a ser aplicadas em radares na Segunda Guerra Mundial e a partir do final do século XX em comunicações espaciais. Estas aplicações devem-se à sua capacidade de transmissões a grandes distâncias. Podem-se apresentar nas mais diversas formas, como plano refletor, refletor curvilíneo, entre outros.\par 
+O seu modo de funcionamento baseia-se na convergência da energia numa direção como demonstrado na Figura \ref{fig:reflector}, o que leva, para além de um grande alcance, a uma grande diretividade.
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch3/assets/reflector}
+\decoRule
+\caption[Antena Refletora]{Funcionamento de uma Antena Refletora}
+\label{fig:reflector}
+\end{figure}
 
+\subsection{Parâmetros Fundamentais}
+Neste subcapítulo vão ser discutidos os parâmetros fundamentais para o funcionamento de uma antena e a sua \textit{performance}. Grande parte dos parâmetros estão definidos no \parencite{IEEE1983}.
 
 \section{Simulação de uma Antena}
 
