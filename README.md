@@ -43,15 +43,3 @@ Make sure you have the following tools installed: **pdflatex**, **makeglossaries
 |biblatex|Required for citations and bibliography|
 |tikz|Required for creating graphics programmatically (can be removed if not used)|
 |pgfplots|Required for drawing high--quality function plots (can be removed if not used)|
-
-## Who do I talk to? ##
-
-* Hilário Araújo (rocha.araujo@marinha.pt) and 
-* Ricardo Moura (ricardo.pinto.moura@marinha.pt)
-
-## Tutoriais: ##
-*Texmaker: https://www.xm1math.net/texmaker/doc.html
-
-*Overleaf: https://www.overleaf.com/learn
-
-*Youtube:  https://www.youtube.com/playlist?list=PLB6oieQ9gzTRyQQJh8XPi1kHsNcpPyndk
