@@ -76,10 +76,33 @@ O seu modo de funcionamento baseia-se na convergência da energia numa direção
 \end{figure}
 
 \subsection{Parâmetros Fundamentais}
-Neste subcapítulo vão ser discutidos os parâmetros fundamentais para o funcionamento de uma antena e a sua \textit{performance}. Grande parte dos parâmetros estão definidos no \parencite{IEEE1983}.
+Neste subcapítulo vão ser discutidos os parâmetros fundamentais para o funcionamento de uma antena e a sua \textit{performance}. Grande parte dos parâmetros estão definidos no IEEE 1983 Standard Definitions for Antennas and Propagation.
 
 \subsection*{Diagrama de Radiação}
-Um diagrama de radiação é a função ou representação gráfica que descreve as propriedades espaciais de radiação de uma antena. Para este efeito são utilizadas coordenadas esféricas ($r$, $\varphi$ e $\theta$), sendo que a antena se encontra na origem do referencial. A propriedade mais relevante nos diagramas de radiação é a distribuição espacial, em duas ou três dimensões, da energia radiada em função da posição do observador de acordo com um azimute ($\theta$ constante).
+Um diagrama de radiação é a função ou representação gráfica que descreve as propriedades espaciais de radiação de uma antena. É de extrema importância conhecer este padrão de radiação de uma antena e poder controla-lo, visto que a distribuição de energia eletromagnética, se for mal dimensionada, pode comprometer o projeto. \par 
+
+A manipulação do diagrama de radiação de uma antena é dependente do objetivo da mesma. Podemos ter como finalidade um diagrama de radiação que seja direcional (Figura \ref{fig:direcional}), como numa ligação ponto a ponto, ou podemos como finalidade, um diagrama de radiação omnidirecional (Figura \ref{fig:omnidirecional}), ou seja, que radia, idealmente, com igual intensidade para todas as direções.\par
+
+Para este efeito são utilizadas coordenadas esféricas ($r$, $\varphi$ e $\theta$), sendo que a antena se encontra na origem do referencial. A propriedade mais relevante nos diagramas de radiação é a distribuição espacial, em duas ou três dimensões, da energia radiada em função da posição do observador de acordo com um azimute ($\theta$ constante).\par 
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch3/assets/matlab_ad1}
+\decoRule
+\caption[Diagrama de radiação direcional]{Diagrama de radiação direcional - Corneta de guia de ondas dimensionada para 1GHz (MATLAB Antenna Designer Toolkit)}
+\label{fig:direcional}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch3/assets/matlab_ad2}
+\decoRule
+\caption[Diagrama de radiação omnidirecional]{Diagrama de radiação omnidirecional - Dipolo dimensionado para 2GHz (MATLAB Antenna Designer Toolkit)}
+\label{fig:omnidirecional}
+\end{figure}
+
+A caraterística mais 
+
 
 \subsection*{Densidade de Potência}
 
