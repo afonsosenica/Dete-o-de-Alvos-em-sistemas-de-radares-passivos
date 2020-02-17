@@ -101,8 +101,9 @@ Para este efeito são utilizadas coordenadas esféricas ($r$, $\varphi$ e $\thet
 \label{fig:omnidirecional}
 \end{figure}
 
-Os parâmetros fundamentais de um diagrama de radiação, como podem ser observados na Figura \ref{fig:elem_carat_dg}, são os lóbulos, que representam a energia radiada numa direção relativamente ao transmissor e podem ser classificados em lóbulos principais, secundários, laterais e posteriores; A largura de feixe a meia potência (\gls{HPBW}) e a largura de feixe ao primeiro nulo (\gls{FNBW}) estão relacionadas com a capacidade de resolução da antena, ou seja, a sua capacidade de distinguir dois alvos. O critério para distinguir dois alvos é que a \gls{HPBW} seja aproximadamente \gls{FNBW}/2, isto é, se dois alvos estiverem separadas por distâncias angulares iguais ou superiores a \gls{HPBW}$\approx$\gls{FNBW}/2 de uma antena, esta consegue distingui-los \parencite{Kraus1988}. Os fatores que afetam a largura de feixe são o comprimento de onda ($\lambda$), a forma do diagrama de radiação e as dimensões da antena.
+Os lóbulos são um dos parâmetros fundamentais de um diagrama de radiação, que representam a energia radiada numa direção relativamente ao transmissor e podem ser classificados em lóbulos principais, secundários, laterais e posteriores (Figura \ref{fig:elem_carat_dg}). O lóbulo principal é o lóbulo que contém a direção da radiação máxima, que no caso da Figura \ref{fig:elem_carat_dg}, está definido no sentido do eixo dos zz. Os lóbulos secundários são todos os lóbulos expecto o principal. Os lóbulos laterais são todos os que radiam energia para qualquer direção que não seja a pretendida. Os lóbulos posteriores contêm a energia que é radiada num ângulo de 180$^{\circ}$ em relação à direção do feixe da antena. \par 
 
+A largura de feixe a meia potência (\gls{HPBW}) e a largura de feixe ao primeiro nulo (\gls{FNBW}) estão relacionadas com a capacidade de resolução da antena, ou seja, a sua capacidade de distinguir dois alvos. O critério para distinguir dois alvos é que a \gls{HPBW} seja aproximadamente \gls{FNBW}/2, isto é, se dois alvos estiverem separadas por distâncias angulares iguais ou superiores a \gls{HPBW}$\approx$\gls{FNBW}/2 de uma antena, esta consegue distingui-los \parencite{Kraus1988}. Os fatores que afetam a largura de feixe são o comprimento de onda ($\lambda$), a forma do diagrama de radiação e as dimensões da antena. \par 
 
 \begin{figure}[h]
 \centering
@@ -111,6 +112,53 @@ Os parâmetros fundamentais de um diagrama de radiação, como podem ser observa
 \caption[Elementos caraterísticos do diagrama de radiação]{Elementos caraterísticos do diagrama de radiação}
 \label{fig:elem_carat_dg}
 \end{figure}
+
+Os diagramas de radiação podem ser classificados quanto à diretividade em que as antenas radiam. Um radiador isotrópico é definido com uma antena hipotética e sem perdas que radia igualmente em todas as direções e é normalmente tomado como referência para exprimir a diretividade de antenas. o radiador direcional é caracterizado por radiar ondas eletromagnéticas em determinadas direções e o radiador omnidirecional radia energia de igual forma em todas as direções \parencite{Balanis2016}.
+
+\subsubsection*{Planos Principais}
+Para antenas com polarização linear, discutido com mais detalhe no subcapítulo Polarização, consideram-se os seguintes planos:
+\begin{itemize}
+\item Plano E: Definido pelo plano que contém o vetor do campo elétrico e a direção da máxima radiação;
+\item Plano H: Definido pelo plano que contém o vetor do campo magnético e a direção da máxima radiação.
+\end{itemize}
+Os eixos do sistemas de coordenadas são escolhidos por forma a que pelo menos um dos planos referido coincidas com os planos do referencial, no entanto, há casos em que pode ser mais favorável escolher outro sistema de coordenadas.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch3/assets/campoEH_piramidal}
+\decoRule
+\caption[Campos E e H de um diagrama de radiação de uma antena]{Campos E e H de um diagrama de radiação de uma antena}
+\label{fig:campoEH_piramidal}
+\end{figure}
+
+\subsubsection*{Regiões de Campo}
+De forma a identificar a estrutura do espaço circundante da antena, este é dividido em três regiões \parencite{Kraus1988}:
+\begin{itemize}
+\item Região reativa do campo próximo: Definida com a porção do espaço imediatamente em redor da antena, onde predomina o campo reativo;
+\item Região do campo próximo (\textit{Região de Fresnel}): Definida como a região da antena entre a região reativa do campo próximo e a região de \textit{Fraunhofer} onde predomina o campo radiado e a sua orientação espacial depende da distância à antena;
+\item Região do campo distante (\textit{Região de Fraunhofer}): Caraterizada pela região onde a distribuição angular do campo é maioritariamente independente da distância à antena.
+\end{itemize}
+
+Tipicamente, a forma diagrama de radiação é alterado consoante as regiões em que se encontra. Segundo a Figura \ref{fig:alt_tipicas_regioes} presente no artigo \cite{Y.RahmatL.WilliamsR.Yoccarino1995}, o diagrama é mais disperso e uniforme na região reativa do campo próximo. À medida em que a distância à antena aumenta, e que se entra nas regiões de \textit{Fresnel} e \textit{Fraunhofer} a forma do diagrama evidencia mais os seus lóbulos e fica mais regular. A separação entre as regiões reativa do campo próximo e região de \textit{Fresnel} e entre a região de \textit{Fresnel} e região de \textit{Fraunhofer} são definidas pelas expressões \ref{3.1} e \ref{3.2} respetivamente \parencite{Y.RahmatL.WilliamsR.Yoccarino1995}.
+
+\begin{equation} \label{3.1}
+R=\dfrac{2D^{2}}{\lambda}
+\end{equation}
+
+\begin{equation} \label{3.2}
+R=0.62\sqrt{\dfrac{D^{3}}{\lambda}}
+\end{equation}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch3/assets/alt_tipicas_regioes}
+\decoRule
+\caption[Alterações típicas da forma do diagrama de radiação]{Alterações típicas do diagrama de radiação desde a reagião reativa do campo próximo à \textit{Região de Fraunhofer}. (\parencite{Y.RahmatL.WilliamsR.Yoccarino1995})}
+\label{fig:alt_tipicas_regioes}
+\end{figure}
+
+
 
 \subsection*{Densidade de Potência}
 
