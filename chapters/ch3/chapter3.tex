@@ -154,15 +154,27 @@ R=0.62\sqrt{\dfrac{D^{3}}{\lambda}}
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/alt_tipicas_regioes}
 \decoRule
-\caption[Alterações típicas da forma do diagrama de radiação]{Alterações típicas do diagrama de radiação desde a reagião reativa do campo próximo à \textit{Região de Fraunhofer}. (\parencite{Y.RahmatL.WilliamsR.Yoccarino1995})}
+\caption[Alterações típicas da forma do diagrama de radiação]{Alterações típicas do diagrama de radiação desde a reagião reativa do campo próximo à \textit{Região de Fraunhofer}. \parencite{Y.RahmatL.WilliamsR.Yoccarino1995}}
 \label{fig:alt_tipicas_regioes}
 \end{figure}
 
 
-
 \subsection*{Densidade de Potência}
 
+As ondas eletromagnéticas resultam da combinação de um campo magnético e de um campo elétrico que se propaga no espaço. A forma de representar a densidade direcional da quantidade de energia transferida de uma onda eletromagnética é através do vetor de \textit{Poynting}, o qual é definido, contabilizando variações temporais sinusoidais, na equação \ref{3.3}, expressa em \si{\watt\per\meter\squared}.
 
+\begin{equation} \label{3.3}
+W_{av}(x,y,z)=\dfrac{1}{2}Re[E\times H^{*}]
+\end{equation}
+
+Sendo que o vetor de \textit{Poynting} é uma densidade de potência, ao integrar a componente normal do mesmo ao longo da superfície S, obtém-se na equação \ref{3.4} a potência média radiada pela antena $P_{rad}$.
+
+\begin{equation} \label{3.4}
+P_{rad}=P_{av}=\oint_S W_{rad}\cdot ds 
+=\dfrac{1}{2} \oint_S Re[E\times H^{*}]\cdot ds
+\end{equation}
+
+ 
 \subsection*{Intensidade de Radiação}
 
 
