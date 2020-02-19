@@ -76,7 +76,7 @@ O seu modo de funcionamento baseia-se na convergência da energia numa direção
 \end{figure}
 
 \subsection{Parâmetros Fundamentais}
-Neste subcapítulo vão ser discutidos os parâmetros fundamentais para o funcionamento de uma antena e a sua \textit{performance}. Grande parte dos parâmetros estão definidos no IEEE 1983 Standard Definitions for Antennas and Propagation.
+Neste subcapítulo vão ser discutidos os parâmetros mais relevantes que estão relacionados com o funcionamento de uma antena e com a sua \textit{performance}. Grande parte dos parâmetros estão definidos no IEEE 1983 Standard Definitions for Antennas and Propagation.
 
 \subsection*{Diagrama de Radiação}
 Um diagrama de radiação é a função ou representação gráfica que descreve as propriedades espaciais de radiação de uma antena. É de extrema importância conhecer este padrão de radiação de uma antena e poder controla-lo, visto que a distribuição de energia eletromagnética, se for mal dimensionada, pode comprometer o projeto. \par 
@@ -143,11 +143,11 @@ De forma a identificar a estrutura do espaço circundante da antena, este é div
 Tipicamente, a forma diagrama de radiação é alterado consoante as regiões em que se encontra. Segundo a Figura \ref{fig:alt_tipicas_regioes} presente no artigo \cite{Y.RahmatL.WilliamsR.Yoccarino1995}, o diagrama é mais disperso e uniforme na região reativa do campo próximo. À medida em que a distância à antena aumenta, e que se entra nas regiões de \textit{Fresnel} e \textit{Fraunhofer} a forma do diagrama evidencia mais os seus lóbulos e fica mais regular. A separação entre as regiões reativa do campo próximo e região de \textit{Fresnel} e entre a região de \textit{Fresnel} e região de \textit{Fraunhofer} são definidas pelas expressões \ref{3.1} e \ref{3.2} respetivamente \parencite{Y.RahmatL.WilliamsR.Yoccarino1995}.
 
 \begin{equation} \label{3.1}
-R=\dfrac{2D^{2}}{\lambda}
+R=\dfrac{2L^{2}}{\lambda}
 \end{equation}
 
 \begin{equation} \label{3.2}
-R=0.62\sqrt{\dfrac{D^{3}}{\lambda}}
+R=0.62\sqrt{\dfrac{L^{3}}{\lambda}}
 \end{equation}
 
 \begin{figure}[h]
@@ -167,19 +167,31 @@ As ondas eletromagnéticas resultam da combinação de um campo magnético e de 
 W_{av}(x,y,z)=\dfrac{1}{2}Re[E\times H^{*}]
 \end{equation}
 
-Sendo que o vetor de \textit{Poynting} é uma densidade de potência, ao integrar a componente normal do mesmo ao longo da superfície S, obtém-se na equação \ref{3.4} a potência média radiada pela antena $P_{rad}$.
+Sendo que o vetor de \textit{Poynting} é uma densidade de potência, ao integrar a componente normal do mesmo, obtém-se na equação \ref{3.4} a potência média radiada pela antena $P_{rad}$ que atravessa uma superfície fechada S.
 
 \begin{equation} \label{3.4}
-P_{rad}=P_{av}=\oint_S W_{rad}\cdot ds 
-=\dfrac{1}{2} \oint_S Re[E\times H^{*}]\cdot ds
+P_{rad}=P_{av}=\oiint_S W_{rad}\cdot \,ds 
+=\dfrac{1}{2} \oiint_S Re[E\times H^{*}]\cdot \,ds
 \end{equation}
 
+Como meio de comparação, define-se a potência radiada por um radiador isotrópico na expressão \ref{3.6}, com uma densidade de potência dada por,
+
+\begin{equation} \label{3.5}
+W_{0}=\hat{a}_{r}=\hat{a}_{r}\left( \dfrac{P_{rad}}{4\pi r^{2}}\right) 
+\end{equation}
+
+\begin{equation} \label{3.6}
+P_{rad}=\oiint_S W_{rad}\cdot \,ds 
+=\int_{0}^{2\pi}\int_{0}^{\pi}\left[ \hat{a}_{r}W_{0}(r)\right] \cdot \left[ \hat{a}_{r}r^{2}sin\theta \,d\theta \,d\phi \right] = 4\pi r^{2}W_{0}
+\end{equation}
  
-\subsection*{Intensidade de Radiação}
-
-
+ 
 \subsection*{Diretividade}
+A diretividade de uma antena é definida com a relação entre a intensidade de radiação numa determinada direção e a intensidade de radiação média em todos as direções. A intensidade média é igual ao quociente entre a potência total radiada pela antena e 4$\pi$ \parencite{IEEE1997}. Sendo que a intensidade de radiação $U$ é obtida pela multiplicação entre a densidade de radiação e o quadrado da distância, a diretividade $D$ de uma antena pode ser descrita pela expressão \ref{3.7}.
 
+\begin{equation} \label{3.7}
+D=\dfrac{U}{U_{0}}=\dfrac{4\pi U}{P_{rad}}
+\end{equation}
 
 \subsection*{Ganho}
 
