@@ -193,6 +193,42 @@ A diretividade de uma antena é definida com a relação entre a intensidade de 
 D=\dfrac{U}{U_{0}}=\dfrac{4\pi U}{P_{rad}}
 \end{equation}
 
+No entanto, para antenas com componentes de polarização ortogonais podem-se definir diferentes diretividades parciais para cada polarização $\theta$ e $\phi$,
+
+\begin{equation} \label{3.8}
+D_{0}=D_{\theta}+D_{\phi}
+\end{equation}
+
+onde, 
+
+\begin{equation} \label{3.8a}
+D_{\theta}=\dfrac{4\pi U_{\theta}}{\left( P_{rad}\right)_{\theta}+\left( P_{rad}\right)_{\phi}}
+\end{equation}
+
+\begin{equation} \label{3.8b}
+D_{\phi}=\dfrac{4\pi U_{\phi}}{\left( P_{rad}\right)_{\theta}+\left( P_{rad}\right)_{\phi}}
+\end{equation}
+
+sendo que o índice $\theta$ e $\phi$ representa a direção que contém as componentes do campo $\theta$ e $\phi$ respetivamente.
+
+Para um radiador isotrópico, a diretividade toma o valor unitário, no entanto, em qualquer outro tipo de radiador, o valor da máxima diretividade irá ser sempre superior a ao valor unitário. Na equação \ref{3.7}, considerando o cálculo para a diretividade máxima, esta pode tomar valores inferiores a 1, o que não acontece na realidade. Com isto, uma expressão mais geral para a diretividade e para a diretividade máxima podem ser definidas na equação \ref{3.9a} e \ref{3.9b} respetivamente.
+
+\begin{equation} \label{3.9a}
+D\left( \theta ,\phi\right)=4\pi\dfrac{F\left( \theta ,\phi\right)}{\int^{2\pi}_{0}\int^{\pi}_{0}F\left( \theta ,\phi\right)sin\theta\,d\theta \,d\phi} 
+\end{equation}
+
+\begin{equation} \label{3.9b}
+D_{0}=4\pi\dfrac{F\left( \theta ,\phi\right)\mid_{max}}{\int^{2\pi}_{0}\int^{\pi}_{0}F\left( \theta ,\phi\right)sin\theta\,d\theta \,d\phi} 
+\end{equation}
+
+onde $F\left( \theta ,\phi\right)$ é uma função dos componentes do campo elétrico numa região do campo distante, que, multiplicada por uma constante, resulta a intensidade de radiação.\par 
+No entanto, a diretividade máxima também pode ser descrita em função do ângulo sólido de feixe $\Omega_{A}$,\footnote{O ângulo de sólido {$\Omega$} é definido como um ângulo tridimensional no centro de uma esfera, que subentende na superfície da mesma uma área medida pelo quadrado do raio da esfera e toma valores adimensionais.}
+
+\begin{equation} \label{3.13}
+D_{0}=\dfrac{4\pi}{\dfrac{\left[ \int^{2\pi}_{0}\int^{\pi}_{0}F\left( \theta ,\phi\right) sin\theta\,d\theta \,d\phi\right]}{F\left( \theta ,\phi\right) \mid_{max}} }=\dfrac{4\pi}{\Omega_{A}} 
+\end{equation}
+
+
 \subsection*{Ganho}
 
 
