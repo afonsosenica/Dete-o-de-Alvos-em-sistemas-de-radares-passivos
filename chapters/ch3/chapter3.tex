@@ -11,7 +11,6 @@ Este dispositivo é um transdutor que converte energia elétrica em ondas eletro
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/Antenna_transicao}
-\decoRule
 \caption[Antena como meio de transição]{Antena como um meio de transição (Figura 1.1 - \cite{Balanis2016})}
 \label{fig:antena transicao}
 \end{figure}
@@ -26,7 +25,6 @@ As antenas de fio podem ser encontradas nos mais variados locais, desde aeronave
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/wire_antenna}
-\decoRule
 \caption[Antena de Fio]{Exemplos de vários tipos de antenas de fio (Figura 1.3 - \cite{Balanis2016})}
 \label{fig:wire antenna}
 \end{figure}
@@ -38,7 +36,6 @@ Assim sendo, as antenas de abertura são utilizadas para frequências mais eleva
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/aperture_antenna2}
-\decoRule
 \caption[Antena de Abertura]{Antenas de abertura no plano H, E e piramidal}
 \label{fig:aperture antenna2}
 \end{figure}
@@ -52,7 +49,6 @@ A sua construção consiste num \textit{patch} metálico sobre um substrato. Est
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/microstrip}
-\decoRule
 \caption[Antena \textit{Microstrip}]{Exemplos de duas configurações de \textit{patches} diferentes (Figura 1.5 - \cite{Balanis2016})}
 \label{fig:microstrip}
 \end{figure}
@@ -70,7 +66,6 @@ O seu modo de funcionamento baseia-se na convergência da energia numa direção
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/reflector}
-\decoRule
 \caption[Antena Refletora]{Funcionamento de uma Antena Refletora}
 \label{fig:reflector}
 \end{figure}
@@ -88,7 +83,6 @@ Para este efeito são utilizadas coordenadas esféricas ($r$, $\varphi$ e $\thet
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/matlab_ad1}
-\decoRule
 \caption[Diagrama de radiação direcional]{Diagrama de radiação direcional - Corneta de guia de ondas dimensionada para 1GHz (MATLAB Antenna Designer Toolkit)}
 \label{fig:direcional}
 \end{figure}
@@ -96,7 +90,6 @@ Para este efeito são utilizadas coordenadas esféricas ($r$, $\varphi$ e $\thet
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/matlab_ad2}
-\decoRule
 \caption[Diagrama de radiação omnidirecional]{Diagrama de radiação omnidirecional - Dipolo dimensionado para 2GHz (MATLAB Antenna Designer Toolkit)}
 \label{fig:omnidirecional}
 \end{figure}
@@ -108,7 +101,6 @@ A largura de feixe a meia potência (\gls{HPBW}) e a largura de feixe ao primeir
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/elem_carat_dg}
-\decoRule
 \caption[Elementos caraterísticos do diagrama de radiação]{Elementos caraterísticos do diagrama de radiação}
 \label{fig:elem_carat_dg}
 \end{figure}
@@ -127,7 +119,6 @@ Os eixos do sistemas de coordenadas são escolhidos por forma a que pelo menos u
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/campoEH_piramidal}
-\decoRule
 \caption[Campos E e H de um diagrama de radiação de uma antena]{Campos E e H de um diagrama de radiação de uma antena}
 \label{fig:campoEH_piramidal}
 \end{figure}
@@ -153,7 +144,6 @@ R=0.62\sqrt{\dfrac{L^{3}}{\lambda}}
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{chapters/ch3/assets/alt_tipicas_regioes}
-\decoRule
 \caption[Alterações típicas da forma do diagrama de radiação]{Alterações típicas do diagrama de radiação desde a reagião reativa do campo próximo à \textit{Região de Fraunhofer}. \parencite{Y.RahmatL.WilliamsR.Yoccarino1995}}
 \label{fig:alt_tipicas_regioes}
 \end{figure}
@@ -274,6 +264,12 @@ G_{re}\left( \theta ,\phi\right)=e_{r}G\left( \theta ,\phi\right)=\left( 1-\vert
 
 
 \subsection*{Largura de Banda}
+A largura de banda é uma gama de frequências, em redor de uma frequência central $f_{c}$, para a qual as caraterísticas da antena se mantêm com um valor aceitável relativamente aos valores obtidos para a frequência central. A largura de banda é, frequentemente, um dos parâmetros determinantes usados para dimensionar a antena.\par
+Dependendo das necessidades de operação da antena que é utilizada, a largura de banda será limitada por certos fatores que são falados neste capítulo, como a impedância de entrada, ganho, forma do diagrama de radiação e polarização. Na prática, a largura de banda pode ser representada de duas formas,
+\begin{itemize}
+\item Antenas de banda larga, que apresentam a caraterística da frequência mais alta ser maior ou igual que o dobro da menor frequência. A largura de banda é representada pela razão entre estas frequências. Por exemplo, uma razão de 5:1 significa que a frequência mais alta é 4 vezes maior que a menor frequência.
+\item Antenas de banda estreita, que são caraterizadas por apresentarem uma largura de banda muito menor que a frequência central. Neste caso, a largura de banda é expressa em percentagem. Por exemplo, uma percentagem de 10\% de banda larga significa que é aceitável que a diferença da menor frequência para a frequência central, e consequentemente a diferença da frequência central para a maior frequência tome um valor que seja metade dos 10\% para cada lado de $f_{c}$, ou seja, 5\% de $f_{c}$ para cada lado.
+\end{itemize}
 
 
 \subsection*{Polarização}
@@ -284,8 +280,45 @@ G_{re}\left( \theta ,\phi\right)=e_{r}G\left( \theta ,\phi\right)=\left( 1-\vert
 
 \subsection*{Eficiência}
 \subsubsection*{Eficiência da Antena}
-\subsubsection*{Eficiência do Feixe}
+A eficiência da antena $e_{0}$ descreve perdas nos terminais de entrada e dentro da estrutura da antena. A figura \ref{fig:perdas_antena} representa os terminais de referência da antena e as suas perdas: \begin{itemize}
+\item Perdas por reflexão devido à não adaptação entre o guia e a antena
+\item Perdas por condução e dielétrico
+\end{itemize}
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch3/assets/perdas_antena}
+\caption[Terminais de referência e perdas na antena]{Terminais de referência e perdas na antena (Figura 2.22 do livro \cite{Balanis2016})}. 
+\label{fig:perdas_antena}
+\end{figure}
+
+Ou seja, de modo geral, a eficiência pode ser escrita da seguinte forma,
+
+\begin{equation} \label{3.20}
+e_{0}=e_{r}e_{c}e_{d}
+\end{equation}
+
+onde \par 
+$e_{0}$:"eficiência total" \par
+$e_{r}$:"eficiência considerando perdas por reflexão $\left( 1-\vert\Gamma\vert^{2}\right)$"\par
+$e_{c}$:"eficiência considerando perdas por condução"\par
+$e_{d}$:"eficiência do dielétrico"\par
+$\Gamma$:"coeficiente de reflexão nos terminais de entrada da antena"\par 
+$\left[ \Gamma=(Z_{in}-Z_{0})/(Z_{in}+Z_{0})\right] $ com $ Z_{in}$: impedância de entrada e $Z_{0}$: impedância característica do guia.\par 
+com a relação de onda estacionária ROE,
+\begin{equation} \label{3.21}
+ROE=\dfrac{1+\vert\Gamma\vert}{1-\vert\Gamma\vert}
+\end{equation}
+
+Por norma, $e_{c}$ e $e_{d}$ são muito difíceis de calcular, mas podem ser determinados experimentalmente. Com isto, é comum substituir-se $e_{c}e_{d}$ por $e_{cd}$ e representar-se a eficiência total $e_{0}$ por,
+
+\begin{equation} \label{3.22}
+e_{0}=e_{r}e_{cd}=e_{cd}\left( 1-\vert\Gamma\vert^{2}\right)
+\end{equation}
+
+
+%\subsubsection*{Eficiência do Feixe}
+%Outro parâmetro para definir a qualidade de transmissão e receção é a eficiência de feixe $BE$.
 
 \subsection*{Máxima Diretividade e Máxima Área Efetiva}
 
