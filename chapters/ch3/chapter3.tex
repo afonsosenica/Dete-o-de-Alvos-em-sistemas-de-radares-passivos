@@ -222,7 +222,7 @@ D_{0}=4\pi\dfrac{F\left( \theta ,\phi\right)\mid_{max}}{\int^{2\pi}_{0}\int^{\pi
 \end{equation}
 
 onde $F\left( \theta ,\phi\right)$ é uma função dos componentes do campo elétrico numa região do campo distante, que, multiplicada por uma constante, resulta a intensidade de radiação.\par 
-No entanto, a diretividade máxima também pode ser descrita em função do ângulo sólido de feixe $\Omega_{A}$,\footnote{O ângulo de sólido {$\Omega$} é definido como um ângulo tridimensional no centro de uma esfera, que subentende na superfície da mesma uma área medida pelo quadrado do raio da esfera e toma valores adimensionais.}
+No entanto, a diretividade máxima também pode ser descrita em função do ângulo sólido de feixe $\Omega_{A}$,\footnote{O ângulo sólido {$\Omega$} é definido como um ângulo tridimensional no centro de uma esfera, que subentende na superfície da mesma uma área medida pelo quadrado do raio da esfera e toma valores adimensionais.}
 
 \begin{equation} \label{3.13}
 D_{0}=\dfrac{4\pi}{\dfrac{\left[ \int^{2\pi}_{0}\int^{\pi}_{0}F\left( \theta ,\phi\right) sin\theta\,d\theta \,d\phi\right]}{F\left( \theta ,\phi\right) \mid_{max}} }=\dfrac{4\pi}{\Omega_{A}} 
@@ -230,6 +230,47 @@ D_{0}=\dfrac{4\pi}{\dfrac{\left[ \int^{2\pi}_{0}\int^{\pi}_{0}F\left( \theta ,\p
 
 
 \subsection*{Ganho}
+A diretividade de uma antena é uma medida que descreve apenas a propriedades direcionais da antena. Por outro lado, o ganho, para além de estar relacionado com a diretividade, também tem em conta a eficiência da antena, discutida mais à frente neste capítulo.\par
+O ganho de uma antena é um parâmetro fundamental na \textit{performance} da mesma. Este representa a eficiência em que a antena converte o sinal elétrico em ondas eletromagnéticas, que pode ser definido como ganho absoluto ou ganho relativo. O ganho absoluto de uma antena (definido na equação \ref{3.14}) representa a relação entre a intensidade de radiação radiada numa determinada direção e a intensidade de radiação que chega à antena, se a potência que chega à antena fosse radiada de forma isotrópica. No entanto, a antena isotrópica, como já foi falado neste capítulo, é um caso ideal e não corresponde à realidade. Com isto, utiliza-se o ganho relativo que relaciona a intensidade de radiação radiada de uma antena numa dada direção com a intensidade de radiação radiada a partir de outra antena na mesma direção, denominada antena de referência, quando ambas são alimentadas com a mesma potência de entrada.
+
+
+\begin{equation} \label{3.14}
+G\left( \theta ,\phi\right)=4\pi \dfrac{U\left( \theta ,\phi\right)}{P_{in}}
+\end{equation}
+
+
+Como falado mais à frente neste capítulo, a potência radiada $P_{rad}$ está relacionada com a potência de entrada $P_{in}$ da seguinte forma,
+
+\begin{equation} \label{3.15}
+P_{rad}=e_{cd}P_{in}
+\end{equation}
+
+sendo que $e_{cd}$ representa a eficiência de radiação da antena. \par 
+A partir da equação \ref{3.15}, usando a \ref{3.14}, vem,
+
+\begin{equation} \label{3.16}
+G\left( \theta ,\phi\right)=e_{cd} \left[ 4\pi \dfrac{U\left( \theta ,\phi\right)}{P_{rad}}\right] 
+\end{equation}
+
+Que está relacionado com a diretividade (equação \ref{3.7}) da seguinte forma,
+
+\begin{equation} \label{3.17}
+G\left( \theta ,\phi\right)=e_{cd}D\left( \theta ,\phi\right)
+\end{equation}
+
+No entanto, a equação \ref{3.17} não contempla perdas quando o elemento da antena está conectado a um guia, o que provoca perdas indesejadas, através de reflexões. Isto pode ser solucionado com a introdução do termo $e_{r}$ que está relacionado com o coeficiente de reflexão,
+
+\begin{equation} \label{3.18}
+e_{r}=\left( 1-\vert\Gamma\vert^{2}\right) 
+\end{equation}
+
+Assim sendo, pode-se introduzir o conceito de ganho realizado $G_{re}$ que tem em conta as perdas por reflexão da antena.
+
+\begin{equation} \label{3.19}
+G_{re}\left( \theta ,\phi\right)=e_{r}G\left( \theta ,\phi\right)=\left( 1-\vert\Gamma\vert^{2}\right)G\left( \theta ,\phi\right)=e_{r}e_{cd}D\left( \theta ,\phi\right) 
+\end{equation}
+
+É de notar, que se a antena for adaptada ao guia, ou seja, se a impedância de entrada for igual à impedância característica ($\vert\Gamma\vert =0$), então, $G=G_{re}$.
 
 
 \subsection*{Largura de Banda}
@@ -243,6 +284,7 @@ D_{0}=\dfrac{4\pi}{\dfrac{\left[ \int^{2\pi}_{0}\int^{\pi}_{0}F\left( \theta ,\p
 
 \subsection*{Eficiência}
 \subsubsection*{Eficiência da Antena}
+\subsubsection*{Eficiência do Feixe}
 
 
 \subsection*{Máxima Diretividade e Máxima Área Efetiva}
