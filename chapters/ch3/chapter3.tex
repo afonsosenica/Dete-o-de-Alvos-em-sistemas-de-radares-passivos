@@ -273,9 +273,47 @@ Dependendo das necessidades de operação da antena que é utilizada, a largura 
 
 
 \subsection*{Polarização}
+A polarização da antena é definida como a polarização da onda radiada pela mesma, que é definida como a direção do campo elétrico da onda radiada, que se nada for dito em contrário, se considera na direção da máxima radiação. No entanto, na prática, a polarização da onda radiada depende da direção de propagação, ou seja, podem existir diferentes polarizações em zonas diferentes do diagrama de radiação.\par
+A polarização pode ser classificada como linear, circular ou elíptica. Uma polarização linear é caraterizada se o vetor que descreve o campo elétrico tiver sempre a mesma direção à medida que a onda se propaga. A polarização circular é caraterizada pelo vetor do campo elétrico que gira numa circunferência no plano $xy$ à medida que a onda se propaga, o que difere para a polarização elíptica, no facto das duas componentes do vetor campo elétrico girarem numa elipse no plano $xy$. Pode-se definir a polarização linear e circular como casos particulares da polarização elíptica (Figura \ref{fig:polari}), em que as componentes do campo elétrico são múltiplos de $\pi$ na polarização linear e têm módulos iguais e um desfasamento múltiplo impar de $\dfrac{\pi}{2}$ na polarização circular.\par 
+%O campo instantâneo 
+%Para as diferentes polarizações, a relação tempo-fase $\Delta\phi$ é diferente, \par 
+%Polarização linear,
+
+%\begin{equation} \label{3.23}
+%\Delta\phi = \phi_{y}-\phi_{x}=n\pi, \quad n=0,1,2,3,...
+%\end{equation}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{chapters/ch3/assets/polari}
+\caption[Alterações típicas da forma do diagrama de radiação]{Rotação de uma onda eletromagnética com polarização elíptica para $z=0$(Figura 2.23 \cite{Balanis2016}).}
+\label{fig:polari}
+\end{figure}
+
+\subsubsection*{Perdas de Polarização}
+As perdas de polarização ocorrem quando a polarização da antena recetora é diferente à da onda incidente. Devido a este fator, a potência extraída pela antena do sinal recebido não vai ser máxima.\par 
+Assumindo que o campo elétrico da onda incidente pode ser escrito da seguinte forma,
+
+\begin{equation} \label{3.23}
+\mathbf{E_{i}}=\hat{\rho}_{w}E_{i}
+\end{equation}
+
+onde $\hat{\rho}_{w}$ é o vetor unitário da onda. Então, a polarização do campo elétrico da antena recetora pode ser escrito da seguinte forma,
+
+\begin{equation} \label{3.24}
+\mathbf{E_{a}}=\hat{\rho}_{a}E_{a}
+\end{equation}
+
+As perdas de polarização podem ser definidas pelo fator de perdas de polarização $PLF$, como na expressão \ref{3.25}.
+
+\begin{equation} \label{3.25}
+PLF=\vert\hat{\rho}_{w}\cdot \hat{\rho}_{a}\vert^{2}=\vert cos\psi_{p}\vert^{2}
+\end{equation}
+
+onde $\psi_{p}$ é o ângulo entre os dois vetores unitários.
 
 
-\subsection*{Impedância de Entrada}
+%\subsection*{Impedância de Entrada}
 
 
 \subsection*{Eficiência}
@@ -320,11 +358,11 @@ e_{0}=e_{r}e_{cd}=e_{cd}\left( 1-\vert\Gamma\vert^{2}\right)
 %\subsubsection*{Eficiência do Feixe}
 %Outro parâmetro para definir a qualidade de transmissão e receção é a eficiência de feixe $BE$.
 
-\subsection*{Máxima Diretividade e Máxima Área Efetiva}
+%\subsection*{Máxima Diretividade e Máxima Área Efetiva}
 
 
 
-\subsection*{Equação de Friis e Equação Radar}
+\subsection*{Equação Radar}
 
 
 
