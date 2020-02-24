@@ -363,10 +363,29 @@ e_{0}=e_{r}e_{cd}=e_{cd}\left( 1-\vert\Gamma\vert^{2}\right)
 
 
 \subsection*{Equação Radar}
+A equação radar pode ser definida através do conhecimento da \gls{RCS} do alvo.\footnote{\gls{RCS} é uma representação da capacidade de um alvo de refletir um sinal radar na direção do recetor. Em regra a \gls{RCS} de um alvo é comparada com a força de um sinal refletido isotrópicamente de uma esfera perfeitamente lisa com uma área de secção transversal de $1m^{2}$ }\par 
+A equação radar relaciona a potência recebida com a potência transmitida depois de ter sido refletida num alvo com uma \gls{RCS} $\sigma$
 
+\begin{equation} \label{3.26}
+\dfrac{P_{r}}{P_{t}}=e_{cdt}e_{cdr}\sigma \dfrac{D_{t}\left( \theta_{t},\phi_{t}\right)D_{r}\left( \theta_{r},\phi_{r}\right) }{4\pi}\left( \dfrac{\lambda}{4\pi R_{1}R_{2}}\right)^{2} 
+\end{equation}
 
+com \gls{RCS},
 
-\subsection*{\textit{Radar Cross Section}}
+\begin{equation} \label{3.27}
+\sigma =\lim_{R\to\infty}\left[ 4\pi R^{2}\dfrac{W_{s}}{W_{i}}\right] 
+\end{equation}
+
+onde \par 
+$e_{cdr}$:"eficiência considerando perdas dielétrico e por condução no recetor" \par
+$e_{cdt}$:"eficiência considerando perdas dielétrico e por condução no transmissor" \par
+$R$:"distância do recetor ao alvo" \par
+$W_{i}$:"Densidade de potência radiada" \par
+$W_{s}$:"Densidade de potência recebida" \par
+
+Se considerarmos
+
+%\subsection*{\textit{Radar Cross Section}}
 
 
 
