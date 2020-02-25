@@ -383,17 +383,30 @@ $R$:"distância do recetor ao alvo" \par
 $W_{i}$:"Densidade de potência radiada" \par
 $W_{s}$:"Densidade de potência recebida" \par
 
-Se considerarmos
+Se considerarmos perdas por reflexão vem,  
+
+\begin{equation} \label{3.28}
+\dfrac{P_{r}}{P_{t}}=e_{cdt}e_{cdr}\left( 1-\vert\Gamma_{t}\vert^{2}\right)\left( 1-\vert\Gamma_{r}\vert^{2}\right)\sigma \dfrac{D_{t}\left( \theta_{t},\phi_{t}\right)D_{r}\left( \theta_{r},\phi_{r}\right) }{4\pi}\times\left( \dfrac{\lambda}{4\pi R_{1}R_{2}}\right)^{2}\vert\hat{\rho}_{w}\cdot \hat{\rho}_{a}\vert^{2}
+\end{equation}
+
+onde \par 
+$\Gamma_{r}$:"coeficiente de reflexão nos terminais de entrada da antena de receção" \par
+$\Gamma_{t}$:"coeficiente de reflexão nos terminais de entrada da antena de transmissão" \par
+$\hat{\rho}_{w}$:"vetor unitário de polarização nas ondas refletidas"\par
+$\hat{\rho}_{r}$:"vetor unitário de polarização na antena de receção"\par
+
+No entanto, se as antenas estiverem com polarização adaptada para a máxima radiação direcional e receção, a equação \ref{3.28} fica reduzida a,
+
+\begin{equation} \label{3.29}
+\dfrac{P_{r}}{P_{t}}=\sigma \dfrac{G_{0t}G_{0r}}{4\pi}\left( \dfrac{\lambda}{4\pi R_{1}R_{2}}\right)^{2} 
+\end{equation}
+
 
 %\subsection*{\textit{Radar Cross Section}}
 
 
 
-\subsection*{Temperatura da Antena}
-
-
-\subsection*{Síntese}
-
+%\subsection*{Temperatura da Antena}
 
 
 
