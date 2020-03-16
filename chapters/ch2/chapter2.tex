@@ -6,7 +6,7 @@
 
 %----------------------------------------------------------------------------------------
 
-\section{Contextualização}
+\section{Contextualização} \label{contextualização}
 Os radares convencionais apresentam uma configuração onde são constituídos por um transmissor e um recetor, normalmente no mesmo local. Neste tipo de radares, um pulso é transmitido em forma de energia eletromagnética, e através do conhecimento do tempo levado pelo pulso a ser transmitido e recebido depois de refletido no alvo e da velocidade de propagação da luz, consegue-se determinar um valor de distância.\par 
 Num radar passivo, não existe transmissão de energia eletromagnética durante o seu funcionamento. Ao invés, utiliza iluminadores de oportunidade e compara o seu sinal direto com pequenas alterações que ocorrem no campo eletromagnético por alvos em movimento de forma a detetar um alvo \parencite{Griffiths2017}.\par 
 Este sistema radar pode utilizar uma grande variedade de iluminadores, desde sistemas de navegação por satélite (\textit{\gls{GNSS}}) como o \gls{GPS} ou o GLONASS, \textit{routers} de WiFi ou qualquer sistema de transmissão de frequências rádio como \textit{\gls{DVB}} ou estações de rádio. Dito isto, por forma a dimensionar o sistema para o efeito desejado, torna-se necessário uma boa compreensão das mais diversas caraterísticas dos iluminadores, como é falado mais à frente neste capítulo.\par 
@@ -113,14 +113,86 @@ A expressão do \textit{bistatic range resolution} permite interpretar a geometr
 Para radares passivos, continuando a interpretação da expressão \ref{2.4}, os iluminadores de oportunidade mais utilizados têm pouca largura de banda $B$, o que se reflete numa resolução em alcance mais reduzida. No entanto, os sinais de DVB-T, discutidos no Capítulo \ref{chap:Chapter1}, têm uma largura de banda na ordem dos 8 MHz, o que já permite uma resolução em alcance na ordem dos 40m.
 
 \subsubsection*{\textit{Doppler}} 
-O desvio de Doppler ocorre quando pelo menos um dos elementos transmissor, alvo, recetor se encontra em movimento. No caso mais comum, em que apenas o alvo se encontra em movimento, o desvio de \textit{Doppler} é dado por \parencite{Griffiths2017},
+Ignorando efeitos relativisticos, o desvio de \textit{Doppler} bistático ocorre quando pelo menos um dos elementos transmissor, alvo, recetor se encontra em movimento. É definido como a taxa de variação temporal do comprimento total do caminho percorrido pelo sinal refletido, normalizado pelo comprimento de onda $\lambda$ \parencite{Willis2005}.  No caso mais comum, em que apenas o alvo se encontra em movimento, o desvio de \textit{Doppler} é dado por \parencite{Willis2005},
 
 \begin{equation} \label{2.5}
 f_{D}=\dfrac{2v}{\lambda}cos\delta cos\left( \dfrac{\beta}{2}\right) 
 \end{equation}
 
-onde $\delta$ é o ângulo formado pelo sentido do vetor velocidade $v$ e a bissetriz do ângulo $\beta$ com centro no alvo.
+onde $\delta$ é o ângulo formado pelo sentido do vetor velocidade $v$ e a bissetriz do ângulo $\beta$ com centro no alvo. \par
 
+Na equação \ref{2.5}, quando $\beta =180^{\circ}$, estamos perante uma geometria \textit{forward scatter} e temos um valor de desvio de \textit{Doppler} $f_{D}=0$ para todos os ângulos de $\delta$. Quando $\beta =0^{\circ}$, fica-se reduzido a uma geometria monostática. 
+
+
+A resolução de \textit{Doppler} no radar bistático é semelhante à resolução de \textit{Doppler} no radar monostático, isto porque depende do tempo de integração $T$ que é um parâmetro escolhido e indiferente à geometria do radar. Quanto maior for o tempo de integração, melhor é a resolução de \textit{Doppler}. A expressão \ref{2.6} define o requisito mínimo entre a separação dos alvos.
+
+\begin{equation} \label{2.6}
+\vert f_{a1}-f_{a2}\vert = \dfrac{1}{T}
+\end{equation}
+
+sendo que $f_{a1}$ e $f_{a2}$ são os desvios de \textit{Doppler} para cada alvo, definidos em \ref{2.5}. Substituindo as equações dos alvos em \ref{2.5} na equação \ref{2.6}, e resolvendo em ordem a $\Delta v$, ou seja, a diferença entre os dois vetores velocidade projetados na bissetriz do ângulo $\beta$ ($\Delta v=\left( v_{1}cos\delta_{1}-v_{2}cos\delta_{2}\right) $), vem,
+
+\begin{equation} \label{2.7}
+\Delta v = \dfrac{\lambda}{2T\cdot cos\left( \beta /2\right) }
+\end{equation}
+
+Com esta expressão, assumimos que os alvos partilham a mesma bissetriz, o que na realidade é pouco provável. No entanto, esta restrição pode ser ignorada, se,
+\begin{enumerate}
+	\item A separação entre os alvos não for suficiente para permitir resolução em \textit{range};
+	\item O ângulo entre as bissetrizes dos dois alvos é pequeno.
+\end{enumerate}
+
+
+\subsection{Processamento de Sinal}
+Como falado em \ref{contextualização}, o conceito do radar passivo é fazer uma \textit{cross-correlation} entre o sinal direto e o refletido. O problema está no facto de ser computacionalmente muito pesado fazer uma \textit{\gls{2D-CCF}}, sendo necessário a utilização de algoritmos mais eficientes para o cálculo da mesma.\par
+O processamento de sinal num radar passivo pode ser, resumidamente, enumerado em oito pontos:
+\begin{enumerate}
+	\item Receção e reconstrução do sinal direto (\textit{reference signal}$s_{ref}$)
+	\item Receção do \textit{surveillance signal} ($s_{r}$))
+	\item \textit{Cross-correlation} do $s_{ref}$ e $s_{r}$
+	\item Integração de produtos da correlação (FFT)
+	\item Filtragem de \textit{clutter}
+	\item Deteção de alvos e seguimento no domínio \textit{range/Doppler}
+	\item Processamento no plano Cartesiano
+	\item Seguimento no plano Cartesiano
+\end{enumerate}
+
+\subsubsection*{Equivalência entre um filtro adaptado e \textit{cross-correlation}}
+
+Para \textit{Software Defined Radios}, a implementação de um filtro adaptado pode ser feita através do cálculo de uma \textit{cross-correlation} \parencite{Martorella}. Considerando $s_{0}(t)$ o sinal de saída do filtro adaptado e $h_{MF}(t)$ a resposta do filtro vem, 
+
+\begin{equation} \label{2.8}
+s_{0}\left( t\right) =s_{R}\left( t\right)\otimes h_{MF}\left( t\right) =\int s_{R}\left( \tau\right)s_{ref}^{\ast}\left(\tau -t\right)d\tau
+\end{equation}
+
+A equação \ref{2.8} mostra que usando um filtro adaptado obtemos um sinal de saída igual ao fazer uma \textit{cross-correlation} entre o $s_{R}$ e $s_{ref}$.\par 
+
+Ao implementar uma \textit{cross-correlation} como mostrado em \ref{2.8}, não se toma em conta o desvio de \textit{Doppler}, visto que se faz a \textit{cross-correlation} apenas numa dimensão. Para se entrar com o desvio de \textit{Doppler} tem de se extender a \gls{2D-CCF},
+
+\begin{equation} \label{2.9}
+CCF\left( \tau,\nu\right) =\int s_{R}\left( \tau\right)s_{ref}^{\ast}\left(\tau -t\right)e^{-2\pi j\nu t}d\tau
+\end{equation}
+
+onde $\nu$ representa o desvio de \textit{Doppler} que é definido pela \textit{cross-correlation} entre o $s_{R}$ e $s_{ref}$ compensada com o \textit{Doppler shift}.\par
+Como o \textit{delay-time} $\tau$ pode ser transformado em \textit{bistatic range}, a \gls{2D-CCF} pode ser representada num \textit{bistatic range-Doppler map}, através da equação \ref{2.10} que representa a \gls{2D-CCF} numéricamente visto que os sinais têm de ser digitalizados com uma certa frequência de amostragem.
+
+\begin{equation} \label{2.10}
+CCF\left(l,m\right) =\sum_{n=0}^{N-1} s_{R}\left( n\right)s_{ref}^{\ast}\left(n -l\right)e^{-2\pi j\dfrac{mn}{N}}
+\end{equation}
+
+onde $n$ representa o tempo, $l$ o \textit{delay-time}, $m$ o desvio de \textit{Doppler} e $N$ o número total de amostras que depende do \gls{CPI},
+
+\begin{equation} \label{2.11}
+N=\dfrac{CPI}{T_{s}}=CPI\cdot F_{s}
+\end{equation}
+
+
+\subsection{Supressão do Sinal Direto}
+
+
+
+
+\subsection{Previsão de \textit{Performance}}
 
 
 
