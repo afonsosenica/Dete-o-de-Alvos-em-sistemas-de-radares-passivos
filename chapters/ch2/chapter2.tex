@@ -186,6 +186,82 @@ onde $n$ representa o tempo, $l$ o \textit{delay-time}, $m$ o desvio de \textit{
 N=\dfrac{CPI}{T_{s}}=CPI\cdot F_{s}
 \end{equation}
 
+\subsubsection*{Eficiência do cálculo da \gls{2D-CCF}}
+De modo a ter um cálculo da \gls{2D-CCF} mais eficiente, há duas condições principais a referir:
+\begin{itemize}
+\item Cumprir com o teorema de \textit{Nyquist}, ou seja, garantir que a frequência de amostragem é superior ou igual à largura de banda ($F_{s}\geq B$); 
+\item Ter um \gls{CPI} longo de forma a obter maior ganho de integração e consequentemente melhor relação sinal-ruído.
+\end{itemize}
+\par
+No entanto, o cálculo de uma \gls{2D-CCF} é computacionalmente muito pesado, e isto pode ser demonstrado com um pequeno exemplo: Para uma largura de banda $B=10MHz$, um $CPI=1s$ e um número de \textit{range bins} e de \textit{doppler bins} igual a 1000 cada, implica um número de multiplicações muito elevado ($10000000\cdot 1\cdot 1000\cdot 1000=10000000000$ cálculos).\par
+Para solucionar este problemas existem várias soluções numéricas, como \textit{Correlation FFT}, \textit{Direct FFT} e \textit{Batches Algorithm} \parencite{Martorella}.
+
+\subsubsection*{\textit{Correlation FFT}}
+A \textit{Correlation FFT} pode ser obtida através da equação \ref{2.10} mudando o exponencial de posição como representado na eq. \ref{2.12}, de modo a obter uma nova expressão que pode ser calculada como uma \textit{cross-correlation} a uma dimensão com uma compensação de \textit{Doppler}, ou seja, \textit{Doppler bin} ($m$), a \textit{\gls{CCF}} é a \textit{cross-correlation} entre o \textit{reference signal} $S_{ref}$ e o sinal direto com um \textit{Doppler shift}.
+
+\begin{equation} \label{2.12}
+CCF\left(l,m\right) =\sum_{n=0}^{N-1} s_{R}\left( n\right)e^{-2\pi j\dfrac{mn}{N}}s_{ref}^{\ast}\left(n -l\right)
+\end{equation}
+
+Substituindo $s_{R}\left( n\right)e^{-2\pi j\dfrac{mn}{N}}$ por $s_{R}(n,m)$ vem,
+
+\begin{equation} \label{2.13}
+CCF\left(l,m\right) =\sum_{n=0}^{N-1} s_{R}\left( n,m\right) s_{ref}^{\ast}\left(n -l\right)
+\end{equation}
+
+Com isto, e sabendo que as \textit{cross-correlations} são calculadas mais eficientemente no domínio de \textit{Fourier}, vem,
+
+\begin{equation} \label{2.14}
+CCF\left(l,m\right) = IDFT\left[ S_{R}\left( k,m\right)S_{ref}^{\ast}\left(k\right)\right] 
+\end{equation}
+
+com 
+
+\begin{equation} \label{2.15}
+S_{R}\left( k,m\right)  = DFT\left[ s_{R}\left( n,m\right) \right] 
+\end{equation}
+
+\begin{equation} \label{2.16}
+S_{ref}\left( k\right)  = DFT\left[ s_{ref}\left( n\right) \right] 
+\end{equation}
+
+A \gls{DFT} da versão do sinal direto com \textit{Doppler shift} pode ser calculada apenas uma vez porque a variável $m$ apenas causa um desvio circular.
+Com isto, pode-se tirar algumas conclusões \parencite{Martorella}:
+\begin{itemize}
+\item Apenas é necessário calcular a \textit{\gls{DFT}} de $s_{R}\left( n,m\right)$ uma vez para $m=0$, visto que para outros valores de $m$ podem ser obtidos com um desvio;
+\item Em cada iteração, são calculadas N multiplicações complexas e uma \textit{\gls{IDFT}}.
+\end{itemize}
+
+Com isto, concluímos que quanto menos \textit{doppler bins} existirem em relação aos \textit{range bins}, mais eficiente será o cálculo. Este pode ser expressado através da seguinte função de complexidade:
+
+\begin{equation} \label{2.17}
+O_{CF}=2Nlog_{2}(N)+N_{f}[N+Nlog_{2}(N)]
+\end{equation}
+
+onde,
+$N_{f}$: "Número de doppler bins"
+
+\subsubsection*{\textit{Direct FFT}}
+Por outro lado, a \textit{Direct FFT} é um método que, tal como a \textit{Correlation FFT} deriva da interpretação da equação \ref{2.10} mas, para cada \textit{time bin} $l$, a \textit{\gls{CCF}} é a \gls{DFT} do produto do sinal recebido com a versão conjugada com \textit{delay} do \textit{reference signal} $S_{ref}$.
+
+\begin{equation} \label{2.18}
+CCF\left(l,m\right) = DFT\left[ S_{R}\left( n\right)S_{ref}^{\ast}\left(n-l\right)\right] 
+\end{equation}
+
+Da interpretação da equação \ref{2.18} conclui-se que, para cada iteração, são calculadas N multiplicações complexas e u,a \gls{DFT}. A sua função de complexidade pode ser expressa através da expressão \ref{2.19}:
+
+
+\begin{equation} \label{2.17}
+O_{DF}=N_{\tau}[N+Nlog_{2}(N)]
+\end{equation}
+
+onde,
+$N_{\tau}$: "Número de range bins"
+
+Ao contrário da \textit{correlation FFT},
+
+
+
 
 \subsection{Supressão do Sinal Direto}
 
