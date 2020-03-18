@@ -258,7 +258,19 @@ O_{DF}=N_{\tau}[N+Nlog_{2}(N)]
 onde,
 $N_{\tau}$: "Número de range bins"
 
-Ao contrário da \textit{correlation FFT},
+Ao contrário da \textit{correlation FFT}, tal como se pode observar na função de complexidade, a eficiência deste método é dependente do $N_{\tau}$. Isto é, o número de iterações feitas neste método está diretamente relacionado com o número de \textit{range cells}: quanto maior for o número de \textit{range cells} do mapa \textit{range-Doppler}, menos eficiente é este método.\par
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch2/assets/cfft_vs_dfft}
+\caption[Correlation FFT vs Direct FFT]{\textit{Correlation FFT vs Direct FFT} (Figura 2.4 \cite{Martorella})}
+\label{fig:cfft_vs_dfft}
+\end{figure}
+
+A figura \ref{fig:cfft_vs_dfft} representa de uma forma ilustrativa quando usar a \textit{Direct FFT} ou \textit{Correlation FFT} de acordo com a relação de \textit{Doppler cells} e \textit{range cells} no mapa de \textit{range-Doppler}. Se existirem mais \textit{Doppler cells} a \textit{Direct FFT} é mais eficiente, enquanto se o contrário se verificar, a \textit{Correlation FFT} torna-se mais eficiente.
+
+\subsubsection*{\textit{Batches algorithm}}
+
 
 
 
