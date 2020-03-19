@@ -301,8 +301,21 @@ CCF\left( l,m\right)=\sum_{r=0}^{n_{B}-1}CCF\left( l,r\right) e^{\left( -j2\pi \
 
 Um dos fatores que influencia a eficiência do algoritmo é a escolha da duração dos \textit{batches}. Com isto, é simples concluir que para um determinado intervalo, ao escolher \textit{batches} com maior duração, vai existir um menor número de \textit{batches}, e consequentemente, a \gls{DFT} é calculada ao longo de um menor número de pontos o que vai levar a um menor tempo de processamento. No entanto, ao escolher \textit{batches} com maior duração, vai introduzir um erro maior na aproximação de fase e consequentemente mais perdas em \gls{SNR}.\par
 Contudo, \textit{batches} com menor duração implicam o contrário, ou seja, maior número de batches, maior tempo de processamento e menos perdas em \gls{SNR}. \par 
-Foi desenvolvido um estudo de grande interesse \parencite{Petri2012} que analisa extensivamente a utilização do \textit{batches algorithm} em que foram recolhidos dados com um radar passivo da \gls{CNIT}. Os resultados da análise da duração dos \textit{batches} com o tempo de processamento e perdas \gls{SNR} encontram-se representados na tabela e figura \ref{fig:bat_snr} respetivamente.
+Foi desenvolvido um estudo de grande interesse \parencite{Petri2012} que analisa extensivamente a utilização do \textit{batches algorithm} em que foram recolhidos dados com um radar passivo da \gls{CNIT}. Os resultados da análise da duração dos \textit{batches} com o tempo de processamento e perdas \gls{SNR} encontram-se representados na tabela e figura \ref{fig:bat_snr} respetivamente.\par 
 
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Comprimento do batch & Tempo de processamento  \\ \midrule
+31.28 $\mu s$        & 4.93 $s$                \\
+218.76 $\mu s$       & 0.92 $s$                \\
+333.29 $\mu s$       & 0.71 $s$                \\ 
+924 $\mu s$          & 0.59 $s$                \\ \bottomrule
+\label{tab:Tempo de processamento}
+\end{tabular}
+\caption[\textit{Batches algorithm} - tempo de processamento]{\textit{Batches algorithm} - Análise do tempo de processamento devido ao comprimento dos \textit{batches} (Tabela 2.1 \cite{Martorella})}
+\end{table}
 
 \begin{figure}[h]
 \centering
@@ -312,8 +325,15 @@ Foi desenvolvido um estudo de grande interesse \parencite{Petri2012} que analisa
 \end{figure}
 
 
+\subsection{Reconstrução do sinal direto}
 
-\subsection{Supressão do Sinal Direto}
+
+
+\subsection{Cancelamento de \textit{clutter}}
+No funcionamento do radar passivo, um dos sinais que se quer ter conhecimento é o sinal direto, que é o sinal que é transmitido diretamente do iluminador de oportunidade para o recetor, como representado na figura \ref{fig:esquema_pcl}. Este sinal é submetido a uma atenuação  %de $1/C^{2}$ \parencite{Griffiths2017}, onde $C$ é a \textit{baseline} representada na figura \ref{fig:geom}.
+pequena relativamente ao sinal refletido, isto porque a \textit{baseline} $C$ representada na figura \ref{fig:geom} é sempre menor que o \textit{bistatic range}. Logo, o sinal direto pode ser muito mais forte comparado com os ecos dos alvos.\par 
+Por mais que se tente fisicamente não receber o sinal direto na antena de \textit{surveillance}, o sinal direto e todas as suas cópias atrasadas no tempo devido a reflexões em objetos e terreno não desejadas (\textit{clutter}) são mais fortes que o sinal refletido no alvo. É possível haver reflexões em edifícios ou algo perto da antena de \textit{surveillance} que possam ser confundidas com o sinal que pretendemos obter, o que pode complicar o cancelamento de todas as réplicas do sinal indesejadas. É de notar, que no caso dos radar \textit{\gls{PCL}}, ou seja, radares passivos, estamos perante uma geometria bistática e isto leva a que o nível de \textit{clutter} na zona da \textit{baseline} possa ser muito forte e ser notável em algumas \textit{range cells}. Este efeito em junção com o sinal direto que possa ser captado na antena de \textit{surveillance} podem dificultar a deteção de alvos.\par 
+
 
 
 
