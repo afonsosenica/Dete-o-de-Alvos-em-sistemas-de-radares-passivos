@@ -21,6 +21,12 @@ ORGAZINAÇÃO DAS PASTAS:
   Nesta pasta também se encontram outras funções que não são de relevância para
   a tese, mas sim para o funcionamento do octave.
   
-4) Mapa Emissores:
-  Na pasta "Mapa Emissores" encontram-se os mapas dos emissores DVB-T na zona de
+4) MAPA EMISSORES:
+  Na pasta "MAPA EMISSORES" encontram-se os mapas dos emissores DVB-T na zona de
   Lisboa e Setúbal.
+  
+5) APRESENTAÇÕES:
+  Na pasta "APRESENTAÇÕES" encontram-se as apresentações feitas em power point
+  utilizadas para apresentar diversas fases do trabalho. A apresentação "PCL Radar"
+  fala sobre o processamento do sinal e uma teoria inicial para o desenvolvimento 
+  do trabalho.
