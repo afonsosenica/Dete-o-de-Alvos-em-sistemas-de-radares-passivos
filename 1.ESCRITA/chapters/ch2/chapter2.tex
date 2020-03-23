@@ -331,12 +331,48 @@ Comprimento do batch & Tempo de processamento  \\ \midrule
 
 \subsection{Cancelamento de \textit{clutter}}
 No funcionamento do radar passivo, um dos sinais que se quer ter conhecimento é o sinal direto, que é o sinal que é transmitido diretamente do iluminador de oportunidade para o recetor, como representado na figura \ref{fig:esquema_pcl}. Este sinal é submetido a uma atenuação  %de $1/C^{2}$ \parencite{Griffiths2017}, onde $C$ é a \textit{baseline} representada na figura \ref{fig:geom}.
-pequena relativamente ao sinal refletido, isto porque a \textit{baseline} $C$ representada na figura \ref{fig:geom} é sempre menor que o \textit{bistatic range}. Logo, o sinal direto pode ser muito mais forte comparado com os ecos dos alvos.\par 
-Por mais que se tente fisicamente não receber o sinal direto na antena de \textit{surveillance}, o sinal direto e todas as suas cópias atrasadas no tempo devido a reflexões em objetos e terreno não desejadas (\textit{clutter}) são mais fortes que o sinal refletido no alvo. É possível haver reflexões em edifícios ou algo perto da antena de \textit{surveillance} que possam ser confundidas com o sinal que pretendemos obter, o que pode complicar o cancelamento de todas as réplicas do sinal indesejadas. É de notar, que no caso dos radar \textit{\gls{PCL}}, ou seja, radares passivos, estamos perante uma geometria bistática e isto leva a que o nível de \textit{clutter} na zona da \textit{baseline} possa ser muito forte e ser notável em algumas \textit{range cells}. Este efeito em junção com o sinal direto que possa ser captado na antena de \textit{surveillance} podem dificultar a deteção de alvos.\par 
+pequena relativamente ao sinal refletido, isto porque a \textit{baseline} $C$ representada na figura \ref{fig:geom} é sempre menor que o \textit{bistatic range}. Logo, o sinal direto pode ser muito mais forte comparado com os ecos dos alvos, o que dificulta a deteção de alvos.\par 
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch2/assets/clutter}
+\caption[Cenário PCL - Clutter]{Cenário PCL - Clutter (Figura 1 \cite{Peto2018})}
+\label{fig:clutter}
+\end{figure}
 
 
+Por mais que se tente fisicamente não receber o sinal direto na antena de \textit{surveillance}, este e todas as suas cópias atrasadas no tempo devido a reflexões em objetos e terreno não desejadas (\textit{clutter} representado na figura \ref{fig:clutter}) são mais fortes que o sinal refletido no alvo. É possível haver reflexões em edifícios ou algo perto da antena de \textit{surveillance} que possam ser confundidas com o sinal que pretendemos obter, o que pode complicar o cancelamento de todas as réplicas do sinal indesejadas. É de notar, que no caso dos radar \textit{\gls{PCL}}, ou seja, radares passivos, estamos perante uma geometria bistática e isto leva a que o nível de \textit{clutter} na zona da \textit{baseline} possa ser muito forte e ser notável em algumas \textit{range cells}. Este efeito em junção com o sinal direto que possa ser captado na antena de \textit{surveillance} podem dificultar a deteção de alvos.\par 
+O sinal recebido pode ser interpretado de uma forma mais realista como na equação \ref{2.23} para facilitar os processos de cancelamento de \textit{clutter} e identificação das diferentes componentes do sinal.
 
 
+\begin{equation} \label{2.23}
+S_{R}=A_{R}s_{T}\left( t\right)+\sum_{m=1}^{N_{T}}a_{m}s_{T}\left( t-\tau_{T_{m}}\right)e^{\left( 2\pi j f_{D_{m}}t\right)}+\sum_{i=1}^{N_{s}}b_{i}s_{T}\left( t-\tau_{c_{i}}\right)+n\left( t\right)    
+\end{equation}
+
+Onde o primeiro termo representa a componente do sinal direto, o segundo termo representa o sinal refletido no alvo, o terceiro termo representa o \textit{clutter} e por fim, o quarto termo representa a componente de ruído.\par
+
+Os aspetos mais importantes na \textit{performance} do cancelamento de \textit{clutter} são a capacidade de operação em tempo real e a eficiência do algoritmo representada no mapa \textit{range-Doppler}. De modo geral, a filtragem, ou cancelamento de \textit{clutter} é feita em dois domínios diferentes: Técnicas de supressão no domínio do espaço para lidar com interferências de alta potência e algoritmos de filtragem de \textit{clutter} no domínio do tempo. Tem sido investigado a aplicação de vários métodos e o artigo \cite{Peto2018} resume a aplicabilidade e comparação de resultados obtidos na utilização dos mesmos tanto como uma explicação sucinta na sua execução.\par 
+
+Existem várias técnicas de cancelamento de \textit{clutter} utilizadas em radares passivos. Os algoritmos de filtragem no domínio do tempo utilizam o \textit{reference signal} de modo a cancelar as réplicas do sinal com um desvio no tempo e de \textit{Doppler} no canal de \textit{surveillance}. Entre estes podemos salientar a aplicação das técnicas de filtragem de \textit{Wiener} com \textit{sample matrix inversion}, \gls{ECA}, \gls{ECA-B}, \gls{ECA-S} \gls{SCA}, \gls{LMS}, \gls{NLMS} e \gls{RLS}.\par
+
+Como jeito de conclusão deste tópico, as figuras \ref{fig:doppler_cancelationtec} e \ref{fig:comp_cost}, retiradas do estudo \cite{Petri2012}  representam a \textit{performance} dos 
+vários algoritmos nos dois aspetos mais relevantes, respetivamente no mapa de \textit{range-Doppler} que permite a observação da distorção e resolução do algoritmo e do aumento de \gls{SINR} em relação ao custo computacional  medido em \gls{FLOPS}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{chapters/ch2/assets/doppler_cancelationtec}
+\caption[Mapas de range-Doppler dos diferentes algoritmos utilizados]{Mapas de \textit{range-Doppler} dos diferentes algoritmos utilizados (Figura 14 \cite{Peto2018})}
+\label{fig:doppler_cancelationtec}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{chapters/ch2/assets/comp_cost}
+\caption[Mapa da performance dos algoritmos]{Mapa da \textit{performance} dos algoritmos de acordo com o aumento de \gls{SINR} e \textit{computation cost} em \gls{FLOPS} (Figura 16 \cite{Peto2018})}
+\label{fig:comp_cost}
+\end{figure}
+
+Destes resultados obtidos, é de realçar o algoritmo \gls{ECA-S} que obteve a melhor \textit{performance} ao custo de um grande \textit{computation cost}. Contudo, pode-se observar os algoritmos do tipo \gls{LMS} e \gls{NLMS}, que apesar de terem um bom aumento de \gls{SINR} com pouco custo computacional, apresentam, como observável na figura \ref{fig:doppler_cancelationtec}, uma grande distorção no mapa \textit{range-Doppler}. Também é de notar, que na figura \ref{fig:comp_cost}, o aumento de \gls{SINR} é pouco relativamente ao custo computacional, isto porque o referencial não está normalizado, ou seja, a janela do eixo das ordenadas toma valores entre $9.8$ e $10.4 dB$ enquanto a janela do eixo das abcissas toma valores entre $10^{9}$ e $10^{12} FLOPS$.
 
 \subsection{Previsão de \textit{Performance}}
 
