@@ -325,9 +325,6 @@ Comprimento do batch & Tempo de processamento  \\ \midrule
 \end{figure}
 
 
-\subsection{Reconstrução do sinal direto}
-
-
 
 \subsection{Cancelamento de \textit{clutter}}
 No funcionamento do radar passivo, um dos sinais que se quer ter conhecimento é o sinal direto, que é o sinal que é transmitido diretamente do iluminador de oportunidade para o recetor, como representado na figura \ref{fig:esquema_pcl}. Este sinal é submetido a uma atenuação  %de $1/C^{2}$ \parencite{Griffiths2017}, onde $C$ é a \textit{baseline} representada na figura \ref{fig:geom}.
@@ -358,12 +355,6 @@ Existem várias técnicas de cancelamento de \textit{clutter} utilizadas em rada
 Como jeito de conclusão deste tópico, as figuras \ref{fig:doppler_cancelationtec} e \ref{fig:comp_cost}, retiradas do estudo \cite{Petri2012}  representam a \textit{performance} dos 
 vários algoritmos nos dois aspetos mais relevantes, respetivamente no mapa de \textit{range-Doppler} que permite a observação da distorção e resolução do algoritmo e do aumento de \gls{SINR} em relação ao custo computacional  medido em \gls{FLOPS}.
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.5]{chapters/ch2/assets/doppler_cancelationtec}
-\caption[Mapas de range-Doppler dos diferentes algoritmos utilizados]{Mapas de \textit{range-Doppler} dos diferentes algoritmos utilizados (Figura 14 \cite{Peto2018})}
-\label{fig:doppler_cancelationtec}
-\end{figure}
 
 \begin{figure}[h]
 \centering
@@ -372,7 +363,30 @@ vários algoritmos nos dois aspetos mais relevantes, respetivamente no mapa de \
 \label{fig:comp_cost}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{chapters/ch2/assets/doppler_cancelationtec}
+\caption[Mapas de range-Doppler dos diferentes algoritmos utilizados]{Mapas de \textit{range-Doppler} dos diferentes algoritmos utilizados (Figura 14 \cite{Peto2018})}
+\label{fig:doppler_cancelationtec}
+\end{figure}
+
+
 Destes resultados obtidos, é de realçar o algoritmo \gls{ECA-S} que obteve a melhor \textit{performance} ao custo de um grande \textit{computation cost}. Contudo, pode-se observar os algoritmos do tipo \gls{LMS} e \gls{NLMS}, que apesar de terem um bom aumento de \gls{SINR} com pouco custo computacional, apresentam, como observável na figura \ref{fig:doppler_cancelationtec}, uma grande distorção no mapa \textit{range-Doppler}. Também é de notar, que na figura \ref{fig:comp_cost}, o aumento de \gls{SINR} é pouco relativamente ao custo computacional, isto porque o referencial não está normalizado, ou seja, a janela do eixo das ordenadas toma valores entre $9.8$ e $10.4 dB$ enquanto a janela do eixo das abcissas toma valores entre $10^{9}$ e $10^{12} FLOPS$.
+
+
+\subsection{Reconstrução e equalização do sinal direto}
+Uma das principais diferenças do radar passivo para o radar ativo é que no último o \textit{reference signal} é conhecido visto que é transmitido pelo próprio radar. No caso do radar passivo, a utilização de iluminadores de oportunidade tem como consequências o não conhecimento do sinal direto, visto que para além de receber o mesmo, recebemos as suas réplicas atrasadas no tempo e em \textit{Doppler} e ainda ruído.\par 
+De forma a melhorar o sinal direto em quando este é digital, neste subcapítulo vão ser discutidos dois métodos diferentes para a remoção de \textit{multipath} e remoção de picos espúrios formados na função de ambiguidade.
+
+\subsubsection*{Reconstrução do sinal direto}
+Alguns sinais digitais transmitidos, como DVB-T em específico, permitem a reconstrução do sinal direto através da desmodulação e re-modulação do sinal direto recebido. Esta técnica permite 
+
+
+
+
+
+\subsubsection*{Equalização do sinal direto}
+
 
 \subsection{Previsão de \textit{Performance}}
 
