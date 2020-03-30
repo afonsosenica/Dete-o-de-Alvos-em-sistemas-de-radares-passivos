@@ -150,12 +150,27 @@ Com esta expressão, assumimos que os alvos partilham a mesma bissetriz, o que n
 
 
 \subsection{Previsão de \textit{Performance}}
-Para qualquer sistema radar é importante conseguir prever com precisão os vários aspetos da \textit{performance} do sistema. O ponto de início de uma análise de \textit{performance} mi, radar passivo é a equação de radar bistática, falada brevemente no capítulo \ref{chap:Chapter3} e para o caso da geometria bistática vem,
+Para qualquer sistema radar é importante conseguir prever com precisão os vários aspetos da \textit{performance} do sistema. O ponto de início de uma análise de \textit{performance} mi, radar passivo é a equação de radar bistática, falada brevemente no capítulo \ref{chap:Chapter3} e rescrita  de uma forma que reflete as caraterísticas do radar \gls{PCL} para o caso da geometria bistática vem \parencite{Griffiths2005},
 
 \begin{equation} \label{2.24}
-\dfrac{P_{r}}{P_{t}}=\sigma \dfrac{G_{0t}G_{0r}}{4\pi}\left( \dfrac{\lambda}{4\pi R_{1}R_{2}}\right)^{2} 
+\dfrac{P_{r}}{P_{n}}= \dfrac{P_{t}G_{t}}{4\pi r^{2}_{1}}\cdot\sigma_{b}\cdot\dfrac{1}{4\pi r^{2}_{2}}\cdot\dfrac{G_{r}\lambda^{2}}{4\pi}\cdot\dfrac{1}{kT_{0}BF}\cdot L 
 \end{equation}
 
+onde,\par
+$P_{r}$: "potência do sinal recebido"\par
+$P_{n}$: "potência do ruído do recetor"\par
+$P_{t}$: "potência do sinal transmitido"\par
+$G_{t}$: "ganho da antena de transmissão"\par
+$G_{r}$: "ganho da antena de receção"\par
+$r_{1}$: "alcance do transmissor ao alvo"\par
+$r_{2}$: "alcance do recetor ao alvo"\par
+$\sigma_{b}$: "\gls{RCS} bistática do alvo"\par
+$\lambda$: "comprimento de onda do sinal"\par
+$k$: "constante de \textit{Boltzmann}$=1,380649x10^{-23} J\cdot K^{-1}$"\par
+$T_{0}$: "temperatura de ruído de referência, $290K$"\par
+$B$: "largura de banda efetiva do recetor"\par
+$F$: "\textit{noise figure}\footnote{\textit{noise figure} representa a diferença em $dB$ entre o ruído de saída do recetor e a saída de ruído do recetor ideal para o mesmo ganho e largura de banda} efetiva do recetor"\par
+$L(\leq 1)$: "perdas do sistema"\par
 
 
 \subsection{Formação de Imagem}
