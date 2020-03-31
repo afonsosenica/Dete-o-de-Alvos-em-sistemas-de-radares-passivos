@@ -144,15 +144,10 @@ Com esta expressão, assumimos que os alvos partilham a mesma bissetriz, o que n
 
 
 
-
-
-
-
-
 \subsection{Previsão de \textit{Performance}}
 Para qualquer sistema radar é importante conseguir prever com precisão os vários aspetos da \textit{performance} do sistema. O ponto de início de uma análise de \textit{performance} mi, radar passivo é a equação de radar bistática, falada brevemente no capítulo \ref{chap:Chapter3} e rescrita  de uma forma que reflete as caraterísticas do radar \gls{PCL} para o caso da geometria bistática vem \parencite{Griffiths2005},
 
-\begin{equation} \label{2.24}
+\begin{equation} \label{2.8}
 \dfrac{P_{r}}{P_{n}}= \dfrac{P_{t}G_{t}}{4\pi r^{2}_{1}}\cdot\sigma_{b}\cdot\dfrac{1}{4\pi r^{2}_{2}}\cdot\dfrac{G_{r}\lambda^{2}}{4\pi}\cdot\dfrac{1}{kT_{0}BF}\cdot L 
 \end{equation}
 
@@ -166,11 +161,44 @@ $r_{1}$: "alcance do transmissor ao alvo"\par
 $r_{2}$: "alcance do recetor ao alvo"\par
 $\sigma_{b}$: "\gls{RCS} bistática do alvo"\par
 $\lambda$: "comprimento de onda do sinal"\par
-$k$: "constante de \textit{Boltzmann}$=1,380649x10^{-23} J\cdot K^{-1}$"\par
+$k$: "constante de \textit{Boltzmann}$ =1,380649x10^{-23} J\cdot K^{-1}$"\par
 $T_{0}$: "temperatura de ruído de referência, $290K$"\par
 $B$: "largura de banda efetiva do recetor"\par
-$F$: "\textit{noise figure}\footnote{\textit{noise figure} representa a diferença em $dB$ entre o ruído de saída do recetor e a saída de ruído do recetor ideal para o mesmo ganho e largura de banda} efetiva do recetor"\par
+$F$: "\textit{noise figure}\footnote{\textit{noise figure} ou figura de ruído representa a diferença em $dB$ entre o ruído de entrada do recetor e a ruído de saída do mesmo} efetiva do recetor"\par
 $L(\leq 1)$: "perdas do sistema"\par
+ 
+É de notar que para esta equação, usada para a previsão de \textit{peformance}, é importante conhecer o valor de cada parâmetro a ser usado, o que leva a ter uma ideia bem definida da função do sistema radar e o que se pretende com o mesmo. Também é necessário um conhecimento dos vários iluminadores de oportunidade e as suas caraterísticas, falado no subcapítulo \ref{IOS}.\par 
+
+
+\subsubsection*{Potência transmitida}
+A potência transmitida $P_{t}$ é substancial para muitas das fontes de sinal para o radar passivo devido aos recetores de sinais de \textit{broadcast} e comunicações apresentarem, normalmente, antenas ineficientes e com \textit{noise figures} baixas. Isto é, as antenas de receção dos sinais mais comuns no espetro, são antenas que têm de ser relativamente baratas, por exemplo uma antena de receção de \gls{DVB-T} ou de receção de radiodifusão sonora em \gls{VHF}, de forma a o utilizador comum poder ter acesso a qualquer uma destas, logo este tipo de antenas são mais ineficientes e isso é colmatado por uma maior potência de transmissão por parte da estação de difusão.\par 
+Seja qual for o iluminador de oportunidade utilizado, a potência do transmissor implica com a densidade de potência $\Phi =(P_{t}G_{t})/4\pi r^{2}_{1}$, que é uma caraterística importante na escolha da fonte de sinal a ser utilizada. 
+
+\subsubsection*{\gls{RCS} bistática do alvo}
+Na deteção de alvos usando radares \gls{PCL}, a \gls{RCS} bistática do alvo é uma caraterística importante na previsão de \textit{performance}. As caraterísticas do alvo definem este parâmetro e também a sua localização em relação ao transmissor - recetor, formando o ângulo bistático $\beta$, falado no ínicio deste capítulo. É dificil ter uma previsão deste parâmetro, mas há um caso especial a ser considerado, que é para uma geometria \textit{forward scatter}. \par 
+Quando o ângulo bistático, representado na figura \ref{fig:geom} por $\beta$, toma valores próximos de $180^{\circ}$, entra-se na região de \textit{forward scatter} e nesta zona, o valor da \textit{cross-section} do alvo é melhorado devido ao principio de \textit{Babinet}. Este principio aplicado a este caso, diz que para um alvo que é um absorvedor perfeito, na região de \textit{forward scatter}, a dispersão de energia que é transmitida para o recetor é igual à dispersão que era transmitida se no lugar deste alvo estivesse presente uma abertura com a mesma forma \parencite{Griffiths2005}. Assim sendo, para um alvo com uma área transversal $A$, a \gls{RCS} é representada na equação \ref{2.9} e a largura de feixe do sinal refletido na equação \ref{2.10}.
+
+\begin{equation} \label{2.9}
+\sigma_{b}=\dfrac{4\pi A^{2}}{\lambda^{2}}
+\end{equation}
+
+\begin{equation} \label{2.10}
+\theta_{b}=\dfrac{\lambda}{d}
+\end{equation}
+
+Onde $d$ é a dimensão linear no plano apropriado.
+Ao analisar as duas funções fazendo variar a frequência (a partir da figura \ref{fig:rcs_ang}) é de notar que com menor frequência consegue-se menor largura de feixe e maior \gls{RCS} bistática do alvo. Isto fundamenta o uso de radares com frequência baixa para a deteção na zona de \textit{forward scatter}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{chapters/ch2/assets/rcs_ang}
+\caption[Variação da \gls{RCS} e largura de feixe consoante a frequência]{Variação da \gls{RCS} e largura de feixe consoante a frequência, para um alvo de $10m^{2}$ de área e dimensão linear $20m$ (figura 1 \cite{Griffiths2005})}
+\label{fig:rcs_ang}
+\end{figure}
+
+\subsubsection*{\textit{Noise figure} do recetor}
+A \textit{noise figure} não passa da relação entre a \gls{SNR} à entrada do recetor e a \gls{SNR} à saída do mesmo, ou seja, é um valor que representa o desempenho do recetor, sendo que quanto menor for o seu valor, mais perto se encontram os dois valores de \gls{SNR} e consequentemente melhor desempenho. 
+
 
 
 \subsection{Formação de Imagem}

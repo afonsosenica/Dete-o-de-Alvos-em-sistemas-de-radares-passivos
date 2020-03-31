@@ -23,28 +23,28 @@ O processamento de sinal num radar passivo pode ser, resumidamente, enumerado em
 
 Para \textit{Software Defined Radios}, a implementação de um filtro adaptado pode ser feita através do cálculo de uma \textit{cross-correlation} \parencite{Martorella}. Considerando $s_{0}(t)$ o sinal de saída do filtro adaptado e $h_{MF}(t)$ a resposta do filtro vem, 
 
-\begin{equation} \label{2.8}
+\begin{equation} \label{4.1}
 s_{0}\left( t\right) =s_{R}\left( t\right)\otimes h_{MF}\left( t\right) =\int s_{R}\left( \tau\right)s_{ref}^{\ast}\left(\tau -t\right)d\tau
 \end{equation}
 
-A equação \ref{2.8} mostra que usando um filtro adaptado obtemos um sinal de saída igual ao fazer uma \textit{cross-correlation} entre o $s_{R}$ e $s_{ref}$.\par 
+A equação \ref{4.1} mostra que usando um filtro adaptado obtemos um sinal de saída igual ao fazer uma \textit{cross-correlation} entre o $s_{R}$ e $s_{ref}$.\par 
 
-Ao implementar uma \textit{cross-correlation} como mostrado em \ref{2.8}, não se toma em conta o desvio de \textit{Doppler}, visto que se faz a \textit{cross-correlation} apenas numa dimensão. Para se entrar com o desvio de \textit{Doppler} tem de se extender a \gls{2D-CCF},
+Ao implementar uma \textit{cross-correlation} como mostrado em \ref{4.1}, não se toma em conta o desvio de \textit{Doppler}, visto que se faz a \textit{cross-correlation} apenas numa dimensão. Para se entrar com o desvio de \textit{Doppler} tem de se extender a \gls{2D-CCF},
 
-\begin{equation} \label{2.9}
+\begin{equation} \label{4.2}
 CCF\left( \tau,\nu\right) =\int s_{R}\left( \tau\right)s_{ref}^{\ast}\left(\tau -t\right)e^{-2\pi j\nu t}d\tau
 \end{equation}
 
 onde $\nu$ representa o desvio de \textit{Doppler} que é definido pela \textit{cross-correlation} entre o $s_{R}$ e $s_{ref}$ compensada com o \textit{Doppler shift}.\par
-Como o \textit{delay-time} $\tau$ pode ser transformado em \textit{bistatic range}, a \gls{2D-CCF} pode ser representada num \textit{bistatic range-Doppler map}, através da equação \ref{2.10} que representa a \gls{2D-CCF} numéricamente visto que os sinais têm de ser digitalizados com uma certa frequência de amostragem.
+Como o \textit{delay-time} $\tau$ pode ser transformado em \textit{bistatic range}, a \gls{2D-CCF} pode ser representada num \textit{bistatic range-Doppler map}, através da equação \ref{4.3} que representa a \gls{2D-CCF} numéricamente visto que os sinais têm de ser digitalizados com uma certa frequência de amostragem.
 
-\begin{equation} \label{2.10}
+\begin{equation} \label{4.3}
 CCF\left(l,m\right) =\sum_{n=0}^{N-1} s_{R}\left( n\right)s_{ref}^{\ast}\left(n -l\right)e^{-2\pi j\dfrac{mn}{N}}
 \end{equation}
 
 onde $n$ representa o tempo, $l$ o \textit{delay-time}, $m$ o desvio de \textit{Doppler} e $N$ o número total de amostras que depende do \gls{CPI},
 
-\begin{equation} \label{2.11}
+\begin{equation} \label{4.4}
 N=\dfrac{CPI}{T_{s}}=CPI\cdot F_{s}
 \end{equation}
 
@@ -59,31 +59,31 @@ No entanto, o cálculo de uma \gls{2D-CCF} é computacionalmente muito pesado, e
 Para solucionar este problemas existem várias soluções numéricas, como \textit{Correlation FFT}, \textit{Direct FFT} e \textit{Batches Algorithm} \parencite{Martorella}.
 
 \subsubsection*{\textit{Correlation FFT}}
-A \textit{Correlation FFT} pode ser obtida através da equação \ref{2.10} mudando o exponencial de posição como representado na eq. \ref{2.12}, de modo a obter uma nova expressão que pode ser calculada como uma \textit{cross-correlation} a uma dimensão com uma compensação de \textit{Doppler}, ou seja, \textit{Doppler bin} ($m$), a \textit{\gls{CCF}} é a \textit{cross-correlation} entre o \textit{reference signal} $S_{ref}$ e o sinal direto com um \textit{Doppler shift}.
+A \textit{Correlation FFT} pode ser obtida através da equação \ref{4.3} mudando o exponencial de posição como representado na eq. \ref{4.5}, de modo a obter uma nova expressão que pode ser calculada como uma \textit{cross-correlation} a uma dimensão com uma compensação de \textit{Doppler}, ou seja, \textit{Doppler bin} ($m$), a \textit{\gls{CCF}} é a \textit{cross-correlation} entre o \textit{reference signal} $S_{ref}$ e o sinal direto com um \textit{Doppler shift}.
 
-\begin{equation} \label{2.12}
+\begin{equation} \label{4.5}
 CCF\left(l,m\right) =\sum_{n=0}^{N-1} s_{R}\left( n\right)e^{-2\pi j\dfrac{mn}{N}}s_{ref}^{\ast}\left(n -l\right)
 \end{equation}
 
 Substituindo $s_{R}\left( n\right)e^{-2\pi j\dfrac{mn}{N}}$ por $s_{R}(n,m)$ vem,
 
-\begin{equation} \label{2.13}
+\begin{equation} \label{4.6}
 CCF\left(l,m\right) =\sum_{n=0}^{N-1} s_{R}\left( n,m\right) s_{ref}^{\ast}\left(n -l\right)
 \end{equation}
 
 Com isto, e sabendo que as \textit{cross-correlations} são calculadas mais eficientemente no domínio de \textit{Fourier}, vem,
 
-\begin{equation} \label{2.14}
+\begin{equation} \label{4.7}
 CCF\left(l,m\right) = IDFT\left[ S_{R}\left( k,m\right)S_{ref}^{\ast}\left(k\right)\right] 
 \end{equation}
 
 com 
 
-\begin{equation} \label{2.15}
+\begin{equation} \label{4.8}
 S_{R}\left( k,m\right)  = DFT\left[ s_{R}\left( n,m\right) \right] 
 \end{equation}
 
-\begin{equation} \label{2.16}
+\begin{equation} \label{4.9}
 S_{ref}\left( k\right)  = DFT\left[ s_{ref}\left( n\right) \right] 
 \end{equation}
 
@@ -96,7 +96,7 @@ Com isto, pode-se tirar algumas conclusões \parencite{Martorella}:
 
 Com isto, concluímos que quanto menos \textit{doppler bins} existirem em relação aos \textit{range bins}, mais eficiente será o cálculo. Este pode ser expressado através da seguinte função de complexidade:
 
-\begin{equation} \label{2.17}
+\begin{equation} \label{4.10}
 O_{CF}=2Nlog_{2}(N)+N_{f}[N+Nlog_{2}(N)]
 \end{equation}
 
@@ -104,16 +104,16 @@ onde,
 $N_{f}$: "Número de doppler bins"
 
 \subsubsection*{\textit{Direct FFT}}
-Por outro lado, a \textit{Direct FFT} é um método que, tal como a \textit{Correlation FFT} deriva da interpretação da equação \ref{2.10} mas, para cada \textit{time bin} $l$, a \textit{\gls{CCF}} é a \gls{DFT} do produto do sinal recebido com a versão conjugada com \textit{delay} do \textit{reference signal} $S_{ref}$.
+Por outro lado, a \textit{Direct FFT} é um método que, tal como a \textit{Correlation FFT} deriva da interpretação da equação \ref{4.3} mas, para cada \textit{time bin} $l$, a \textit{\gls{CCF}} é a \gls{DFT} do produto do sinal recebido com a versão conjugada com \textit{delay} do \textit{reference signal} $S_{ref}$.
 
-\begin{equation} \label{2.18}
+\begin{equation} \label{4.11}
 CCF\left(l,m\right) = DFT\left[ S_{R}\left( n\right)S_{ref}^{\ast}\left(n-l\right)\right] 
 \end{equation}
 
-Da interpretação da equação \ref{2.18} conclui-se que, para cada iteração, são calculadas N multiplicações complexas e u,a \gls{DFT}. A sua função de complexidade pode ser expressa através da expressão \ref{2.19}:
+Da interpretação da equação \ref{4.11} conclui-se que, para cada iteração, são calculadas N multiplicações complexas e u,a \gls{DFT}. A sua função de complexidade pode ser expressa através da expressão \ref{4.12}:
 
 
-\begin{equation} \label{2.19}
+\begin{equation} \label{4.12}
 O_{DF}=N_{\tau}[N+Nlog_{2}(N)]
 \end{equation}
 
@@ -134,19 +134,19 @@ A figura \ref{fig:cfft_vs_dfft} representa de uma forma ilustrativa quando usar 
 \subsubsection*{\textit{Batches algorithm}}
 Tanto os métodos \textit{direct FFT} e \textit{correlation FFT} são mais eficientes que fazer o cálculo da \gls{2D-CCF}, no entanto, dependem do número de \textit{range} ou \textit{doppler cells} e continuam a ser muito pesadas computacionalmente porque apenas otimizam o cálculo ao longo de uma dimensão.\par 
 Apesar de não existir nenhum método perfeito que produza uma solução exata, um método denominado \textit{Batches algorithm} foi proposto e permite otimizar em duas dimensões com uma pequena perda de \textit{\gls{SNR}} reduzindo de forma considerável o peso computacional.\par
-O \textit{Batches algorithm} consiste na subdivisão dos dois sinais recebidos, o sinal direto e o sinal refletido no alvo, em segmentos denominados \textit{batches}. Sendo $n_{B}$ o número de \textit{batches} e $N_{B}$ o comprimento do mesmo, com $N=n_{B}\cdot N_{B}$, a expressão da \gls{CCF} é representada pela equação \ref{2.20}.
+O \textit{Batches algorithm} consiste na subdivisão dos dois sinais recebidos, o sinal direto e o sinal refletido no alvo, em segmentos denominados \textit{batches}. Sendo $n_{B}$ o número de \textit{batches} e $N_{B}$ o comprimento do mesmo, com $N=n_{B}\cdot N_{B}$, a expressão da \gls{CCF} é representada pela equação \ref{4.13}.
 
-\begin{equation} \label{2.20}
+\begin{equation} \label{4.13}
 CCF\left( l,m\right)=\sum_{r=0}^{n_{B}-1}e^{\left( -j2\pi \dfrac{mrN_{B}}{N}\right)}\cdot \sum_{p=0}^{N_{B}-1}s_{R}\left( rN_{B}+p\right)s_{ref}^{\ast}\left( rN_{B}+p-l\right) e^{\left( -j2\pi \dfrac{mp}{N}\right)}   
 \end{equation}
 
-Este algoritmo assume que o efeito de \textit{Doppler} é negligenciado dentro de cada \textit{batch}, ou seja, só é calculado para o inicio de cada \textit{batch} $n_{B}$ e assim a equação \ref{2.20} é reduzida à equação \ref{2.21}.
+Este algoritmo assume que o efeito de \textit{Doppler} é negligenciado dentro de cada \textit{batch}, ou seja, só é calculado para o inicio de cada \textit{batch} $n_{B}$ e assim a equação \ref{4.13} é reduzida à equação \ref{4.14}.
 
-\begin{equation} \label{2.21}
+\begin{equation} \label{4.14}
 CCF\left( l,m\right)=\sum_{r=0}^{n_{B}-1}e^{\left( -j2\pi \dfrac{mrN_{B}}{N}\right)}\cdot \sum_{p=0}^{N_{B}-1}s_{R}\left( rN_{B}+p\right)s_{ref}^{\ast}\left( rN_{B}+p-l\right)
 \end{equation}
 
-A aproximação feita na eq. \ref{2.21} (frequência com que se calcula o desvio de \textit{Doppler}) pode ser representada por uma função \textit{step-wise} em vez de uma função linear (figura \ref{fig:phase_ap}).
+A aproximação feita na eq. \ref{4.14} (frequência com que se calcula o desvio de \textit{Doppler}) pode ser representada por uma função \textit{step-wise} em vez de uma função linear (figura \ref{fig:phase_ap}).
 
 \begin{figure}[h]
 \centering
@@ -155,9 +155,9 @@ A aproximação feita na eq. \ref{2.21} (frequência com que se calcula o desvio
 \label{fig:phase_ap}
 \end{figure}
 
-A equação \ref{2.21} pode ser interpretada de uma forma mais simples (eq. \ref{2.22})ao considerar o somatório do produto entre $s_{R}$ e $s_{R^{\ast}}$ como uma \gls{CCF} e a cada $n_{B}$ é calculado a \gls{DFT} ao longo de $r$.
+A equação \ref{4.14} pode ser interpretada de uma forma mais simples (eq. \ref{1.15})ao considerar o somatório do produto entre $s_{R}$ e $s_{R^{\ast}}$ como uma \gls{CCF} e a cada $n_{B}$ é calculado a \gls{DFT} ao longo de $r$.
 
-\begin{equation} \label{2.22}
+\begin{equation} \label{4.15}
 CCF\left( l,m\right)=\sum_{r=0}^{n_{B}-1}CCF\left( l,r\right) e^{\left( -j2\pi \dfrac{mrN_{B}}{N}\right)}=DFT\left[ CCF\left( l,r\right) \right] 
 \end{equation}
 
@@ -201,10 +201,10 @@ pequena relativamente ao sinal refletido, isto porque a \textit{baseline} $C$ re
 
 
 Por mais que se tente fisicamente não receber o sinal direto na antena de \textit{surveillance}, este e todas as suas cópias atrasadas no tempo devido a reflexões em objetos e terreno não desejadas (\textit{clutter} representado na figura \ref{fig:clutter}) são mais fortes que o sinal refletido no alvo. É possível haver reflexões em edifícios ou algo perto da antena de \textit{surveillance} que possam ser confundidas com o sinal que pretendemos obter, o que pode complicar o cancelamento de todas as réplicas do sinal indesejadas. É de notar, que no caso dos radar \textit{\gls{PCL}}, ou seja, radares passivos, estamos perante uma geometria bistática e isto leva a que o nível de \textit{clutter} na zona da \textit{baseline} possa ser muito forte e ser notável em algumas \textit{range cells}. Este efeito em junção com o sinal direto que possa ser captado na antena de \textit{surveillance} podem dificultar a deteção de alvos.\par 
-O sinal recebido pode ser interpretado de uma forma mais realista como na equação \ref{2.23} para facilitar os processos de cancelamento de \textit{clutter} e identificação das diferentes componentes do sinal.
+O sinal recebido pode ser interpretado de uma forma mais realista como na equação \ref{4.16} para facilitar os processos de cancelamento de \textit{clutter} e identificação das diferentes componentes do sinal.
 
 
-\begin{equation} \label{2.23}
+\begin{equation} \label{4.16}
 S_{R}=A_{R}s_{T}\left( t\right)+\sum_{m=1}^{N_{T}}a_{m}s_{T}\left( t-\tau_{T_{m}}\right)e^{\left( 2\pi j f_{D_{m}}t\right)}+\sum_{i=1}^{N_{s}}b_{i}s_{T}\left( t-\tau_{c_{i}}\right)+n\left( t\right)    
 \end{equation}
 
