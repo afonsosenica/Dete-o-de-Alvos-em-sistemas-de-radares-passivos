@@ -197,9 +197,56 @@ Ao analisar as duas funções fazendo variar a frequência (a partir da figura \
 \end{figure}
 
 \subsubsection*{\textit{Noise figure} do recetor}
-A \textit{noise figure} não passa da relação entre a \gls{SNR} à entrada do recetor e a \gls{SNR} à saída do mesmo, ou seja, é um valor que representa o desempenho do recetor, sendo que quanto menor for o seu valor, mais perto se encontram os dois valores de \gls{SNR} e consequentemente melhor desempenho. 
+A \textit{noise figure} , de uma forma simples, é definida pela relação entre a \gls{SNR} à entrada do recetor e a \gls{SNR} à saída do mesmo, ou seja, é um valor que representa o desempenho do recetor, sendo que quanto menor for, mais perto se encontram os dois valores de \gls{SNR} e consequentemente melhor desempenho.\par
+Não é só a \textit{noise figure} que contribui para os níveis de ruído presentes no sinal. Por forma a compreender melhor os fatores que contribuem para os níveis de ruído, pode ser criada uma função $P_{i}(\theta ,f)$ dependente da direção e frequência que engloba todos estes fatores, sendo estes:
+\begin{enumerate}
+\item \textit{Noise figure} do recetor;
+\item Sinal direto do transmissor, que é a componente mais forte desta função;
+\item Componente de \textit{multipath}, ou seja, todas as réplicas do sinal direto atrasadas no tempo devido a reflexões em obstáculos;
+\item Sinal direto e \textit{multipath} de outros sinais que possam estar a transmitir no mesmo canal;
+\item Outros sinais devido a fontes diversas, como por exemplo radiação de dispositivos eletrónicos.
+\end{enumerate}
+Devido a todas estas componentes é necessário haver um cancelamento das mesmas de forma a ser percetível o sinal refletido no alvo e aumentar a sensibilidade e alcance do sistema. No capítulo \ref{chap:Chapter4} é abordado este assunto com mais pormenor.\par 
 
+A \textit{noise figure} do recetor, pode ser representada pela seguinte equação,
+
+\begin{equation} \label{2.11}
+NF=10log_{10}\left( \dfrac{SNR_{i}}{SNR_{o}}\right)=SNR_{i,dB}-SNR_{o,dB}
+\end{equation}
+
+\subsubsection*{Ganho de integração}
+A largura de banda efetiva do recetor $B$, que é normalmente a largura de banda do sinal transmitido, é adaptada ao sinal direto e, quando combinada com um tempo de integração $T$, resulta um ganho de integração como representado na equação \ref{2.12}. Este tempo de integração é referido no capítulo \ref{chap:Chapter4} como o tempo em que é integrada a \textit{cross-correlation}.
+
+\begin{equation} \label{2.12}
+G_{i}=BT
+\end{equation}
+
+Para o caso da \gls{DVB-T}, que a largura de banda é aproximadamente $8 MHz$, com um tempo de integração de 1 segundo dá um ganho de processamento $G_{i}$ de $69dB$, o que se torna muito melhor que o ganho de integração de por exemplo uma transmissão rádio \gls{FM} com uma largura de banda de $50 kHz$, que para 1 segundo de tempo de integração vem um ganho de $47dB$.\par 
+Tendo como referência a equação \ref{2.12}, podemos ter a perceção de que para obter maior ganho de integração num determinado sinal, basta aumentar o tempo de integração da correlação para valores maiores, o que é verdade, mas ao fazer isto, existem vários efeitos limitativos que vão ocorrer. Um dos principais e efeito mais limitativo é conhecido como \textit{target flutuations}, ou seja, alterações repentinas da força do sinal, que é resultante de maioritariamente dois fatores: a mudança de ângulo de observação e o efeito de \textit{multipath}. Com isto, a função do ganho de integração já não vai ser linear e aumentar sempre com o aumento do tempo de integração, pelo oposto, dependendo de vários fatores vai ter um pico para um determinado tempo de integração.\par 
+Este tema tem sido estudado e foram tiradas várias conclusões com resultados de alvos reais \parencite{Malanowski2008}. Uma das conclusões que foi verificada, foi que o tempo de integração da correlação é importante para ecos fracos, que são originados por reflexões em alvos distantes e que para alvos mais próximos, normalmente existe boa \gls{SNR} e não é necessário maior tempo de integração. Também são abordadas e testadas soluções para este problema usando diferentes versões da função de correlação.
+
+\subsubsection*{Previsão de \textit{performance} na deteção}
+Como conclusão deste subcapítulo e depois da abordagem em alguns tópicos considerados mais importantes na previsão de \textit{performance} de um radar passivo são apresentados exemplos práticos \parencite{Griffiths2005} de uma previsão de alcance para dois transmissores de rádio \gls{FM} localizados em Wrotham e Crystal Palace, com o recetor localizado no edifício \textit{Engineering Sciences Faculty} da \gls{UCL}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch2/assets/wrotham}
+\caption[Alcance de deteção para um transmissor em Wrotham e recetor na \gls{UCL}]{Alcance de deteção para um transmissor em Wrotham e recetor na \gls{UCL} (figura 3 \cite{Griffiths2005})}
+\label{fig:wrotham}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch2/assets/cp}
+\caption[Alcance de deteção para um transmissor em Crystal Palace e recetor na \gls{UCL}]{Alcance de deteção para um transmissor em Crystal Palace e recetor na \gls{UCL} (figura 4 \cite{Griffiths2005})}
+\label{fig:cp}
+\end{figure}
+
+Várias observações podem ser feitas com estas duas figuras, mas a primeira que salta à vista é o alcance de deteção para um transmissor, sendo que a linha preta que contorna os dois transmissores é uma referência para os $15dB$, que ronda pouco mais de $10km$ para o transmissor em Crystal Palace, e para o transmissor em Wrotham o já está na ordem dos $30km$. Isto deve-se à potência de transmissão, que no caso de Crystal Palace é de $4kW$ e em Wrotham, $250kW$, o que leva de novo a um dilema que tem sido debatido ao longo desta dissertação, que é a escolha do iluminador de oportunidade e a variedade de fatores que afetam esta escolha nunca conseguindo ter uma fonte de sinal ideal, mas sim uma mais adaptada à função do radar passivo.
 
 
 \subsection{Formação de Imagem}
+O radar \gls{PCL}, ou radar passivo, não oferece apenas a capacidade de explorar os iluminadores de oportunidade para o fim de deteção e localização, mas também para a formação de imagens. Tem muitas vantagens na utilização deste tipo de radares para este fim, sendo um bom exemplo o mapeamento de uma zona com qualquer condição meteorológica e sem transmitir nenhum sinal.\par 
+O objetivo deste subcapítulo é dar um conhecimento superficial sobre uma das capacidades dos radares passivos e dar a conhecer alguns conceitos e técnicas fundamentais na formação de imagens.\par 
 
+\subsubsection*{\gls{ISAR}}
