@@ -61,7 +61,7 @@ O recetor bistático pode medir 3 parâmetros diferentes:
 \item O ângulo $\theta_{R}$ do sinal recebido, se for usada uma antena de \textit{surveillance }direcional.
 \end{itemize}
 
-\subsubsection*{Alcance Bistático} 
+\subsubsection*{Alcance Bistático} \label{subchapter:alcance_bistatico}
 Tal como representado na Figura \ref{fig:geom}, tomamos os valores $R_{T}$ como a distância do transmissor ao alvo,  $R_{R}$ como a distância do recetor ao alvo,  $\beta$ como o ângulo entre estes e com centro no alvo, e  $C$ como a distância do transmissor ao recetor, ou, \textit{Baseline}.\par
 
 
@@ -88,10 +88,10 @@ R_{R}=\dfrac{\left(  R_{T}+R_{R}\right)^{2}-C^{2}}{2\left(  R_{T}+R_{R}+C sin\th
 
 Um dos parâmetros importantes quando se fala em alcance bistático é a \textit{range resolution}, ou seja, a resolução em alcance. Este parâmetro é definido pela capacidade de distinguir os alvos que estão muito próximos. Um bom exemplo de um sistema radar que necessite de grande \textit{range resolution} é um sistema de direção de tiro. \par 
 
-Num radar convencional monostático, a resolução em alcance é dada por $\Delta R=c/2B$, onde c é a velocidade de propagação e B a largura de banda do sinal transmitido. No entanto, num radar passivo, a geometria é bistática, o que leva a existirem diferentes elipses bistáticas concêntricas, isto é, com centro no mesmo ponto, o que tem de ser tomado em conta na expressão que representa a \textit{range resolution}:
+Num radar convencional monostático, a resolução em alcance é dada por $\delta_{R}=c/2B$, onde c é a velocidade de propagação e B a largura de banda do sinal transmitido. No entanto, num radar passivo, a geometria é bistática, o que leva a existirem diferentes elipses bistáticas concêntricas, isto é, com centro no mesmo ponto, o que tem de ser tomado em conta na expressão que representa a \textit{range resolution}:
 
 \begin{equation} \label{2.3}
-\Delta r=\dfrac{c}{2B\left( \dfrac{cos\beta}{2}\right)}
+\delta_{r}=\dfrac{c}{2B\left( \dfrac{cos\beta}{2}\right)}
 \end{equation}
 
 No entanto, este caso é específico para quando os dois alvos estão alinhados relativamente à bissetriz do ângulo $\beta$, como é possivel observar na figura \ref{fig:geom_varios_alvos} o exemplo dos alvos 1 e 2. Para um caso generalizado, como por exemplo o alvo 1 e o alvo 3, a expressão da \textit{bistatic range resolution} (Expressão \ref{2.4}) depende de mais um valor $\varphi$ representado na figura \ref{fig:geom_varios_alvos} como o ângulo entre o seguimento da bissetriz do ângulo $\beta$ e o segmento de reta que une o alvo 1 e o alvo 3 com centro no alvo 1. 
@@ -105,7 +105,7 @@ No entanto, este caso é específico para quando os dois alvos estão alinhados 
 
 
 \begin{equation} \label{2.4}
-\Delta r=\dfrac{c}{\left[ 2B\left( \dfrac{cos\beta}{2}\right)\right] cos\varphi}
+\delta_{r}=\dfrac{c}{\left[ 2B\left( \dfrac{cos\beta}{2}\right)\right] cos\varphi}
 \end{equation}
 
 
@@ -247,7 +247,48 @@ Várias observações podem ser feitas com estas duas figuras, mas a primeira qu
 
 \subsection{Formação de Imagem}
 O radar \gls{PCL}, ou radar passivo, não oferece apenas a capacidade de explorar os iluminadores de oportunidade para o fim de deteção e localização, mas também para a formação de imagens. Tem muitas vantagens na utilização deste tipo de radares para este fim, sendo um bom exemplo o mapeamento de uma zona com qualquer condição meteorológica e sem transmitir nenhum sinal.\par 
-O objetivo deste subcapítulo é dar um conhecimento superficial sobre uma das capacidades dos radares passivos e dar a conhecer alguns conceitos e técnicas fundamentais na formação de imagens.\par 
+O objetivo deste subcapítulo é dar um conhecimento superficial sobre uma das capacidades dos radares passivos e dar a conhecer alguns conceitos fundamentais e um algoritmo \gls{PB-ISAR} na formação de imagens.\par 
 
 \subsubsection*{\gls{ISAR}}
-O conceito do \gls{ISAR} é utilizar uma configuração de um radar de abertura sintética, mas em que o radar esteja estático e o alvo em movimento em relação ao mesmo (Inverso do \gls{SAR}). Ao utilizar esta abordagem é necessário criar uma abertura sintética por forma a ter boa resolução \textit{cross-range}, que é conseguida, no caso do \gls{SAR}, por um elemento que se move ao longo de uma trajetória conseguindo assim meios para formar uma matriz virtual para o intervalo de tempo em que esteve a observar. O único caso em que esta matriz virtual criada pela abertura sintética é diferente de uma imagem obtida por uma matriz real é quando o espaço a ser iluminado está estático em relação ao radar durante a formação da mesma.
+O conceito do \gls{ISAR} é utilizar uma configuração de um radar de abertura sintética, mas em que o radar esteja estático e o alvo em movimento em relação ao mesmo (Inverso do \gls{SAR}). Ao utilizar esta abordagem é necessário criar uma abertura sintética por forma a ter boa resolução \textit{cross-range}, que é conseguida, no caso do \gls{SAR}, por um elemento que se move ao longo de uma trajetória conseguindo assim meios para formar uma matriz virtual para o intervalo de tempo em que esteve a observar. O único caso em que esta matriz virtual criada pela abertura sintética é diferente de uma imagem obtida por uma matriz real é quando o espaço a ser iluminado está estático em relação ao radar durante a formação da mesma.\par 
+Os elementos chave para a construção de uma imagem usando \gls{ISAR} são \parencite{Martorella2019}:
+
+\begin{enumerate}
+\item Utilizar um sinal com grande largura de banda por forma a ter uma boa resolução em \textit{range} $\delta_{R}$ falado no subcapítulo \ref{subchapter:alcance_bistatico} para o caso monostático e bistático.
+
+\item Processar os ecos recebidos durante o tempo de observação em diferentes ângulos de incidência no alvo a iluminar. A resolução \textit{cross-range} é definida na equação \ref{2.13}, que é inversamente proporcional à variação de ângulo de incidência $\Delta$.
+\begin{equation} \label{2.13}
+\delta_{cr}=\dfrac{c}{2f_{0}\Delta}
+\end{equation}
+\end{enumerate}
+
+Por forma a compreender o processo de formação de imagem de uma forma simples, segue-se o diagrama de blocos da figura \ref{fig:img}. Este diagrama não compreende todos os processos englobados na formação de imagem através de \gls{ISAR}, mas apenas os fundamentais para uma breve explicação que é o objetivo deste subcapítulo.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{chapters/ch2/assets/img}
+\caption[Diagrama de blocos ISAR]{Diagrama de blocos ISAR}
+\label{fig:img}
+\end{figure}
+
+Depois de recebido o sinal da antena de referência e \textit{surveillance} o sinal direto é submetido a um pré processamento explicado no capítulo \ref{chap:Chapter4} que para o caso de \gls{DVB-T} visto que é um dos iluminadores de oportunidade com maior largura de banda o que permite maior resolução em \textit{range}, reconstrução e equalização do sinal. Esse sinal direto passa por um equivalente a um filtro adaptado, ou seja, a \textit{cross-correlation} do sinal direto com o sinal refletido no alvo.\par 
+
+O \textit{input} do algoritmo \gls{PB-ISAR} é um mapa \textit{range-Doppler} que contém o eco do alvo mais \textit{clutter} e ruído. No entanto, os radares do tipo \gls{ISAR} são desenvolvidos para trabalhar no domínio frequência/\textit{slow-time} ou \textit{range}/\textit{slow-time} e para isso ser possível é necessário transformar os dados recebidos do mapa \textit{range-Doppler} num destes domínios. Uma das formas para o fazer, no caso de transformar no domínio frequência/\textit{slow-time} é aplicar uma transformada de \textit{Fourier} inversa à imagem em \textit{range-Doppler} do alvo.\par 
+
+Após este processamento, que no caso do filtro adaptado é explicado sucintamente no capítulo \ref{chap:Chapter4}, o sinal passa por um bloco de extração do alvo que consiste em quatro passos:
+\begin{enumerate}
+\item processo de \textit{clustering} dos alvos detetados no mapa \textit{range-Doppler} com um exemplo representado na imagem \ref{fig:cluster};
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch2/assets/cluster}
+\caption[Processo de \textit{clustering}]{Processo de \textit{clustering} (adaptado da figura do slide 36 da apresentação do artigo \cite{Martorella2019})}
+\label{fig:cluster}
+\end{figure}
+
+\item criação de uma caixa em redor do alvo;
+\item através das caixas formadas em redor dos alvos, resolver possíveis problemas de \textit{overlapping} e desviar erros de deteção de vários alvos próximos quando na realidade apenas se encontra um;
+\item extração dos alvos detetados.
+\end{enumerate}
+
+De seguida a imagem passa por um pré-processamento do \gls{ISAR} por forma a definir perfis de \textit{range} em cada alvo extraído que, por fim, é submetida ao processamento do \gls{ISAR} onde é feito uma estimativa a partir do pré-processamento da posição dos alvos em relação ao recetor e, posteriormente uma compensação do movimento do alvo seguida de uma \gls{DFT} para obter a imagem \gls{ISAR} do alvo. Para um entendimento mais profundo dos cálculos e processamento, tanto como resultados obtidos com este métodos há vários trabalhos que se podem consultar como \cite{Martorella2019}.
