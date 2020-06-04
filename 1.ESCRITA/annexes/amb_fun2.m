@@ -1,12 +1,3 @@
-% Anexo 1
-
-\chapter{Escreve o título do anexo} %
-
-\label{Annex1} % para referenciares o anexo em alguma parte da tese usa o comando \ref{Annex1}
-
-Código sugerido pelo MATLAB para criar função de ambiguidade para um pulso FM consoante as caraterísticas do sinal:
-
-\begin{verbatim}
 clc
 close all
 clear all
@@ -55,4 +46,3 @@ title('Ambiguity Function');
 
 %spectrogram(y, 1024, 512,1024, fs)
 %title('Ambiguity Function')
-\end{verbatim}
