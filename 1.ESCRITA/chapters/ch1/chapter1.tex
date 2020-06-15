@@ -12,13 +12,45 @@
 
 
 \section{Sistemas Passivos para Deteção e Localização de Alvos}
-
+A deteção e localização de alvos é feita de um modo convencional por um sistema de deteção ativo, ou seja, o radar convencional. De forma geral, existe um transmissor e um recetor, ambos controlados pelo operador que emite um sinal e é determinada uma distância através do tempo que este leva do recetor ao alvo e de volta ao transmissor.\par 
+O radar passivo oferece a capacidade de detetar alvos usando iluminadores de oportunidade, falados em \ref{IOS}. Isto permite detetar e localizar alvos como o radar ativo, com a vantagem operacional de não emitir nenhum sinal, o que se torna vantajoso não só pela razão mais óbvia que é no ambiente militar: a capacidade de não ser detetado; mas também outras, como a não poluição do espetro eletromagnético, utilizando assim sinais presentes neste.\par 
+Por apresentar uma geometria bistática, como falado no Capítulo \ref{chap:Chapter2}, o radar \gls{PCL}, ou radar passivo, oferece uma capacidade de detetar alvos \textit{stealth}, ou seja, alvos que apresentam um \textit{design} que tem como objetivo dispersar o sinal emitido do radar, por forma a não voltar ao mesmo local, o que é eficaz contra um radar convencional, mas no caso do radar bistático, apenas ajuda a detetar com mais facilidade, aumentando a sua \gls{RCS}. Ainda é possível mencionar mais capacidades, como a melhor deteção de alvos a baixas altitudes e ainda a resistência a contra-medidas eletrónicas, ou seja, \textit{jamming}.\par
+Dito isto, este tipo de sistemas, não devem ser vistos como uma substituição do radar convencional, mas sim como um complemento do mesmo.
 
 \section{Sistemas de Radar Definidos por Software}
-
+O sistema de radar passivo requer uma grande capacidade de computação e \textit{software} que disponibiliza técnicas complexas. O Capítulo \ref{chap:Chapter4} refere-se ao processamento de sinal e deste é possível compreender porque o radar \gls{PCL} necessita de uma grande capacidade de computação, tanto como várias técnicas que são utilizadas.\par 
+O conceito de sistema de radar definido por software vem do termo \gls{SDR}, que consiste num rádio o mais simples possível em \textit{hardware} e onde as restantes funções que eram definidas fisicamente, são agora definidas por \textit{software}. Isto permite uma grande flexibilidade e adaptabilidade da tecnologia.\par 
+Quando um sistema de radar é desenhado, vários dos fatores mais relevantes são a \textit{performance} e flexibilidade. Com uma radar definido por \textit{software} tem-se isto e muito mais. Um pequeno exemplo é a aplicação de forma relativamente rápida o radar ao tipo de situação, seja para detetar veículos ou objetos de diferentes dimensões, estáticos ou com velocidades elevadas, ajustando frequências e técnicas no software.\par 
+Proporcionalmente ao avanço da tecnologia e ao rápido desenvolvimento da capacidade de processamento dos computadores, este tipo de radares vem a ser cada vez mais utilizado e com \textit{software} cada vez mais pesado e com mais capacidades.  
 
 \section{Iluminadores de Oportunidade} \label{IOS}
-A escolha do iluminador de oportunidade é crucial para a \textit{performance} do sistema. Dentro dos parâmetros que mais influenciam a escolha do iluminador encontram-se a densidade de potência no alvo, a natureza da onda e a cobertura.
+Nos dias de hoje, o espetro eletromagnético encontra-se preenchido por os mais diversos sinais e cada vez mais com tendência para aumentar a ocupação deste, portanto o sinal a utilizar, ou seja, o \gls{IO} pode ter as mais variadas caraterísticas. A sua escolha é crucial para a \textit{performance} do sistema e de modo geral podem-se dividir em dois grandes grupos:
+\begin{itemize}
+\item Família dos iluminadores de oportunidade terrestre;
+\item Família dos iluminadores de oportunidade espaciais.
+\end{itemize}\par
+Na família dos \gls{IO}s terrestre encontram-se outros tipos de radares, como \gls{ATC}, sistemas de comunicações móveis como \gls{GSM} ou até \gls{WiFi}, e sistemas de \textit{broadcast}, como \gls{DAB}, transmissões \gls{FM} e \gls{DVB-T}.\par 
+Na família dos \gls{IO}s epaciais, encontram-se radares de monotorização da terra, sistemas de \textit{broadcast} como \gls{DVB-S}, ou seja, televisão de satélite, sistemas de localização terrestre como \gls{GPS}, GLONASS e ainda sistemas de comunicações móveis por satélite como Iridium, Orbcomm e Globalstar.\par
+Dentro dos parâmetros que mais influenciam a escolha do iluminador para o radar \gls{PCL} encontram-se a densidade de potência no alvo, a natureza da onda e a cobertura, por isso, devido à pouca cobertura, normalmente exclui-se logo outros radares como opção. No entanto, rádio \gls{FM} tem sido muito utilizado para este fim, especialmente nos primeiros anos deste século devido à sua boa cobertura e densidade de potência, tanto como uma largura de banda aceitável e que depende do tipo de música a ser transmitido que é um tópico abordado no Capítulo \ref{chap:Chapter5}. Este \gls{IO} tem vindo a ser substituído por outros serviços de \textit{broadcast} como \gls{DAB} e \gls{DVB-T} devido ao tópico falado anteriormente e consequentemente à necessidade de escolha de uma estação que transmita música mais adequada, o que também é uma variável que não se consegue controlar.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+                    	 & FM                & DAB     & DVB-T     \\ \midrule
+Banda de frequência      & 88 - 108$MHz$   & 174 - 240$MHz$  & 470 - 862$MHz$           \\
+\textit{Network}    			 & MFN   & SFN   & SFN \\
+Largura de banda de cada canal    & 150$kHz$ max.      & 1.536$MHz$  & 7.612$MHz$   \\ 
+ERP típica($kW$)      & 2-250         & 0.5-10    & 1-100            \\ \bottomrule
+\label{tab:cara}
+\end{tabular}
+\caption[Caraterísticas dos sinais FM, DAB e DVB-T]{Caraterísticas dos sinais FM, DAB e DVB-T}
+\end{table} 
+\par
+A tabela 1.1, retirda do artigo ******METER REF(pcl history and fundamentals)******,apresenta as principais caraterísticas dos sinais mais utilizados como \gls{IO}s, com ERP:"\gls{ERP}", MFN:"\gls{MFN}" e SFN:"\gls{SFN}". Numa configuração \gls{SFN}, todos os transmissores da rede transmitem na mesma frequência, enquanto em \gls{MFN}, os transmissores transmitem em frequências diferentes. Na utilização de iluminadores em \gls{SFN}, o recetor do sinal direto recebe várias réplicas do sinal (\textit{multipath}) direto e o recetor do sinal refletido recebe várias réplicas do sinal refletido no alvo, o que provoca uma deteção com menor confiança.\par 
+Comparando as outras caraterísticas, pode-se concluir que a \gls{DVB-T} tem maior largura de banda, especialmente que \gls{FM} o que se torna muito favorável para casos específicos como formação de imagem. É também importante referir que tanto a \gls{ERP} de \gls{FM} como \gls{DVB-T} permite ter uma boa densidade de potência no alvo a uma distância razoável quando comparado com o sinal \gls{DAB}.\par 
+Para além da utilização destes iluminadores, também têm sido utilizados sinais \gls{GNSS} com sucesso no passado recente.
 
 \section{Motivação e Objetivos}
 
