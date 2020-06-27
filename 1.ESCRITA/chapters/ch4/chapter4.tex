@@ -276,9 +276,41 @@ Um algoritmo eficiente para remover estes picos espúrios passa por estimar tant
 
 \section{Simulação}
 
-\subsection{Sinais DVB-T}
+\subsection{Função de Ambiguidade}
+Uma ferramenta que permite analisar as propriedades do sinal utilizado como iluminador de oportunidade é a função de ambiguidade. Esta função é bidimensional no \textit{time-delay} e em \textit{Doppler}, que representa a distorção devido ao filtro adaptado do recetor, falado no inicio deste capítulo e às propriedades do sinal.\par 
+Para um sinal $s(t)$, a sua função de ambiguidade é obtida pela equação \ref{4.17}.
 
-%\subsection{Sinais GNSS}
+\begin{equation} \label{4.17}
+\chi\left( \tau,f\right) =\int s\left( t\right)s^{\ast}\left( t-\tau\right)e^{2\pi jft}dt
+\end{equation}
+
+, ou seja, a auto-correlação do sinal recebido.
+
+Utilizando o \textit{matlab} e as ferramentas que este dispõe, é possível calcular funções de ambiguidade de diversos sinais, tendo como um exemplo a figura \ref{fig:ambfun_fmdef} que é resultado do código em anexo \ref{Annex1} apresentado pelo matlab para fazer funções de ambiguidade consoante as caraterísticas do sinal.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{chapters/ch4/assets/ambfun_fmdef}
+\caption[Função de ambiguidade para um pulso FM]{Função de ambiguidade para um pulso FM}
+\label{fig:ambfun_fmdef}
+\end{figure}
+
+
+\subsubsection{Sinais FM}
+Um dos fatores que influencia a performance do sistema é a largura de banda, o que no caso de sinais \gls{FM} é dependente do tipo de música que é transmitido.\par
+A figura \ref{fig:ambfun2} é retirada de uma estação a transmitir notícias que corresponde aos gráficos de cima e a transmitir música pop, representado no gráfico de baixo. As principais conclusões que se podem retirar da análise da função de ambiguidade de ambas é que quando é transmitida música, especialmente estilos de músicas como \textit{hard rock}, a largura de banda do sinal transmitido aumenta o que provoca uma função mais estreita e com menor intensidade em redor dos planos de zero \textit{Doppler} e zero \textit{delay}. Consequentemente, este tipo de transmissões permitem uma melhor deteção não só em alcance, como em \textit{Doppler}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{chapters/ch5/assets/ambfun2}
+\caption[Função de ambiguidade para uma estação FM]{Função de ambiguidade para um pulso FM retirada de uma estação a dar notícias e música pop}
+\label{fig:ambfun2}
+\end{figure}
+ 
+
+
+\subsubsection{Sinais DVB-T}
+
+
 
 
 
