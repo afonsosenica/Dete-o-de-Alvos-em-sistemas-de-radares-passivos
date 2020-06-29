@@ -301,7 +301,7 @@ A figura \ref{fig:ambfun2} é retirada de uma estação a transmitir notícias q
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{chapters/ch5/assets/ambfun2}
+\includegraphics[scale=0.3]{chapters/ch4/assets/ambfun2}
 \caption[Função de ambiguidade para uma estação FM]{Função de ambiguidade para um pulso FM retirada de uma estação a dar notícias e música pop}
 \label{fig:ambfun2}
 \end{figure}
@@ -309,6 +309,28 @@ A figura \ref{fig:ambfun2} é retirada de uma estação a transmitir notícias q
 
 
 \subsubsection{Sinais DVB-T}
+Para obter as funções de ambiguidade dos sinais \gls{DVB-T} foi utilizado o LimeSDR com duas antenas de $24 dB$, como descrito no Capítulo \ref{chap:Chapter6}. É de notar que que a antena utilizada no lado direito tem um ganho relativamente superior, o que se deve às fichas que foram cravadas, mas que não tem muito impacto na função de ambiguidade. Dito isto, é mais adequado utilizar este canal para o sinal refletido e o com menor ganho para o sinal direto.\par 
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{chapters/ch4/assets/dvbt}
+\caption[Função de ambiguidade para dois sinais DVB-T]{Função de ambiguidade para dois sinais DVB-T}
+\label{fig:dvbt}
+\end{figure}
+ 
+Através da equação \ref{4.18}, na frequência $f_{0}=602 MHz$ que é utilizada nesta zona para \gls{DVB-T}, com $c=3x10^{8}m/s$, obtém-se um valor de de variação de frequência de $100Hz$ para $50m/s=180km/h$, ou seja, para uma distância ao alvo com valores inferiores a $15m$, segundo a equação \ref{4.19} para um \textit{delay} de $0.1\times 10^{-6}$, é muito difícil a deteção.
+
+\begin{equation} \label{4.18}
+\Delta f=\dfrac{\Delta v}{c}f_{0}
+\end{equation}
+
+\begin{equation} \label{4.19}
+Range=\dfrac{c\times delay}{2}
+\end{equation}
+
+
+
+
 
 
 
