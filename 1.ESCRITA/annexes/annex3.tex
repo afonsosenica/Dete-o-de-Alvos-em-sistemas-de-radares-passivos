@@ -33,7 +33,7 @@ Gain        = 24;       % Receiver Gain, dB
 % Open LimeSDR
 dev = limeSDR(); % Open device
 
-% Setup device parameters. These may be changed while the device is actively streaming.
+% Setup device parameters. 
 dev.rx0.frequency   = Fc;
 dev.rx0.samplerate  = Fs;
 dev.rx0.bandwidth   = BW;
@@ -110,7 +110,8 @@ for idxLoop1 = 1:round(TotalTime/Ts)
 end
 pause(1)
 
-% Cleanup and shutdown by stopping the RX stream and having MATLAB delete the handle object.
+% Cleanup and shutdown by stopping the RX stream and having 
+% MATLAB delete the handle object.
 dev.stop();
 clear dev;
 fprintf('Stop of LimeSDR\n');

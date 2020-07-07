@@ -167,33 +167,6 @@
 \RequirePackage{algpseudocode} % Part algorithmicx package, required to customize the layout of algorithms.
 
 \RequirePackage{listings} % Required for code listings
-\lstset{ %
-  backgroundcolor=\color{white},   % choose the background color; 
-  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{green},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,	                   % adds a frame around the code
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code 
-  keywordstyle=\color{blue},       % keyword style
-  language=Java,                 % the default language of the code
-  otherkeywords={*,...},           % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{gray}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{MidnightBlue},     % string literal style
-  tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
 
 %\RequirePackage[acronym,nonumberlist,toc]{glossaries} %Required to define acronyms and make glossaries
 \RequirePackage[acronym,nonumberlist]{glossaries} %Without acronym list in de toc
@@ -224,6 +197,7 @@
 %----------------------------------------------------------------------------------------
 %	MARGINS
 %----------------------------------------------------------------------------------------
+\usepackage[bottom]{footmisc}%stay footnote in the bottom
 
 \RequirePackage{geometry}
 \geometry{
@@ -309,7 +283,9 @@ KOMA-script documentation for details.}]{fancyhdr}
 \def\ttitle{}
 \newcommand*{\authorshort}[1]{\def\authorshortname{#1}}
 \newcommand*{\supervisor}[1]{\def\supname{#1}}
+\newcommand*{\supervisorshort}[1]{\def\supsname{#1}}
 \newcommand*{\cosupervisor}[1]{\def\cosupname{#1}}
+\newcommand*{\cosupervisorshort}[1]{\def\cosupsname{#1}}
 \newcommand*{\thesistitle}[1]{\def\@title{#1}\def\ttitle{#1}}
 \newcommand*{\thesissubtitle}[1]{\def\tsubtitle{#1}}
 \newcommand*{\subjectarea}[1]{\def\subjectname{#1}}
@@ -383,33 +359,34 @@ KOMA-script documentation for details.}]{fancyhdr}
 \providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\orientationlabel}{Orientation of}
 \providecaptionname{portuguese}{\orientationlabel}{Orientação de}
 
+\newcommand{\coorientationlabel}{Co-orientation of}
+\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\orientationlabel}{Orientation of}
+\providecaptionname{portuguese}{\orientationlabel}{Co-orientação de}
+
 \newcommand{\makeconttitlepage}{
 	\checktoopen
 	\begin{titlingpage}
     	\AddToShipoutPicture*{
             \put(0,0){
             \parbox[b][\paperheight]{\paperwidth}{
-            \vfill
             \centering
-            \includegraphics[width=1.3\textwidth]{/frontmatter/assets/contracapa.jpg}
+            \includegraphics[width=1.3\textwidth]{/frontmatter/assets/contracapa.pdf}
             \vfill}}}
             \null\vfil
 	\begin{center}
-        \vspace{3.5cm}
-    	{\Large \bfseries \authorshortname} \\
+        \vspace{8cm}
+    	{\Large \bfseries \authorname \\} 
     	
-    	\vspace{1.5cm}
-    	{\Large \bfseries \ttitle} \\ % Thesis title
-
-    	\vspace{1.5cm}
-    	{\large \bfseries \dissertationdisclamer~\subjectname}
     	\vspace{1cm}
+    	{\large \bfseries \ttitle \\}  % Thesis title
+
+    	\vspace{0.5cm}
+    	{\normalsize \bfseries \dissertationdisclamer~\subjectname}
+    	\vspace{0.5cm}
 	\end{center}
 	
-	{\normalsize \bfseries Orientação de: Professor \supname}
-	
-	{\normalsize \bfseries Co-orientação de: Professor \cosupname}
-	
+	{\normalsize \bfseries \orientationlabel: \mdseries \supname \\}
+	{\ifdefined\cosupsname {\indent \normalsize \bfseries \coorientationlabel: \mdseries \cosupname}}
 	\vfill
 	% Assinaturas
 	% Nota para editor: Com o tabular conseguimos controlar espaços na página.
@@ -420,7 +397,7 @@ KOMA-script documentation for details.}]{fancyhdr}
             \begin{picture}(5,20)(0,-22.5) 
                 % \put(0,1){\includegraphics[scale=0.13]{figs/assinatura-aluno.jpg}}
                 \put(0,0){\rule{0.5\linewidth}{0.5mm}}
-                \put(0,-22.5){\authorname}
+                \put(0,-22.5){\authorshortname}
             \end{picture}
         \end{minipage}%
         \hspace{1.3cm}%
@@ -430,17 +407,17 @@ KOMA-script documentation for details.}]{fancyhdr}
             \begin{picture}(130,20)(0,-22.5)
                 % \put(18,1){\includegraphics[scale=0.48]{figs/assinatura-orientador.png}}
                 \put(0,0){\rule{0.5\linewidth}{0.5mm}}
-                \put(0,-22.5){\supname}
+                \put(0,-22.5){\supsname}
             \end{picture}
             
             % Caso não tenha co-orientador comente daqui...
-            \vspace{0.5cm}
-            \emph{\cosupervisorlabel,}\\[2.08cm]
-            \begin{picture}(250,20)(0,-22.5)
+            %\vspace{0.5cm}
+            %\emph{\cosupervisorlabel,}\\[2.08cm]
+            %\begin{picture}(250,20)(0,-22.5)
                 % \put(18,1){\includegraphics[scale=0.48]{figs/assinatura-orientador.png}}
-                \put(0,0){\rule{0.5\linewidth}{0.5mm}}
-                \put(0,-22.5){\cosupname}
-            \end{picture}
+                %\put(0,0){\rule{0.5\linewidth}{0.5mm}}
+               % \put(0,-22.5){\cosupsname}
+            %\end{picture}
             % ...até aqui
         \end{minipage}
     \end{tabular}
@@ -452,6 +429,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 	
 	\end{titlingpage}%
 }
+
 
 
 %----------------------------------------------------------------------------------------
@@ -647,17 +625,23 @@ KOMA-script documentation for details.}]{fancyhdr}
 \addto\captionsportuguese{%
   \def\contentsname{Índice}%
   \def\indexname{Índice Remissivo}%
-  \def\lstlistlistingname{Listagens}%
-  \def\lstlistingname{Listagem}%
+  \def\lstlistlistingname{Lista de Código Fonte}%
+  \def\lstlistingname{Código Fonte}%
+  \def\listalgorithmname{Lista de Algoritmos}%
+  \def\algorithmname{Algoritmo}%
   \defineshorthand{"-}{\babelhyphen{repeat}}% generates a hyphen that will repeat on a new line
   \gdef\annexname{Anexo}
   \gdef\annexnamepl{Anexos}
   \gdef\appendixnamepl{Apêndices}
+  \gdef\listacronymname{Lista de Acrónimos}
 }
 
 \addto\captionsenglish{%
-  \def\lstlistlistingname{Listings}%
-  \def\lstlistingname{Listing}%
+  \gdef\listacronymname{List of Acronyms}
+  \def\lstlistlistingname{List of Source Code}%
+  \def\lstlistingname{Source Code}%
+  \def\listalgorithmname{List of Algorithms}%
+  \def\algorithmname{Algorithm}%
   \gdef\annexname{Annex}
   \gdef\annexnamepl{Annexes}
   \gdef\appendixnamepl{Appendices}
@@ -673,7 +657,14 @@ KOMA-script documentation for details.}]{fancyhdr}
 \RequirePackage{etoolbox}
 \RequirePackage{appendix}
 
+\usepackage{titlesec}
+\newcommand{\appendixheadreset}{
+\titleformat{\chapter}[block]{\normalfont\Large\bfseries}{\chaptertitlename\ \thechapter\ -\ }{0em}{}
+\titlespacing*{\chapter}{0pt}{-50pt}{1cm}
+}
+
 \newcommand{\appendixfile}[1]{%
+	\appendixheadreset
 	\listgadd{\enStyle@appendix@list}{#1}%
 }
 

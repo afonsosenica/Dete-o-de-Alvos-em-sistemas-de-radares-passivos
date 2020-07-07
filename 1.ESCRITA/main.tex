@@ -39,6 +39,8 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 \usepackage{pgfplots} % Necessário se quiser desenhar plots de alta qualidade (pode remover se não usar)
 \pgfplotsset{compat=newest}
 
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
 %
 % Next you have examples of admissable citation styles; we recomend using the authoryear-comp citation style (which resembles Harvard); don't forget to only uncomment one
 
@@ -46,7 +48,7 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 \usepackage[style=authoryear-comp,backend=biber,doi=true, %display DOI with link
      eprint=false, %display arxiv id etc
      maxnames=25, %number of names in List of references
-     maxcitenames=7, % number of names for textcite command
+     maxcitenames=3, % number of names for textcite command
      ]{biblatex} % Bibtex backend with the authoryear-comp citation style (authoryear citations, bibliography ordered alphabetically)
 
 %\usepackage[backend=biber,
@@ -71,6 +73,8 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 \usepackage{mcode}
 
 
+
+
 \addbibresource{mainbibliography.bib} % O nome da base de dados da sua bibliografia
 
 \makeglossaries % cria o glossário
@@ -82,7 +86,7 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 
 \thesistitle{Deteção de Alvos em Sistemas de Radares Passivos} % Escreva o título da tese, pode referenciar o titulo ao longa da dissertação utilizando o comando (\ttitle)
 
-\thesissubtitle{ } % %Escreva o subtítulo da tese, pode referenciar o titulo ao longa da dissertação utilizando o comando (\subttitle)
+%\thesissubtitle{} % %Escreva o subtítulo da tese, pode referenciar o titulo ao longa da dissertação utilizando o comando (\subttitle)
 
 \author{Afonso Lobo Sénica} % % Escreva o seu nome completo, pode referenciar o autor ao longa da dissertação utilizando o comando (\authorname)
 
@@ -92,8 +96,10 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 %poderá referenciar-lo ao longo do seu trabalho com o comando (\areaname)
 
 \supervisor{Paulo Alexandre Carapinha Marques} % O nome do seu supervisor, isto é usado na página da contra capa,  poderá referenciar-lo ao longo do seu trabalho com o comando (\supname)
+\supervisorshort{Paulo Marques}
 
 \cosupervisor{João Luís Reis Fidalgo Neves} % O nome do seu co-orientador, isto é usado na página da contra capa,  poderá referenciar-lo ao longo do seu trabalho com o comando (\cosupname) (comenta, se não tiveres co-orientador)
+\cosupervisorshort{João Neves}
 
 \keywords{Radar Passivo, Deteção, Processamento de Sinal, DVB-T (Digital Video Broadcasting - Terrestrial)} % Defina até 6 palavras-chave que descrevam melhor o seu trabalho, e poderá referenciar-las ao longo do seu trabalho com o comando (\keywordnames)
 
@@ -108,7 +114,7 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 % M - Departamento de Ciências do Mar
 % FZ - Departamento de Ciências do Mar
 
-\thesisdate{Escola Naval, \today} % data da impressão da tese, pode referenciar a data ao longa da dissertação utilizando o comando (\tdate)
+\thesisdate{Alfeite, \\ \the\year{}} % data da impressão da tese, pode referenciar a data ao longa da dissertação utilizando o comando (\tdate)
 
 \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
 \hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
@@ -163,8 +169,8 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 % Incluir os apêndices da tese como arquivos separados da pasta (appendices)
 % Uncomment as linhas para teres à medida que fores criando apendices.
 
-\appendixfile{appendix1}%
-%\appendixfile{appendix2}%
+\appendixfile{appendix1}
+\appendixfile{appendix2}
 %\appendixfile{appendix3}%
 %\appendixfile{appendix}%
 
@@ -173,8 +179,8 @@ headsepline, % Descomentar para obter uma linha sob o cabeçalho
 % Uncomment as linhas para teres à medida que fores criando anexos
 
 \annexfile{annex1}
-\annexfile{annex2}
-\annexfile{annex3}
+%\annexfile{annex2}
+%\annexfile{annex3}
 
 
 %Imprime no documento os anexos e apendices.
