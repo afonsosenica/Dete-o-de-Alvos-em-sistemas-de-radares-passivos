@@ -34,14 +34,39 @@ O repositório que contém as drivers que permitem trabalhar com o LimeSDR a par
 \label{fig:limec}
 \end{figure}
 
-Para o estudo da deteção de alvos utilizando sistemas de deteção passivos, foi utilizado sinais \gls{DVB-T} dos transmissores de Palmela (38°33'23.02"N	8°54'27.56"W) e Cruz de Pau (38°37'3.78"N	9°7'2.31"W), ambos a transmitir nas frequências $598-606 MHz$, e a posição do estudo foi em Brejos de Azeitão (38°32'11.10"N	9°1'21.43"W). Para uma melhor compreensão do panorama geográfico, a imagem \ref{fig:mapaemi} representa os transmissores a amarelo,  os utilizados a amarelo com um risco preto por baixo e a posição da experiência com um círculo azul.
-
+Para o estudo da deteção de alvos utilizando sistemas de deteção passivos, foi utilizado sinais \gls{DVB-T} dos transmissores de Palmela (38°33'23.02"N	8°54'27.56"W) e Cruz de Pau (38°37'3.78"N	9°7'2.31"W), ambos a transmitir nas frequências $598-606 MHz$, e a posição do estudo foi em Brejos de Azeitão (38°32'11.10"N	9°1'21.43"W). Para uma melhor compreensão do panorama geográfico, a imagem \ref{fig:mapaemi} representa os transmissores a amarelo,  os utilizados a amarelo com um risco preto por baixo e a posição da experiência com um círculo azul.\par 
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{chapters/ch5/assets/mapaemi}
+\includegraphics[scale=0.75]{chapters/ch5/assets/mapaemi}
 \caption[Mapa de emissores e local da experiência]{Mapa de emissores e local da experiência}
 \label{fig:mapaemi}
 \end{figure}
+
+Nesta experiência, a antena que recebe o sinal direto estava direcionada para Palmela, recebendo também sinal direto do transmissor da Cruz de Pau devido à pouca diretividade da antena, enquanto a antena que recebe o sinal refletido estava posicionada de modo a apontar na direção oposta, como na figura \ref{fig:prat}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{chapters/ch5/assets/prat}
+\caption[Disposição do sistema]{Disposição do sistema no local da experiência}
+\label{fig:prat}
+\end{figure}
+
+Antes de apresentar os resultados, é necessário compreender a situação em que se está inserido e as limitações do equipamento para se conseguir tirar conclusões coerentes. Com isto, os dois parâmetros a serem considerados inicialmente é a resolução em \textit{Doppler} e em alcance. Da expressão \ref{2.3}, é dada a resolução em alcance para o caso bistático. Visto que o ângulo $\beta$, entre o transmissor e o recetor toma valores perto dos $0^{\circ}$, o termo $cos\left( \dfrac{\beta}{2}\right) = 1$, logo, reduz-se ao caso monostático, e obtém-se o resultado em \ref{5.1}.
+
+\begin{equation} \label{5.1}
+\delta_{r}=\dfrac{c}{2B\left( cos\dfrac{\beta}{2}\right)}=\dfrac{3\cdot 10^{8}}{2\times 8\times 10^{6} \left( cos\dfrac{0}{2}\right)}=18.75 m
+\end{equation}
+
+Portanto, teoricamente, não é possível distinguir dois alvos com uma distância entre eles menor que $18.75 m$, e logicamente se o alvo estiver em movimento só irá ser detetado a mudança de célula de resolução a cada $18.75 m$.\par 
+
+No caso do desvio de \textit{doppler}, a resolução é dada pela expressão \ref{2.7}, para o caso do recetor estático e alvo em movimento. Desta, para as mesmas condições acima definidas e um tempo de integração de $1 s$, resulta uma resolução em \textit{Doppler} de $2.5 m/s$. No entanto, com um frequência de amostragem utilizada de $17 MHz$ os cálculos são computacionalmente demasiado pesados para o \textit{Matlab} conseguir calcular, para qual a solução ótima seria a aplicação de algoritmos por forma a reduzir este peso, mas a utilizada foi a redução das amostras utilizadas para valores inferiores a $0.1%$. Isto tem como consequência a diminuição do tempo de integração para $0.1%\times 1s$ e o agravamento da resolução em \textit{Doppler} para valores extremamente elevados, na ordem das centenas de $m/s$.
+
+\begin{equation} \label{5.2}
+\Delta v = \dfrac{\dfrac{3\times 10^{8}}{602\times 10^{6}}}{2\times 1} = 0.25 m/s
+\end{equation}
+
+
+
 
 \section{Resultados}
