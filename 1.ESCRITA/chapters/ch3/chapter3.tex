@@ -411,7 +411,15 @@ No entanto, se as antenas estiverem com polarização adaptada para a máxima ra
 
 
 \section{Simulação de uma Antena}
-
+Considerando a experiência realizada, descrita no Capítulo \ref{chap:Chapter5}, é necessário compreender as propriedades da antena utilizada de modo a retirar conclusões confiáveis. Uma das propriedades mais importantes neste caso é o diagrama de radiação, que permite observar a diretividade da antena, visto que se o sinal direto é recebido nas duas antenas por estas serem pouco diretivas, torna a situação muito mais difícil, e os resultados muito menos fidedignos.
 
 \subsection{Para Sinais DVB-T}
+As antenas utilizadas para a experiência foram duas \textit{One for all Yagi-Uda} sv9354 para \gls{DVB-T} de $24 dB$.\par 
+Para fazer a simulação do diagrama de radiação da antena utilizada, foi utilizada a \textit{toolbox antenna designer} do \textit{Matlab}, onde foram inseridas as caraterísticas da mesma obtendo como resultado a figura \ref{fig:yagi}. 
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{chapters/ch3/assets/yagi}
+\caption[Diagrama de radiação antena Yagi-Uda]{Diagrama de radiação da antena Yagi-Uda}
+\label{fig:yagi}
+\end{figure}
