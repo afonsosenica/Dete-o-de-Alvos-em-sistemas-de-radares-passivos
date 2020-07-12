@@ -2,7 +2,7 @@
 
 \chapter{Radar Passivo} %
 
-\label{AppendixA} % para referenciares o apêndice em alguma parte da tese usa o comando \ref{AppendixA}
+\label{AppendixB} % para referenciares o apêndice em alguma parte da tese usa o comando \ref{AppendixA}
 
 
 Código MATLAB para criar função de ambiguidade para dois sinais adquiridos pelo LimeSDR com o MATLAB e fazer a correlação entre estes:
@@ -34,7 +34,7 @@ Gain        = 24;       % Receiver Gain, dB
 % Open LimeSDR
 dev = limeSDR(); % Open device
 
-% Setup device parameters. 
+% Setup device parameters. These may be changed while the device is actively streaming.
 dev.rx0.frequency   = Fc;
 dev.rx0.samplerate  = Fs;
 dev.rx0.bandwidth   = BW;
@@ -48,24 +48,21 @@ dev.rx1.gain        = Gain;
 dev.rx1.antenna     = 2;     % LNA_L
 
 % Read parameters from the devices
-Fs_dev      = dev.rx0.samplerate;  % in SPS
+Fs_dev      = dev.rx0.samplerate; 
 Fc_dev      = dev.rx0.frequency;
 BW_dev      = dev.rx0.bandwidth;
 Ant_dev     = dev.rx0.antenna;
 Gain_dev    = dev.rx0.gain;
 ChipTemp    = dev.chiptemp;
-fprintf('Rx Device sampling frequency: %3.1fHz, Initial sampling frequency: %3.1fHz\n', Fs_dev, Fs);
-fprintf('Rx Device carrier frequency: %3.1fHz, Initial carrier frequency: %3.1fHz\n', Fc_dev, Fc);
-fprintf('Rx Device bandwidth: %3.1fHz, Initial bandwith: %3.1fHz\n', BW_dev, BW);
-fprintf('Rx Device antenna: %d \n', Ant_dev);
-fprintf('Rx Device gain: %3.1fdB, Initial gain: %3.1fdB\n', Gain_dev, Gain);
-fprintf('Rx Device temperature: %3.1fC\n', ChipTemp);
 
-Fs_dev1      = dev.rx1.samplerate;  % in SPS
+Fs_dev1      = dev.rx1.samplerate;  
 Fc_dev1      = dev.rx1.frequency;
 BW_dev1      = dev.rx1.bandwidth;
 Ant_dev1     = dev.rx1.antenna;
 Gain_dev1    = dev.rx1.gain;
+
+
+fprintf('Rx Device temperature: %3.1fC\n', ChipTemp);
 
 % Create empty array for the received signal
 bufferRx    = complex(zeros(TotalTime*Fs,1));
@@ -87,32 +84,19 @@ dev.start();
 fprintf('Start of LimeSDR\n');
 
 % Receive samples on RX0 channel
-indRx = 1;  % index of the last received sample
-for idxLoop = 1:round(TotalTime/Ts)
-    tic;
     [samples, ~, samplesLength]             = dev.receive(Fs*Ts,0);
     bufferRx(indRx:indRx+samplesLength-1)   = samples;
-    indRx           = indRx + samplesLength;
-    status          = dev.rx0.status;
-    fprintf('Received samples: %d\n', samplesLength);
-    fprintf('Fifo size: %d\n', status.fifoFilledCount);
-end
-pause(1)
 
+
+% Receive samples on RX1 channel
 indRx1 = 1;  % index of the last received sample
-for idxLoop1 = 1:round(TotalTime/Ts)
-    tic;
-    [samples1, ~, samplesLength1]             = dev.receive(Fs*Ts,0);
+
+    [samples1, ~, samplesLength1]             = dev.receive(Fs*Ts,1);
     bufferRx1(indRx1:indRx1+samplesLength1-1)   = samples1;
-    indRx1           = indRx1 + samplesLength1;
-    status1          = dev.rx1.status;
-    fprintf('Received samples: %d\n', samplesLength1);
-    fprintf('Fifo size: %d\n', status1.fifoFilledCount);
-end
+
 pause(1)
 
-% Cleanup and shutdown by stopping the RX stream and having 
-% MATLAB delete the handle object.
+% Cleanup and shutdown by stopping the RX stream and having MATLAB delete the handle object.
 dev.stop();
 clear dev;
 fprintf('Stop of LimeSDR\n');
@@ -144,15 +128,12 @@ afmag3(afmag3>1 )= 1;
 
 
 % Plot spectrograms of the recieved signals
-tic
 figure(1)
 subplot(3,2,1);
 spectrogram(bufferRx,2^12,2^10,2^12,'centered','yaxis')
 
 subplot(3,2,2);
 spectrogram(bufferRx1,2^12,2^10,2^12,'centered','yaxis')
-
-fprintf('Time for visualisation: %g\n', toc);
 
 
 % Plot the ambiguity functions of Sref and Sr
@@ -193,4 +174,6 @@ colorbar;
 xlabel('Delay \tau (s)');
 ylabel('Doppler f_d (Hz)');
 title('Cross-correlation');
+
+fprintf('Time for visualisation: %g\n', toc);
 \end{verbatim}

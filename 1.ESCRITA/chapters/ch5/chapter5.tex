@@ -43,11 +43,11 @@ Para o estudo da deteção de alvos utilizando sistemas de deteção passivos, f
 \label{fig:mapaemi}
 \end{figure}
 
-Nesta experiência, a antena que recebe o sinal direto estava direcionada para Palmela, recebendo também sinal direto do transmissor da Cruz de Pau devido à pouca diretividade da antena, enquanto a antena que recebe o sinal refletido estava posicionada de modo a apontar na direção oposta, como na figura \ref{fig:prat}.
+Nesta experiência, a antena que recebe o sinal direto estava direcionada para Palmela, recebendo também sinal direto do transmissor da Cruz de Pau devido à pouca diretividade da antena, enquanto a antena que recebe o sinal refletido estava posicionada de modo a apontar noutra direção, como na figura \ref{fig:prat}. Recordando o Capítulo \ref{chap:Chapter3}, chegou-se à conclusão de que as duas antenas ao estarem em sentidos opostos, os lóbulos posteriores iam receber muito sinal indesejado, então mudou-se a geometria da experiência para evitar este problema.
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{chapters/ch5/assets/prat}
+\includegraphics[scale=0.25]{chapters/ch5/assets/prat2}
 \caption[Disposição do sistema]{Disposição do sistema no local da experiência}
 \label{fig:prat}
 \end{figure}
@@ -69,13 +69,22 @@ No caso do desvio de \textit{doppler}, a resolução é dada pela expressão \re
 
 
 \section{Resultados}
-Considerando todas as condições descritas acima para a realização da experiência, os resultados permitiram a deteção do alvo mas com muitas condicionantes, tornando o sistema de baixo custo muito limitado, o que era de esperar.\par 
+Considerando todas as condições descritas acima para a realização da experiência, os resultados permitiram a deteção do alvo mas com muitas condicionantes, tornando o sistema de baixo custo muito limitado, o que era de esperar.\par  
+Todas as amostras foram retiradas com o sistema descrito anteriormente e utilizando o programa no Apêndice \ref{AppendixB}. Inicialmente são introduzidos os parâmetros em variáveis e depois de aberto o \textit{LimeSDR} com o comando \textit{dev = limeSDR()} são inseridos nos dois canais de receção, rx0 e rx1, com a adição do \textit{dev.rx0.antenna = 2} que indica que o \textit{low noise amplifier} a ser utilizados pelo \textit{LimeSDR} é o LNAL, adequado para frequências entre os $0 - 2000 MHz$. Posteriormente os parâmetros são lidos depois de introduzidos para haver registo e verificar se correspondem ao desejado e também é feita a leitura da temperatura do dispositivo visto que este tem tendência a aquecer rapidamente e isto afeta a sua \textit{performance}. De seguida são criadas as matrizes de zeros que vão alojar o sinal recebido, são autorizados os parâmetros nos canais e calibrados os canais de receção para a frequência desejada. Com isto, é iniciado a recolha de dados dos dois canais ao mesmo tempo com o comando \textit{dev.start()} de modo a que as unidades de tempo batam certo nas duas amostras, o que é crucial para que os resultados sejam fidedignos. Durante o tempo de recolha que termina com o comando \textit{dev.stop()}, o sistema vai recolher $Fs*Ts$ amostras no canal 0 e 1 para as variáveis \textit{samples} e \textit{samples1}. Posto isto, é necessário reduzir o numero de amostras para se conseguir fazer a correlação sem que o MATLAB fique sem memória e de seguida, utilizando a função \textit{ambgfun} consegue-se fazer as funções de ambiguidade tanto como a correlação entre os dois sinais recebidos $x$ e $x1$. Finalmente são desenhados os espectro-gramas  dos sinais recebidos tanto como as suas funções de ambiguidade e a correlação.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{chapters/ch5/assets/geoexp}
+\caption[Configuração da experiência]{Configuração da experiência no local}
+\label{fig:geoexp}
+\end{figure}
 
 A experiência foi dividia em 3 medições:
 \begin{itemize}
-\item Na primeira, um carro foi metido a $1 5m$ parado com um tempo de integração de $0.1 s$ (\ref{fig:15me});
-\item No segundo caso, foi medida com $0.1 s$ de tempo de integração, um carro em aproximação, com uma velocidade de $40 km/h$  a partir da posição dos $30  m$ em relação à antena do sinal refletido(\ref{fig:20ma});
-\item No terceiro caso, aumentou-se o tempo de integração para $1 s$ e fez-se passar o carro a uma velocidade de aproximadamente $40 km/h$ a $15m$ da antena que recebe o sinal refletido (\ref{fig:15mm} e \ref{fig:15mmsum}). 
+\item Na primeira, um carro foi metido a $1 5m$ parado com um tempo de integração de $0.2 s$ (figura \ref{fig:15me});
+\item No segundo caso, foi medida com $0.2 s$ de tempo de integração, um carro em aproximação, com uma velocidade de $40 km/h$  a partir da posição dos $30  m$ em relação à antena do sinal refletido(figura \ref{fig:20ma});
+\item No terceiro caso, aumentou-se o tempo de integração para $2 s$ e fez-se passar o carro a uma velocidade de aproximadamente $40 km/h$ com uma posição inicial a $15m$ da antena que recebe o sinal refletido e passando a 
+$1 m$ desta na sua posição mais próxima, como observável na figura \ref{fig:geoexp}(figura \ref{fig:15mm} e \ref{fig:15mmsum}). 
 \end{itemize}
 
 \begin{figure}[h]
