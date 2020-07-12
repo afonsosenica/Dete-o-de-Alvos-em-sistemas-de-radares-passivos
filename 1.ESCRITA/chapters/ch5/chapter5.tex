@@ -70,7 +70,7 @@ No caso do desvio de \textit{doppler}, a resolução é dada pela expressão \re
 
 \section{Resultados}
 Considerando todas as condições descritas acima para a realização da experiência, os resultados permitiram a deteção do alvo mas com muitas condicionantes, tornando o sistema de baixo custo muito limitado, o que era de esperar.\par  
-Todas as amostras foram retiradas com o sistema descrito anteriormente e utilizando o programa no Apêndice \ref{AppendixB}. Inicialmente são introduzidos os parâmetros em variáveis e depois de aberto o \textit{LimeSDR} com o comando \textit{dev = limeSDR()} são inseridos nos dois canais de receção, rx0 e rx1, com a adição do \textit{dev.rx0.antenna = 2} que indica que o \textit{low noise amplifier} a ser utilizados pelo \textit{LimeSDR} é o LNAL, adequado para frequências entre os $0 - 2000 MHz$. Posteriormente os parâmetros são lidos depois de introduzidos para haver registo e verificar se correspondem ao desejado e também é feita a leitura da temperatura do dispositivo visto que este tem tendência a aquecer rapidamente e isto afeta a sua \textit{performance}. De seguida são criadas as matrizes de zeros que vão alojar o sinal recebido, são autorizados os parâmetros nos canais e calibrados os canais de receção para a frequência desejada. Com isto, é iniciado a recolha de dados dos dois canais ao mesmo tempo com o comando \textit{dev.start()} de modo a que as unidades de tempo batam certo nas duas amostras, o que é crucial para que os resultados sejam fidedignos. Durante o tempo de recolha que termina com o comando \textit{dev.stop()}, o sistema vai recolher $Fs*Ts$ amostras no canal 0 e 1 para as variáveis \textit{samples} e \textit{samples1}. Posto isto, é necessário reduzir o numero de amostras para se conseguir fazer a correlação sem que o MATLAB fique sem memória e de seguida, utilizando a função \textit{ambgfun} consegue-se fazer as funções de ambiguidade tanto como a correlação entre os dois sinais recebidos $x$ e $x1$. Finalmente são desenhados os espectro-gramas  dos sinais recebidos tanto como as suas funções de ambiguidade e a correlação.
+Todas as amostras foram retiradas com o sistema descrito anteriormente e utilizando o programa no Apêndice \ref{AppendixB}. Inicialmente são introduzidos os parâmetros em variáveis e depois de aberto o \textit{LimeSDR} com o comando \textit{dev = limeSDR()} são inseridos nos dois canais de receção, rx0 e rx1, com a adição do \textit{dev.rx0.antenna = 2} que indica que o \textit{low noise amplifier} a ser utilizados pelo \textit{LimeSDR} é o LNAL, adequado para frequências entre os $0 - 2000 MHz$. Posteriormente os parâmetros são lidos depois de introduzidos para haver registo e verificar se correspondem ao desejado e também é feita a leitura da temperatura do dispositivo visto que este tem tendência a aquecer rapidamente e isto afeta a sua \textit{performance}. De seguida são criadas as matrizes de zeros que vão alojar o sinal recebido, são autorizados os parâmetros nos canais e calibrados os canais de receção para a frequência desejada. Com isto, é iniciado a recolha de dados dos dois canais ao mesmo tempo com o comando \textit{dev.start()} de modo a que as unidades de tempo batam certo nas duas amostras, o que é crucial para que os resultados sejam fidedignos. Durante o tempo de recolha que termina com o comando \textit{dev.stop()}, o sistema vai recolher $Fs*Ts$ amostras no canal 0 e 1 para as variáveis \textit{samples} e \textit{samples1}. Posto isto, é necessário reduzir o numero de amostras para se conseguir fazer a correlação sem que o MATLAB fique sem memória e de seguida, utilizando a função \textit{ambgfun} consegue-se fazer as funções de ambiguidade tanto como a correlação entre os dois sinais recebidos $x$ e $x1$. Finalmente são desenhados os espectro-gramas  dos sinais recebidos tanto como as suas funções de ambiguidade e a correlação.\par 
 
 \begin{figure}[h]
 \centering
@@ -79,13 +79,22 @@ Todas as amostras foram retiradas com o sistema descrito anteriormente e utiliza
 \label{fig:geoexp}
 \end{figure}
 
-A experiência foi dividia em 3 medições:
+A experiência foi dividia em 2 medições:
 \begin{itemize}
 \item Na primeira, um carro foi metido a $1 5m$ parado com um tempo de integração de $0.2 s$ (figura \ref{fig:15me});
-\item No segundo caso, foi medida com $0.2 s$ de tempo de integração, um carro em aproximação, com uma velocidade de $40 km/h$  a partir da posição dos $30  m$ em relação à antena do sinal refletido(figura \ref{fig:20ma});
-\item No terceiro caso, aumentou-se o tempo de integração para $2 s$ e fez-se passar o carro a uma velocidade de aproximadamente $40 km/h$ com uma posição inicial a $15m$ da antena que recebe o sinal refletido e passando a 
+\item No segundo caso, aumentou-se o tempo de integração para $2 s$ e fez-se passar o carro a uma velocidade de aproximadamente $40 km/h$ com uma posição inicial a $15m$ da antena que recebe o sinal refletido e passando a 
 $1 m$ desta na sua posição mais próxima, como observável na figura \ref{fig:geoexp}(figura \ref{fig:15mm} e \ref{fig:15mmsum}). 
 \end{itemize}
+
+A janela escolhida para o \textit{Delay}, vai do valor $-3\times 10^{-7}$ a $3\times 10^{-7}$, o que segundo a expressão \ref{5.3} onde $t$ representa o \textit{delay} corresponde ao intervalo de $-45 m$ a $45 m$ e cada unidade representa $15 m$. Para a escala de \textit{Doppler}, segundo a expressão \ref{5.4}, para a frequência utilizada, cada $10 m/s = 36 km/h$ representa um desvio em \textit{doppler} de $20 Hz$.
+
+\begin{equation} \label{5.3}
+Range = \dfrac{c\times t}{2}
+\end{equation}
+
+\begin{equation} \label{5.4}
+f_{d} = \dfrac{v}{c}f_{0}
+\end{equation}
 
 \begin{figure}[h]
 \centering
@@ -94,23 +103,23 @@ $1 m$ desta na sua posição mais próxima, como observável na figura \ref{fig:
 \label{fig:15me}
 \end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.5]{chapters/ch5/assets/20ma}
-\caption[Caso 2]{Resultado do caso 2}
-\label{fig:20ma}
-\end{figure}
+Neste primeiro caso, verificamos a presença do carro na zona do $-1\times 10^{-7}s$ que se extende desde $-0.5\times 10^{-7}s$ a $-2\times 10^{-7}s$ que pode ser justificado com a resolução em alcance calculada com o valor de aproximadamente $19 m$ correspondente a aproximadamente $1.2\times 10^{-7} s$. O facto da frequência estar estendida para valores muito altos tem que ver não só com a resolução em \textit{Doppler} ser muito inadequada, mas maioritariamente pelo desalinhamento na amostragem dos dois canais de receção. Apesar de existir um comando que inicie ao mesmo tempo, o equipamento tem um defeito que desalinha a receção dos dois canais consoante o tempo de integração e a frequência, sendo que quanto maior valor estes tomarem, maior desvio haverá.
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{chapters/ch5/assets/15mm}
-\caption[Caso 3]{Resultado do caso 3}
+\caption[Caso 2]{Resultado do caso 2}
 \label{fig:15mm}
 \end{figure}
+
+Ao analisar o segundo caso, pode-se observar que por aumentar o tempo de integração, aumenta a intensidade da correlação de um alvo em relação às zonas onde não existe correlação.
+
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{chapters/ch5/assets/15mmsum}
-\caption[Caso 3 especial]{Resultado do caso 3 com soma das amostras em diversas partes da matriz}
+\caption[Caso 2 especial]{Resultado do caso 2 com soma das amostras em diversas partes da matriz}
 \label{fig:15mmsum}
 \end{figure}
+
+Ainda com os valores do segundo caso, mas somando amostras de diversas partes da matriz, é possível aumentar a intensidade da correlação no alvo se estivermos a utilizar zonas em que o carro se encontrava a refletir mais energia, ou seja, casos em que o carro estivesse mais perto e dentro da zona do diagrama de radiação da antena que tem maior intensidade. Para isto, foram usados os dados gravados do caso 2 e utilizado um programa no Apêndice \ref{AppendixC}
