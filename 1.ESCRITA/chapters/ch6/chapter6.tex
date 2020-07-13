@@ -6,15 +6,41 @@
 %----------------------------------------------------------------------------------------
 \section{Sumário}
 O radar passivo é um sistema ótimo para contornar problemas como a deteção através de sistemas de contra-medidas e o elevado preço dos radares convencionais. Também é adequado para a deteção de alvos \textit{stealth} como já falado, devido à sua geometria bistática. No entanto, tudo tem um preço, e o radar passivo não é exceção. Devido ao número elevado de amostras e o processamento do sinal requerido para o tornar viável para a utilização no radar passivo, o sistema fica com um elevado custo computacional e consequentemente existe uma necessidade de processamento digital avançado. Posto isto, deve-se considerar o sistema de radar passivo como um complemento ao sistema de radar ativo, ao invés de uma substituição ao mesmo, visto que cada um colmata os pontos fracos do outro.\par 
-Ao aproveitar sinais existentes no espetro eletromagnético, não existe mais poluição do mesmo, mas encontra-se um grande problema, que é o sinal não estar adaptado para a situação em particular tornando o processamento um processo muito mais complexo. Há poucos casos em que o iluminador pode estar adaptado, mas são em situações especificas como a utilização de satélites \gls{SAR} para a formação de imagem.
+Ao aproveitar sinais existentes no espetro eletromagnético, não existe mais poluição do mesmo, mas encontra-se um grande problema, que é o sinal não estar adaptado para a situação em particular tornando o processamento um processo muito mais complexo. Há poucos casos em que o iluminador pode estar adaptado, mas são em situações especificas como a utilização de satélites \gls{SAR} para a formação de imagem.\par 
 
 
 \section{Discussão e Conclusões}
+Seguindo o estudo efetuado durante o trabalho de investigação e do seu complemento com a atividade prática foram retiradas várias conclusões:
 
+
+\begin{itemize}
+\item A dessincronização dos dois canais em tempo é problemática no sentido em que diferença de fase entre o sinal direto e o sinal refletido provoca uma grande distorção em \textit{Doppler}, que é o que se pode verificar em todas as amostras retiradas. Este é um dos principais fatores para existir uma grande dispersão dos alvos em \textit{Doppler}, chegando a ir desde os $-1500 Hz$ aos $1500 Hz$, o que corresponde a uma velocidade de aproximadamente $2700 km/h$. De acordo com \cite{He2010} quanto maior for a velocidade, mais dispersão o sinal tem em \textit{Doppler};
+
+
+\item A segunda conclusão, como já abordada no Capítulo \ref{chap:Chapter3}, é a pouca diretividade da antena utilizada. O seu diagrama de radiação (\ref{fig:yagi}) apresenta pouca diretividade no lóbulo principal e um lóbulos posterior com muita intensidade. Isto provoca a receção do sinal direto e do refletido na mesma antena o que degrada os resultados tornando-os menos fidedignos;
+
+
+\item Como terceira conclusão, é importante abordar o tema da reconstrução e equalização do sinal direto, discutido no Capítulo \ref{chap:Chapter4}. A deteção utilizando um radar \gls{PCL} é baseada no cálculo de uma função de ambiguidade cruzada entre o sinal de direto e o refletido no objeto. Idealmente, o sinal recebido na antena de referência a apontar para o transmissor é uma cópia perfeita do sinal transmitido. No entanto, isto não acontece devido ao ruído introduzido e não temos acesso ao sinal direto a partir da localização do recetor, logo, este tem de ser obtido de outra forma. Uma abordagem a este constrangimento é recriar o sinal transmitido através da descodificação do sinal recebido e posterior codificação, obtendo assim uma cópia muito menos ruidosa do sinal transmitido. Ao não utilizar este método, é inserido muito efeito de \textit{multipath} o que prejudica a autenticidade do sinal.
+
+
+\item Dos resultados do Capítulo \ref{chap:Chapter5} são feitas observações à relação entre o tempo de integração e a intensidade da correlação. De um modo geral, pode-se concluir que ao aumentar o tempo de integração e usando mais amostras, tem-se uma melhor relação sinal-ruído.
+
+
+\item Ainda do Capítulo \ref{chap:Chapter5} são utilizadas várias amostras e zonas dessas amostras, ou seja, diferentes amostras de tempo do total da amostra. Ao utilizarmos amostras em diferentes marcas temporais somadas, obtemos melhores resultados que utilizando o mesmo número de amostras, mas apenas numa zona da matriz. Isto era de esperar visto que se cobre um tempo de integração maior com o mesmo número de custo computacional.
+
+
+\item Um problema que afeta imenso a capacidade do radar é ter sido utilizada uma correlação simples. Como abordado no Capítulo \ref{chap:Chapter4}, o custo computacional de fazer uma correlação para milhões de amostras e sabendo que maior tempo de observação resulta em melhor resolução é muito elevado e não é suportável pelas máquinas a que temos acesso diariamente. Isto faz com que seja necessário a implementação de algoritmos que simplifiquem a correlação e contornem o problema do alto custo computacional. Ao não aplicar estes algoritmos os resultados ficam muito degradados, visto que se trabalha com muito menos amostras do que o ideal.
+
+
+\end{itemize}
+
+
+Em suma, o sistema de radar \gls{PCL} é muito vantajoso pelas demais razões já identificadas várias vezes e pode-se tornar um sistema muito mais económico, no entanto é necessário um processamento de sinal muito avançado e pesado. A não aplicação de certas técnicas compromete muito a operacionalidade e veracidade dos resultados obtidos pelo radar. Contudo, as conclusões retiradas deste trabalho de investigação permitem guiar futuros projetos e trabalhos de forma a escolher caminhos em que obtenham melhores resultados e permite saber o foco de trabalho para a resolução de determinados problemas.
 
 
 \section{Cenários Possíveis - MARINHA}
-
+“O projeto DESARMAR é uma iniciativa de investigação para o desenvolvimento de um sistema \gls{SAR} passivo baseado em \gls{SDR} a bordo de um sistema autónomo aéreo para monitorização e proteção do espaço litoral. Este projeto pretende investigar o potencial deste novo tipo de tecnologia e aplica-lo a vigilância e patrulhamento costeiro, fazendo uso de algoritmos de seguimento para identificar eventos de risco e ameaças de origem humana ou natural, permitindo assim a mitigação dos seus impactos (quer de um ponto de vista económico, quer social e ambiental)”. Este trabalho de investigação insere-se neste projeto de forma a contribuir para o estudo nas limitações da deteção utilizando um sistema de radar passivo. O projeto torna-se mais ambicioso com a utilização deste tipo de radares a bordo de um sistema autónomo aéreo e para a formação de imagem, contudo as lições aprendidas com esta dissertação podem direcionar o projeto num caminho mais eficaz.\par
+A presente investigação é importante para a Marinha Portuguesa pelo conhecimento deste sistema, que pode ser uma nova realidade com inúmeras aplicações de interesse para a mesma. Um bom exemplo é o projeto \gls{SMARP}, que tem como objetivo projetar e construir uma demonstração de um radar passivo de matriz multi-banda baseado em \gls{SDR} com a finalidade de vigilância da costa.
 
 
 \section{Propostas para Trabalhos Futuros}

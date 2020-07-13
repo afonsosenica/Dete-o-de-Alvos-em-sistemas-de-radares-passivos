@@ -34,7 +34,7 @@ O repositório que contém as drivers que permitem trabalhar com o LimeSDR a par
 \label{fig:limec}
 \end{figure}
 
-Para o estudo da deteção de alvos utilizando sistemas de deteção passivos, foi utilizado sinais \gls{DVB-T} dos transmissores de Palmela (38°33'23.02"N	8°54'27.56"W) e Cruz de Pau (38°37'3.78"N	9°7'2.31"W), ambos a transmitir nas frequências $598-606 MHz$, e a posição do estudo foi em Brejos de Azeitão (38°32'11.10"N	9°1'21.43"W). Para uma melhor compreensão do panorama geográfico, a imagem \ref{fig:mapaemi} representa os transmissores a amarelo,  os utilizados a amarelo com um risco preto por baixo e a posição da experiência com um círculo azul.\par 
+Para o estudo da deteção de alvos utilizando sistemas de deteção passivos, foi utilizado sinais \gls{DVB-T} dos transmissores de Palmela (38°33'23.02"N	8°54'27.56"W) e Cruz de Pau (38°37'3.78"N	9°7'2.31"W), ambos a transmitir nas frequências $598-606 MHz$, e a posição do estudo foi em Brejos de Azeitão (38°32'11.10"N	9°1'21.43"W). Os sinais \gls{DVB-T} são de grande interesse para a deteção com radares passivos como abordado no Capítulo \ref{chap:Chapter1}, visto que entre os disponíveis como iluminadores de oportunidade apresentam uma boa cobertura e uma boa largura de banda, o que se reflete numa boa resolução em alcance. Para uma melhor compreensão do panorama geográfico, a imagem \ref{fig:mapaemi} representa os transmissores a amarelo,  os utilizados a amarelo com um risco preto por baixo e a posição da experiência com um círculo azul.\par 
 
 \begin{figure}[h]
 \centering
@@ -122,4 +122,11 @@ Ao analisar o segundo caso, pode-se observar que por aumentar o tempo de integra
 \label{fig:15mmsum}
 \end{figure}
 
-Ainda com os valores do segundo caso, mas somando amostras de diversas partes da matriz, é possível aumentar a intensidade da correlação no alvo se estivermos a utilizar zonas em que o carro se encontrava a refletir mais energia, ou seja, casos em que o carro estivesse mais perto e dentro da zona do diagrama de radiação da antena que tem maior intensidade. Para isto, foram usados os dados gravados do caso 2 e utilizado um programa no Apêndice \ref{AppendixC}
+Ainda com os valores do segundo caso, mas somando amostras de diversas partes da matriz, é possível aumentar a intensidade da correlação no alvo se estivermos a utilizar zonas em que o carro se encontrava a refletir mais energia, ou seja, casos em que o carro estivesse mais perto e dentro da zona do diagrama de radiação da antena que tem maior intensidade. Para isto, foram usados os dados gravados do caso 2 e utilizado um programa no Apêndice \ref{AppendixC} que permite escolher as amostras de tempo da matriz que se querem analisar e fazer a correlação em cada uma delas. Uma forma de obter o valor de tempo em que o carro esteve mais perto do sistema é fazer uma correlação apenas em \textit{delay} e ver para que tempo a intensidade é máxima. No caso 2 obteve-se o valor de $0.9 s$ como o tempo em que o carro esteve mais próximo do radar, como se pode observar na figura \ref{fig:4ca}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{chapters/ch5/assets/4ca}
+\caption[Caso 2 dividido em 4 correlações]{Caso 2 dividido em 4 correlações, para $t=0.3s, 0.6s, 0.9s, 1.2s$}
+\label{fig:4ca}
+\end{figure}
