@@ -7,11 +7,11 @@
 %----------------------------------------------------------------------------------------
 
 \section{Contextualização} \label{contextualização}
-Os radares convencionais apresentam uma configuração onde são constituídos por um transmissor e um recetor, normalmente no mesmo local. Neste tipo de radares, um pulso é transmitido em forma de energia eletromagnética, e através do conhecimento do tempo levado pelo pulso a ser transmitido e recebido depois de refletido no alvo e da velocidade de propagação da luz, consegue-se determinar um valor de distância.\par 
+Os radares convencionais são constituídos por um transmissor e um recetor, normalmente no mesmo local. Neste tipo de radares, um impulso é transmitido em forma de energia eletromagnética, e através do conhecimento do tempo levado pelo pulso a ser transmitido e recebido depois de refletido no alvo e da velocidade de propagação da luz, consegue-se determinar um valor de distância.\par 
 Num radar passivo, não existe transmissão de energia eletromagnética durante o seu funcionamento. Ao invés, utiliza iluminadores de oportunidade e compara o seu sinal direto com pequenas alterações que ocorrem no campo eletromagnético por alvos em movimento de forma a detetar um alvo \parencite{Griffiths2017}.\par 
-Este sistema radar pode utilizar uma grande variedade de iluminadores, desde sistemas de navegação por satélite (\textit{\gls{GNSS}}) como o \gls{GPS} ou o GLONASS, \textit{routers} de WiFi ou qualquer sistema de transmissão de frequências rádio como \textit{\gls{DVB}} ou estações de rádio. Dito isto, por forma a dimensionar o sistema para o efeito desejado, torna-se necessário uma boa compreensão das mais diversas caraterísticas dos iluminadores, como é falado mais à frente neste capítulo.\par 
+Este sistema radar pode utilizar uma grande variedade de iluminadores, desde sistemas de navegação por satélite (\textit{\gls{GNSS}}) como o \gls{GPS} ou o GLONASS, \textit{routers} de WiFi ou qualquer sistema de transmissão de frequências rádio como \textit{\gls{DVB}} ou estações de rádio. Assim, por forma a dimensionar o sistema para o efeito desejado, torna-se necessário uma boa compreensão das mais diversas caraterísticas dos iluminadores, como é referido mais à frente neste capítulo.\par 
 Para a finalidade de deteção de alvos a grandes distâncias, os sinais mais eficazes e consequentemente mais utilizados são os que apresentam elevada potência, como transmissores de \gls{VHF} e de televisão digital em \gls{UHF}, não obstante poder-se também utilizar em certos casos outros iluminadores.\par
-O cenário típico de um esquema de deteção usando um radar passivo é, como mostrado na Figura \ref{fig:esquema_pcl}, constituído por duas antenas recetoras, uma antena que recebe o sinal direto do iluminador ($S_{ref}$) e outra antena que recebe o sinal que é refletido no alvo ($S_{r}$). O sinal refletido no alvo fornece duas informações importantes para a sua deteção: o \textit{bistatic range}, ou seja, a distância ao alvo, conseguida através da diferença de tempo entre o sinal direto e o sinal refletido; e o \textit{Doppler}, que é o desvio de frequência que um alvo em movimento cria no sinal que é refletido devido à sua velocidade. Estes conceitos são discutidos mais à frente neste capitulo. \par
+O cenário típico de um esquema de deteção usando um radar passivo é, como ilustrado na Figura \ref{fig:esquema_pcl}, constituído por duas antenas recetoras, uma antena que recebe o sinal direto do iluminador ($S_{ref}$) e outra antena que recebe o sinal que é refletido no alvo ($S_{r}$). O sinal refletido no alvo fornece duas informações importantes para a sua deteção: o \textit{bistatic range}, ou seja, a distância ao alvo, conseguida através da diferença de tempo entre o sinal direto e o sinal refletido; e o \textit{Doppler}, que é o desvio de frequência que um alvo em movimento cria no sinal que é refletido devido à sua velocidade. Estes conceitos são discutidos mais à frente neste capitulo. \par
 
 \begin{figure}[h]
 \centering
@@ -20,45 +20,45 @@ O cenário típico de um esquema de deteção usando um radar passivo é, como m
 \label{fig:esquema_pcl}
 \end{figure}
 
-O conceito do radar passivo é fazer uma relação cruzada, ou, como mais conhecido o termo, \textit{cross-correlation} entre o sinal direto e o sinal refletido em função das variáveis \textit{delay-time} que pode ser transformado em \textit{bistatic range} e o desvio de \textit{Doppler}. A \textit{cross-correlation}, de forma simples, é uma medida de similaridade entre dois sinais aplicando um atraso num deles, que neste caso, para além do atraso (\textit{delay-time}), também é feita para os diferentes \textit{Doppler}, ou seja, em duas dimensões. No entanto, na prática existem processos analíticos mais eficientes, visto que fazer a \textit{cross-correlation} a duas dimensões em tempo real torna o processo muito pesado computacionalmente.
+O radar passivo consiste em efetuar a relação cruzada (\textit{cross-correlation}) entre o sinal direto e o sinal refletido em função das variáveis \textit{delay-time} (ou \textit{bistatic range}) e o desvio de \textit{Doppler}. A \textit{cross-correlation}, de forma simples, é uma medida de similaridade entre dois sinais aplicando um atraso num deles, que neste caso, para além do atraso em tempo(\textit{delay-time}), também é feita para os diferentes desvios de \textit{Doppler}, ou seja, em duas dimensões. No entanto, na prática existem processos analíticos mais eficientes, visto que fazer a relação cruzada a duas dimensões em tempo real torna o processo muito pesado computacionalmente.
 
 
 
 \subsection{Geometrias Radar}
-Podemos classificar os radares quanto à localização dos transmissores e recetores. O ângulo $\beta$ que estes formam, sendo o seu centro o alvo, determina o tipo de geometria \parencite{Baker2019}. Se $\beta <20^{\circ}$, o transmissor e o recetor encontram-se perto ou no mesmo sítio, então estamos perante uma geometria monostática (Figura \ref{fig:monostatic}). Quando o transmissor e recetor estão mais afastados e formam um ângulo com centro no recetor dentro dos seguintes limites, $20^{\circ}<\beta <145^{\circ}$, a geometria é bistática (Figura \ref{fig:bistatic}). Para situações particulares, em que o alvo se encontra a uma cota baixa em relação à linha imaginária que une o transmissor e o recetor ($145^{\circ}<\beta <180^{\circ}$), estamos perante uma geometria \textit{Forward Scatter} (Figura \ref{fig:fsc}).\par   
+Podemos classificar os radares quanto à localização dos transmissores e recetores. O ângulo $\beta$ que estes formam, sendo o seu centro o alvo, determina o tipo de geometria \parencite{Baker2019}. Se $\beta <20^{\circ}$, considera-se que o transmissor e o recetor se encontram perto ou no mesmo local, podendo então ser aproximada a uma geometria monostática (Figura \ref{fig:monostatic}). Quando o transmissor e recetor estão mais afastados e formam um ângulo com centro no recetor dentro dos seguintes limites, $20^{\circ}<\beta <145^{\circ}$, considera-se a geometria bistática (Figura \ref{fig:bistatic}). Para situações particulares, considera-se que o alvo se encontra a uma cota baixa em relação à linha imaginária que une o transmissor e o recetor ($145^{\circ}<\beta <180^{\circ}$), podendo então ser aproximada a uma geometria \textit{Forward Scatter} (Figura \ref{fig:fsc}).\par   
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.8]{chapters/ch2/assets/monostatic}
-\caption[Geometria Monostática]{Geometria Monostática}
+\caption[Geometria Monostática]{Geometria Monostática(extraído de \cite{rcsan})}
 \label{fig:monostatic}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.8]{chapters/ch2/assets/bistatic}
-\caption[Geometria Bistática]{Geometria Bistática}
+\caption[Geometria Bistática]{Geometria Bistática(extraído de \cite{rcsan})}
 \label{fig:bistatic}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{chapters/ch2/assets/fsc}
-\caption[Geometria \textit{Forward Scatter}]{Geometria \textit{Forward Scatter}}
+\caption[Geometria \textit{Forward Scatter}]{Geometria \textit{Forward Scatter}(extraído de \cite{rcsan})}
 \label{fig:fsc}
 \end{figure}
 
-Os radares passivos, como já discutido, têm a vantagem de não transmitirem um sinal, e ao invés usar um sinal a ser transmitido por outra fonte. Isto implica que o transmissor e o recetor não estejam no mesmo sítio nem perto, logo, quando se fala em radares passivos, assume-se uma geometria bistática.
+Os radares passivos, como já discutido, têm a vantagem de não transmitirem um sinal, e ao invés usar um sinal a ser transmitido por outra fonte. Isto implica que o transmissor e o recetor não estejam no mesmo sítio nem perto, logo, quando é falado em radares passivos, assume-se a geometria bistática.
 
 
 
 \subsection{Alcance Bistático e \textit{Doppler}}
-Como falado no ínicio deste capítulo, o alcance bistático, ou \textit{bistatic range} e o desvio de \textit{Doppler} são varáveis fundamentais para qualquer sistema radar e isso não exclui o radar passivo.\par 
+Como referido no ínicio deste capítulo, o alcance bistático, ou \textit{bistatic range} e o desvio de \textit{Doppler} são varáveis fundamentais para qualquer sistema radar e isso não exclui o radar passivo.\par 
 O recetor bistático pode medir 3 parâmetros diferentes:
 \begin{itemize}
 \item A diferença em alcance entre o sinal direto e o sinal que é refletido, ou seja, o \textit{bistatic range};
-\item O desvio de \textit{Doppler} do sinal recebido;
-\item O ângulo $\theta_{R}$ do sinal recebido, se for usada uma antena de \textit{surveillance }direcional.
+\item O desvio de \textit{Doppler} do sinal recebido relativamente à frequência do sinal;
+\item O ângulo $\theta_{R}$ do sinal recebido, se for usada uma antena de \textit{surveillance}direcional.
 \end{itemize}
 
 \subsubsection*{Alcance Bistático} \label{subchapter:alcance_bistatico}
@@ -68,14 +68,14 @@ Tal como representado na Figura \ref{fig:geom}, tomamos os valores $R_{T}$ como 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.9]{chapters/ch2/assets/geom}
-\caption[Parâmetros na geometria bistática]{Parâmetros na geometria bistática}
+\caption[Parâmetros na geometria bistática]{Parâmetros na geometria bistática (Adaptada de \cite{GRIFFITHS2014813})}
 \label{fig:geom}
 \end{figure}
 
-O termo alcance bistático, ou \textit{bistatic range}, é definido em \ref{2.1}. Com este valor é possível criar elipses bistáticas (para duas dimensões) ou elipsoides bistáticos (para três dimensões) com o transmissor e o recetor como dois focos das mesmas. \par
+O termo alcance bistático, ou \textit{bistatic range}, é definido em \ref{2.1} \parencite{Griffiths2017}. Com este valor é possível criar elipses bistáticas (para duas dimensões) ou elipsoides bistáticos (para três dimensões) com o transmissor e o recetor como dois focos das mesmas. \par
 
-\begin{equation} \label{2.1}
-R_{T}+R_{R}-C
+\begin{equation} \label{2.1} 
+R_{T}+R_{R}-C 
 \end{equation}
 
 Contudo, se a \textit{baseline} $C$ for um valor conhecido, pode-se extrair o termo \textit{range sum} $R_{T}+R_{R}$. \par
@@ -86,7 +86,7 @@ R_{R}=\dfrac{\left(  R_{T}+R_{R}\right)^{2}-C^{2}}{2\left(  R_{T}+R_{R}+C sin\th
 \end{equation}
 
 
-Um dos parâmetros importantes quando se fala em alcance bistático é a \textit{range resolution}, ou seja, a resolução em alcance. Este parâmetro é definido pela capacidade de distinguir os alvos que estão muito próximos. Um bom exemplo de um sistema radar que necessite de grande \textit{range resolution} é um sistema de direção de tiro. \par 
+Um dos parâmetros importantes quando no alcance bistático é a \textit{range resolution}, ou seja, a resolução em alcance. Este parâmetro é definido pela capacidade de distinguir os alvos que estão muito próximos. Um exemplo de um sistema radar que necessite de boa \textit{range resolution} é um sistema de direção de tiro. \par 
 
 Num radar convencional monostático, a resolução em alcance é dada por $\delta_{R}=c/2B$, onde c é a velocidade de propagação e B a largura de banda do sinal transmitido. No entanto, num radar passivo, a geometria é bistática, o que leva a existirem diferentes elipses bistáticas concêntricas, isto é, com centro no mesmo ponto, o que tem de ser tomado em conta na expressão que representa a \textit{range resolution}:
 
@@ -110,7 +110,7 @@ No entanto, este caso é específico para quando os dois alvos estão alinhados 
 
 
 A expressão do \textit{bistatic range resolution} permite interpretar a geometria bistática quanto à distância entre o transmissor e recetor. Da expressão \ref{2.4} conclui-se que quanto mais o ângulo $\beta$ se aproxima de um ângulo reto, o denominador tende para um valor próximo de 0, ou seja, a resolução em alcance torna-se fraca. Contudo, nesta situação estamos perante uma geometria \textit{forward scatter}, discutido no inicio deste capítulo, o que pode ser contornando usando vários recetores em locais diferentes.\par 
-Para radares passivos, continuando a interpretação da expressão \ref{2.4}, os iluminadores de oportunidade mais utilizados têm pouca largura de banda $B$, o que se reflete numa resolução em alcance mais reduzida. No entanto, os sinais de DVB-T, discutidos no Capítulo \ref{chap:Chapter1}, têm uma largura de banda na ordem dos 8 MHz, o que já permite uma resolução em alcance na ordem dos 40m.
+Para radares passivos, continuando a interpretação da expressão \ref{2.4}, os iluminadores de oportunidade mais utilizados têm pouca largura de banda $B$, o que se reflete na diminuição da resolução em alcance. No entanto, os sinais de \gls{DVB-T}, discutidos no Capítulo \ref{chap:Chapter1}, têm uma largura de banda na ordem dos $8 MHz$, o que permite uma resolução em alcance na ordem dos $40m$.
 
 \subsubsection*{\textit{Doppler}} 
 Ignorando efeitos relativisticos, o desvio de \textit{Doppler} bistático ocorre quando pelo menos um dos elementos transmissor, alvo, recetor se encontra em movimento. É definido como a taxa de variação temporal do comprimento total do caminho percorrido pelo sinal refletido, normalizado pelo comprimento de onda $\lambda$ \parencite{Willis2005}.  No caso mais comum, em que apenas o alvo se encontra em movimento, o desvio de \textit{Doppler} é dado por \parencite{Willis2005},
@@ -144,8 +144,8 @@ Com esta expressão, assumimos que os alvos partilham a mesma bissetriz, o que n
 
 
 
-\subsection{Previsão de \textit{Performance}}
-Para qualquer sistema radar é importante conseguir prever com precisão os vários aspetos da \textit{performance} do sistema. O ponto de início de uma análise de \textit{performance} mi, radar passivo é a equação de radar bistática, falada brevemente no capítulo \ref{chap:Chapter3} e rescrita  de uma forma que reflete as caraterísticas do radar \gls{PCL} para o caso da geometria bistática vem \parencite{Griffiths2005},
+\subsection{Previsão de Desempenho}
+Para qualquer sistema radar é importante conseguir prever com precisão os vários aspetos do desempenho do sistema. O ponto de início de uma análise de desempenho do radar passivo é a equação de radar bistática, referida brevemente no capítulo \ref{chap:Chapter3} e rescrita  de uma forma que reflete as caraterísticas do radar \gls{PCL} para o caso da geometria bistática vem \parencite{Griffiths2005},
 
 \begin{equation} \label{2.8}
 \dfrac{P_{r}}{P_{n}}= \dfrac{P_{t}G_{t}}{4\pi r^{2}_{1}}\cdot\sigma_{b}\cdot\dfrac{1}{4\pi r^{2}_{2}}\cdot\dfrac{G_{r}\lambda^{2}}{4\pi}\cdot\dfrac{1}{kT_{0}BF}\cdot L 
@@ -167,16 +167,16 @@ $B$: "largura de banda efetiva do recetor"\par
 $F$: "\textit{noise figure}\footnote{\textit{noise figure} ou figura de ruído representa a diferença em $dB$ entre o ruído de entrada do recetor e a ruído de saída do mesmo} efetiva do recetor"\par
 $L(\leq 1)$: "perdas do sistema"\par
  
-É de notar que para esta equação, usada para a previsão de \textit{peformance}, é importante conhecer o valor de cada parâmetro a ser usado, o que leva a ter uma ideia bem definida da função do sistema radar e o que se pretende com o mesmo. Também é necessário um conhecimento dos vários iluminadores de oportunidade e as suas caraterísticas, falado no subcapítulo \ref{IOS}.\par 
+É de notar que para esta equação, usada para a previsão de \textit{peformance}, é importante conhecer o valor de cada parâmetro a ser usado, o que leva a ter uma ideia bem definida da função do sistema radar e o que se pretende com o mesmo. Também é necessário o conhecimento dos vários iluminadores de oportunidade e as suas caraterísticas, referido no subcapítulo \ref{IOS}.\par 
 
 
 \subsubsection*{Potência transmitida}
 A potência transmitida $P_{t}$ é substancial para muitas das fontes de sinal para o radar passivo devido aos recetores de sinais de \textit{broadcast} e comunicações apresentarem, normalmente, antenas ineficientes e com \textit{noise figures} baixas. Isto é, as antenas de receção dos sinais mais comuns no espetro, são antenas que têm de ser relativamente baratas, por exemplo uma antena de receção de \gls{DVB-T} ou de receção de radiodifusão sonora em \gls{VHF}, de forma a o utilizador comum poder ter acesso a qualquer uma destas, logo este tipo de antenas são mais ineficientes e isso é colmatado por uma maior potência de transmissão por parte da estação de difusão.\par 
-Seja qual for o iluminador de oportunidade utilizado, a potência do transmissor implica com a densidade de potência $\Phi =(P_{t}G_{t})/4\pi r^{2}_{1}$, que é uma caraterística importante na escolha da fonte de sinal a ser utilizada. 
+Seja qual for o iluminador de oportunidade utilizado, a potência do transmissor interfere com a densidade de potência $\Phi =(P_{t}G_{t})/4\pi r^{2}_{1}$, que é uma caraterística importante na escolha da fonte de sinal a ser utilizada. 
 
 \subsubsection*{\gls{RCS} bistática do alvo}
-Na deteção de alvos usando radares \gls{PCL}, a \gls{RCS} bistática do alvo é uma caraterística importante na previsão de \textit{performance}. As caraterísticas do alvo definem este parâmetro e também a sua localização em relação ao transmissor - recetor, formando o ângulo bistático $\beta$, falado no ínicio deste capítulo. É dificil ter uma previsão deste parâmetro, mas há um caso especial a ser considerado, que é para uma geometria \textit{forward scatter}. \par 
-Quando o ângulo bistático, representado na figura \ref{fig:geom} por $\beta$, toma valores próximos de $180^{\circ}$, entra-se na região de \textit{forward scatter} e nesta zona, o valor da \textit{cross-section} do alvo é melhorado devido ao principio de \textit{Babinet}. Este principio aplicado a este caso, diz que para um alvo que é um absorvedor perfeito, na região de \textit{forward scatter}, a dispersão de energia que é transmitida para o recetor é igual à dispersão que era transmitida se no lugar deste alvo estivesse presente uma abertura com a mesma forma \parencite{Griffiths2005}. Assim sendo, para um alvo com uma área transversal $A$, a \gls{RCS} é representada na equação \ref{2.9} e a largura de feixe do sinal refletido na equação \ref{2.10}.
+Na deteção de alvos usando radares \gls{PCL}, a \gls{RCS} bistática do alvo é uma caraterística importante na previsão de desempenho. As caraterísticas do alvo definem este parâmetro e também a sua localização em relação ao transmissor - recetor, formando o ângulo bistático $\beta$, referido no ínicio deste capítulo. É dificil ter uma previsão deste parâmetro, mas há um caso especial a ser considerado, que é para uma geometria \textit{forward scatter}. \par 
+Quando o ângulo bistático, representado na figura \ref{fig:geom} por $\beta$, toma valores próximos de $180^{\circ}$, entra-se na região de \textit{forward scatter} e nesta zona, o valor da \gls{RCS} do alvo é melhorado devido ao principio de \textit{Babinet}. Este principio aplicado a este caso, diz que para um alvo que é um absorvedor perfeito, na região de \textit{forward scatter}, a dispersão de energia que é transmitida para o recetor é igual à dispersão que era transmitida se no lugar deste alvo estivesse presente uma abertura com a mesma forma \parencite{Griffiths2005}. Assim sendo, para um alvo com uma área transversal $A$, a \gls{RCS} é representada na equação \ref{2.9} e a largura de feixe do sinal refletido na equação \ref{2.10}.
 
 \begin{equation} \label{2.9}
 \sigma_{b}=\dfrac{4\pi A^{2}}{\lambda^{2}}
@@ -215,14 +215,14 @@ NF=10log_{10}\left( \dfrac{SNR_{i}}{SNR_{o}}\right)=SNR_{i,dB}-SNR_{o,dB}
 \end{equation}
 
 \subsubsection*{Ganho de integração}
-A largura de banda efetiva do recetor $B$, que é normalmente a largura de banda do sinal transmitido, é adaptada ao sinal direto e, quando combinada com um tempo de integração $T$, resulta um ganho de integração como representado na equação \ref{2.12}. Este tempo de integração é referido no capítulo \ref{chap:Chapter4} como o tempo em que é integrada a \textit{cross-correlation}.
+A largura de banda efetiva do recetor $B$, que é normalmente a largura de banda do sinal transmitido, é adaptada ao sinal direto e, quando combinada com um tempo de integração $T$, resulta um ganho de integração como representado na equação \ref{2.12}. Este tempo de integração é referido no capítulo \ref{chap:Chapter4} como o tempo em que é integrada a relação cruzada.
 
 \begin{equation} \label{2.12}
 G_{i}=BT
 \end{equation}
 
 Para o caso da \gls{DVB-T}, que a largura de banda é aproximadamente $8 MHz$, com um tempo de integração de 1 segundo dá um ganho de processamento $G_{i}$ de $69dB$, o que se torna muito melhor que o ganho de integração de por exemplo uma transmissão rádio \gls{FM} com uma largura de banda de $50 kHz$, que para 1 segundo de tempo de integração vem um ganho de $47dB$.\par 
-Tendo como referência a equação \ref{2.12}, podemos ter a perceção de que para obter maior ganho de integração num determinado sinal, basta aumentar o tempo de integração da correlação para valores maiores, o que é verdade, mas ao fazer isto, existem vários efeitos limitativos que vão ocorrer. Um dos principais e efeito mais limitativo é conhecido como \textit{target flutuations}, ou seja, alterações repentinas da força do sinal, que é resultante de maioritariamente dois fatores: a mudança de ângulo de observação e o efeito de \textit{multipath}. Com isto, a função do ganho de integração já não vai ser linear e aumentar sempre com o aumento do tempo de integração, pelo oposto, dependendo de vários fatores vai ter um pico para um determinado tempo de integração.\par 
+Tendo como referência a equação \ref{2.12}, podemos ter a perceção de que para obter maior ganho de integração num determinado sinal, basta aumentar o tempo de integração da correlação para valores maiores, o que é verdade, mas ao fazer isto, existem vários efeitos limitativos que vão ocorrer. Um dos principais efeitos mais limitativo é conhecido como \textit{target flutuations}, ou seja, alterações repentinas da força do sinal, que é resultante de maioritariamente dois fatores: a mudança de ângulo de observação e o efeito de \textit{multipath}. Com isto, a função do ganho de integração já não vai ser linear e aumentar sempre com o aumento do tempo de integração, pelo oposto, dependendo de vários fatores vai ter um pico para um determinado tempo de integração.\par 
 Este tema tem sido estudado e foram tiradas várias conclusões com resultados de alvos reais \parencite{Malanowski2008}. Uma das conclusões que foi verificada, foi que o tempo de integração da correlação é importante para ecos fracos, que são originados por reflexões em alvos distantes e que para alvos mais próximos, normalmente existe boa \gls{SNR} e não é necessário maior tempo de integração. Também são abordadas e testadas soluções para este problema usando diferentes versões da função de correlação.
 
 \subsubsection*{Previsão de \textit{performance} na deteção}
@@ -242,7 +242,7 @@ Como conclusão deste subcapítulo e depois da abordagem em alguns tópicos cons
 \label{fig:cp}
 \end{figure}
 
-Várias observações podem ser feitas com estas duas figuras, mas a primeira que salta à vista é o alcance de deteção para um transmissor, sendo que a linha preta que contorna os dois transmissores é uma referência para os $15dB$, que ronda pouco mais de $10km$ para o transmissor em Crystal Palace, e para o transmissor em Wrotham o já está na ordem dos $30km$. Isto deve-se à potência de transmissão, que no caso de Crystal Palace é de $4kW$ e em Wrotham, $250kW$, o que leva de novo a um dilema que tem sido debatido ao longo desta dissertação, que é a escolha do iluminador de oportunidade e a variedade de fatores que afetam esta escolha nunca conseguindo ter uma fonte de sinal ideal, mas sim uma mais adaptada à função do radar passivo.
+Várias observações podem ser feitas com estas duas figuras, mas a primeira que se sobressai é o alcance de deteção para um transmissor, sendo que a linha preta que contorna os dois transmissores é uma referência para os $15dB$, que ronda pouco mais de $10km$ para o transmissor em Crystal Palace, e para o transmissor em Wrotham o já está na ordem dos $30km$. Isto deve-se à potência de transmissão, que no caso de Crystal Palace é de $4kW$ e em Wrotham, $250kW$, o que leva de novo a um dilema que tem sido debatido ao longo desta dissertação, que é a escolha do iluminador de oportunidade e a variedade de fatores que afetam esta escolha nunca conseguindo ter uma fonte de sinal ideal, mas sim uma mais adaptada à função do radar passivo.
 
 
 \subsection{Formação de Imagem}
