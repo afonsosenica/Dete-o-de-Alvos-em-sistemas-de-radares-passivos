@@ -67,14 +67,37 @@ No caso do desvio de \textit{doppler}, a resolução é dada pela expressão \re
 \end{equation}
 
 
+Uma das principais limitações do sistema é a dessincronização em fase do sinal recebido nos dois canais diferentes, que depende da frequência do mesmo \cite{Kraus1988}. A solução a este problema passa pela deteção da diferença de fase entre os dois canais para os parâmetros utilizados e posterior correção de modo a que ambos cheguem com a mesma fase aos dois canais. Em dezembro de 2019, Damir Rakhimov desenvolveu um programa em MATLAB que permite verificar a diferença de fase consoante a frequência.\par
+Deste programa, em anexo \ref{Annex2}, retira-se gráficos mais importantes para a análise desta limitação representados pelas figuras \ref{fig:phasefreq} e \ref{fig:histogram}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{chapters/ch5/assets/phasefreq}
+\caption[Diferença de fase vs Frequência]{Gráfico que representa a diferença de fase consoante a frequência}
+\label{fig:phasefreq}
+\end{figure}
+
+Na figura \ref{fig:phasefreq} é representada a diferença de fase em graus ($-200^{\circ}$ a $200^{\circ}$), consoante a variação da frequência em relação à frequência central ($f_{c}=602 MHz$). É possível observar que ao variar a frequência resulta numa alteração de fase de $-200^{\circ}$ a $200^{\circ}$, mas que uma parte considerável das amostras se mantêm entre os $-50^{\circ}$ e $50^{\circ}$. É de notar, também, que a largura de banda utilizada toma o valor de $8 MHz$, portanto deve-se ter em conta para análise a escala na frequência de $-4\times 10^{6} Hz$ a $4\times 10^{6} Hz$.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{chapters/ch5/assets/histogram}
+\caption[Desvio das amostras]{Histograma do desvio das amostras}
+\label{fig:histogram}
+\end{figure}
+
+
+Na figura \ref{fig:histogram} é representado o histograma do desvio das amostras ($T_{o}$) em relação ao período do sinal ($T_{s}$), ou seja, para cada amostra é calculado o desvio temporal entre os dois canais, e é dividido pelo tempo total do sinal. Pode-se observar que a diferença de tempo entre os canais é muito imprevisível, apesar de haver uma maior concentração de amostras em $\dfrac{T_{o}}{T_{s}}=-0.45$, não sendo possível corrigir esta diferença de forma eficaz.
+
 
 \section{Resultados}
-Considerando todas as condições descritas acima para a realização da experiência, os resultados permitiram a deteção do alvo mas com muitas condicionantes, tornando o sistema de baixo custo muito limitado, o que era de esperar.\par  
+Considerando todas as condições descritas acima para a realização da experiência, os resultados permitiram a deteção do alvo mas com muitas condicionantes, tornando o sistema de baixo custo muito limitado, o que era de esperar. \par  
 Todas as amostras foram retiradas com o sistema descrito anteriormente e utilizando o programa no Apêndice \ref{AppendixB}. Inicialmente são introduzidos os parâmetros em variáveis e depois de aberto o \textit{LimeSDR} com o comando \textit{dev = limeSDR()} são inseridos nos dois canais de receção, rx0 e rx1, com a adição do \textit{dev.rx0.antenna = 2} que indica que o \textit{low noise amplifier} a ser utilizados pelo \textit{LimeSDR} é o LNAL, adequado para frequências entre os $0 - 2000 MHz$. Posteriormente os parâmetros são lidos depois de introduzidos para haver registo e verificar se correspondem ao desejado e também é feita a leitura da temperatura do dispositivo visto que este tem tendência a aquecer rapidamente e isto afeta a sua \textit{performance}. De seguida são criadas as matrizes de zeros que vão alojar o sinal recebido, são autorizados os parâmetros nos canais e calibrados os canais de receção para a frequência desejada. Com isto, é iniciado a recolha de dados dos dois canais ao mesmo tempo com o comando \textit{dev.start()} de modo a que as unidades de tempo batam certo nas duas amostras, o que é crucial para que os resultados sejam fidedignos. Durante o tempo de recolha que termina com o comando \textit{dev.stop()}, o sistema vai recolher $Fs*Ts$ amostras no canal 0 e 1 para as variáveis \textit{samples} e \textit{samples1}. Posto isto, é necessário reduzir o numero de amostras para se conseguir fazer a correlação sem que o MATLAB fique sem memória e de seguida, utilizando a função \textit{ambgfun} consegue-se fazer as funções de ambiguidade tanto como a correlação entre os dois sinais recebidos $x$ e $x1$. Finalmente são desenhados os espectro-gramas  dos sinais recebidos tanto como as suas funções de ambiguidade e a correlação.\par 
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{chapters/ch5/assets/geoexp}
+\includegraphics[scale=0.35]{chapters/ch5/assets/geoexpfin}
 \caption[Configuração da experiência]{Configuração da experiência no local}
 \label{fig:geoexp}
 \end{figure}
